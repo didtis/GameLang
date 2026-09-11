@@ -8,7 +8,7 @@
 
 | Campo | Informação |
 |---|---|
-| Curso / Disciplina | `[Ciências da Computação]` |
+| Curso / Disciplina | `[Ciências da Computação — Linguagens Formais e Autômatos]` |
 | Projeto de Pesquisa / IC | `[Desenvolvimento de um compilador para uma linguagem especifica de domínio voltada a lógica de combates de rpg]` |
 | Orientador(a) | `[Andrea Ono Sakai]` |
 | Data de entrega desta etapa | `[18/08/2026]` |

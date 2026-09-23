@@ -96,11 +96,11 @@ Escrevam de 4 a 5 assuntos que serão abordados na pesquisa.
 - Apresentar quais são os resultados das estratégias de marketing para segmentação de clientes sem e com IA
 
 **Assuntos do grupo:**
-1. Resposta:
-2. Resposta:
-3. Resposta:
-4. Resposta:
-5. Resposta: *(opcional)*
+1. Resposta: Linguagens Formais
+2. Resposta: Gramáticas Livres de Contexto
+3. Resposta: Compiladores
+4. Resposta: Linguagens específicas de domínio (DLS)
+5. Resposta: Jogos e Programação 
 
 ### 2.3 Estrutura básica do artigo
 

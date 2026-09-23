@@ -9,11 +9,11 @@
 
 | Campo | Informação |
 |---|---|
-| Curso / Disciplina | `[preencher]` |
+| Curso / Disciplina | `Computabilidade e complexidade de algoritmos` ciência da computação |
 | Projeto de Pesquisa / IC | `[preencher]` |
-| Orientador(a) | `[preencher]` |
-| Data de entrega desta etapa | `[dd/mm/aaaa]` |
-| Integrantes do grupo | `[Nome 1, Nome 2, Nome 3...]` |
+| Orientador(a) | `[Andrea Ono Sakai]` |
+| Data de entrega desta etapa | `[24/09/2026]` |
+| Integrantes do grupo | `[Igor, Jose, Luis, Marcus ...]` |
 | Tema (da etapa "a") | `[copiar o tema delimitado já validado]` |
 
 ## PARTE 1 — DEFINIR O OBJETIVO GERAL

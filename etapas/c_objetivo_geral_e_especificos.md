@@ -139,13 +139,13 @@ Classifiquem os objetivos específicos em **Conceituais** e **Técnicos**.
 **Objetivos específicos do grupo:**
 
 - **Objetivos Conceituais**
-  - Resposta:
-  - Resposta:
+  - Resposta: Compreender os conceitos de Linguagens Formais, Gramáticas Livres de Contexto (GLC) e compiladores aplicados ao desenvolvimento de uma linguagem específica de domínio.
+  - Resposta: Compreender os conceitos de DSL, análise léxica, análise sintática, AST e análise semântica no processo de compilação da GameLang.
 
 - **Objetivos Técnicos**
-  - Resposta:
-  - Resposta:
-  - Resposta: *(opcional)*
+  - Resposta:Definir a sintaxe, os tokens e a Gramática Livre de Contexto (GLC) da linguagem GameLang.
+  - Resposta:Desenvolver um compilador capaz de realizar a análise léxica e sintática de comandos da GameLang, construindo sua estrutura sintática (AST).
+  - Resposta: Implementar a geração de uma saída a partir dos comandos válidos da GameLang e analisar a complexidade dos algoritmos utilizados.
 
 ---
 

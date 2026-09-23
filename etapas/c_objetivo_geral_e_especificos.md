@@ -10,11 +10,11 @@
 | Campo | Informação |
 |---|---|
 | Curso / Disciplina | `Computabilidade e complexidade de algoritmos` ciência da computação |
-| Projeto de Pesquisa / IC | `[preencher]` |
+| Projeto de Pesquisa / IC | `[Desenvolvimento de um compilador para uma linguagem especifica de domínio voltada a lógica de combates de rpg]` |
 | Orientador(a) | `[Andrea Ono Sakai]` |
 | Data de entrega desta etapa | `[24/09/2026]` |
 | Integrantes do grupo | `[Igor, Jose, Luis, Marcus ...]` |
-| Tema (da etapa "a") | `[copiar o tema delimitado já validado]` |
+| Tema (da etapa "a") | [Linguagens Formais, Compiladores e Linguagens Específicas de Domínio (DSLs), com foco na utilização de Gramáticas Livres de Contexto (GLCs) para definição da sintaxe de uma linguagem própria.]
 
 ## PARTE 1 — DEFINIR O OBJETIVO GERAL
 
@@ -22,35 +22,39 @@
 
 **Pergunta:** Qual foi o tema específico que o grupo definiu?
 
-> Resposta:
+> Resposta:Desenvolvimento de uma linguagem específica de domínio (DSL), denominada provisoriamente GameLang, e de um compilador capaz de analisar programas voltados à representação da lógica de combates de jogos do gênero RPG, utilizando uma Gramática Livre de Contexto para especificar sua sintaxe.
 
 ### 1.2 Passo a passo para chegar ao objetivo geral
 
 **Passo 1 — Delimitação do tema**
 Delimitem o tema específico por área, tempo, espaço ou aplicação.
 
-> Resposta:
+> Resposta:Linguagens Formais]	[Aplicação de formalismos de linguagens na construção de uma linguagem própria]
+[Gramáticas Livres de Contexto]	[Utilização de uma GLC para definir formalmente a sintaxe da GameLang]
+[Compiladores]	[ Desenvolvimento das etapas de um compilador para analisar programas GameLang]
+[Linguagens Específicas de Domínio (DSLs)]	[Criação de uma DSL voltada à representação de lógica de combates de RPG]
+[Jogos e programação]	[Representação de personagens, atributos, ataques, defesa, habilidades, condições e turnos por meio de uma linguagem própria]
 
 **Passo 2 — Formulação da problemática**
 Transformem o tema em uma pergunta que expresse o problema de pesquisa.
 
 *Exemplo:* "Quais os principais impactos da árvore de decisão em IA para definir estratégias de marketing para segmentação de clientes?"
 
-> Resposta:
+> Resposta:Por que esse tema é importante ou atual? Para quem ele importa (academia, mercado, sociedade)?
 
 **Passo 3 — Transformar a pergunta em objetivo geral**
 Reescrevam a pergunta como uma afirmação, usando um verbo no infinitivo.
 
 *Exemplo:* "Analisar os principais impactos da árvore de decisão em IA para definir estratégias de marketing para segmentação de clientes."
 
-> Resposta:
+> Resposta: O tema é relevante por integrar conceitos teóricos de Linguagens Formais e Compiladores a uma aplicação prática relacionada ao desenvolvimento de jogos. A criação da GameLang permite utilizar uma Gramática Livre de Contexto para especificar formalmente a sintaxe da linguagem e relacionar esse conhecimento à construção de um analisador sintático. Além disso, o projeto permite trabalhar diferentes etapas de um compilador, incluindo análise léxica, análise sintática, construção de uma Árvore Sintática Abstrata (AST), análise semântica e geração de saída. Dessa forma, o projeto possibilita transformar conceitos estudados na disciplina em uma implementação prática e testável. O trabalho também possui potencial para continuidade acadêmica, pois o desenvolvimento, os testes, as decisões de projeto e os resultados obtidos poderão posteriormente servir como base para um Trabalho de Conclusão de Curso (TCC).
 
 **Passo 4 — Ajustes finais**
 Revisem o objetivo geral seguindo os critérios abaixo:
 
-- [ ] É claro, direto e mensurável?
-- [ ] Evitei verbos fracos como "estudar" ou "conhecer"?
-- [ ] Usei um verbo forte (explorar, analisar, investigar, compreender, avaliar, propor, desenvolver, aplicar, identificar)?
+- [✔️] É claro, direto e mensurável?
+- [✔️] Evitei verbos fracos como "estudar" ou "conhecer"?
+- [✔️] Usei um verbo forte (explorar, analisar, investigar, compreender, avaliar, propor, desenvolver, aplicar, identificar)?
 
 **Modelo genérico de referência:**
 > "[Verbo no infinitivo] a aplicação de [conceito ou técnica] em [contexto específico], com o propósito de [finalidade principal]."
@@ -64,11 +68,11 @@ Revisem o objetivo geral seguindo os critérios abaixo:
 
 **1) Qual a problemática?**
 
-> Resposta:
+> Resposta:Desenvolvimento de um compilador para uma linguagem específica de domínio (DSL) voltada à representação da lógica de combates de RPG.
 
 **2) Qual o objetivo geral?**
 
-> Resposta:
+> Resposta: O objetivo do projeto é desenvolver a GameLang, uma DSL capaz de representar elementos da lógica de combates de RPG, como personagens, atributos, ataques, defesa, habilidades, condições e turnos.
 
 ---
 
@@ -78,7 +82,7 @@ Revisem o objetivo geral seguindo os critérios abaixo:
 
 Copiem aqui o objetivo geral definido na Parte 1 (deve conceituar os assuntos abordados no tema).
 
-> Resposta:
+> Resposta: O objetivo do projeto é desenvolver a GameLang, uma DSL capaz de representar elementos da lógica de combates de RPG, como personagens, atributos, ataques, defesa, habilidades, condições e turnos.
 
 ### 2.2 Assuntos da pesquisa
 

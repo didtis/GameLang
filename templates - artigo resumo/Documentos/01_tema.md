@@ -22,11 +22,11 @@ Defina um tema específico, relevante e viável para o artigo de revisão biblio
 
 ### Do tema amplo ao específico
 
-- Tema amplo: `[preencher]`
-- Objeto estudado: `[preencher]`
-- Contexto ou aplicação: `[preencher]`
-- Aspecto que será analisado: `[preencher]`
-- O que ficará fora do estudo: `[preencher]`
+- Tema amplo: `[Linguagens Formais]` | `[Aplicação de formalismos de linguagens na construção de uma linguagem própria]`
+- Objeto estudado: `[Gramáticas Livres de Contexto]` | `[Utilização de uma GLC para definir formalmente a sintaxe da GameLang]`
+- Contexto ou aplicação: `[Compiladores]` | `[ Desenvolvimento das etapas de um compilador para analisar programas GameLang]`
+- Aspecto que será analisado: `[Linguagens Específicas de Domínio (DSLs)]` | `[Criação de uma DSL voltada à representação de lógica de combates de RPG]`
+- O que ficará fora do estudo: `[Jogos e programação]` | `[Representação de personagens, atributos, ataques, defesa, habilidades, condições e turnos por meio de uma linguagem própria]`
 
 ### Justificativa
 

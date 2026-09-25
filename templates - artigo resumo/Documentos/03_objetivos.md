@@ -14,17 +14,18 @@ Defina o objetivo geral e os objetivos específicos do artigo.
 
 ## Objetivos específicos
 
-1. `[preencher]`
-2. `[preencher]`
-3. `[preencher]`
-4. `[opcional]`
+1. `[Compreender os conceitos de Linguagens Formais, Gramáticas Livres de Contexto (GLC) e compiladores aplicados ao desenvolvimento de uma linguagem específica de domínio.]`
+2. `[Compreender os conceitos de DSL, análise léxica, análise sintática, AST e análise semântica no processo de compilação da GameLang.]`
+3. `[Definir a sintaxe, os tokens e a Gramática Livre de Contexto (GLC) da linguagem GameLang.]`
+4. `[Desenvolver um compilador capaz de realizar a análise léxica e sintática de comandos da GameLang, construindo sua estrutura sintática (AST).]`
+5. `[Implementar a geração de uma saída a partir dos comandos válidos da GameLang e analisar a complexidade dos algoritmos utilizados.]`
 
 ## Quadro de alinhamento
 
 | Elemento | Texto |
 |---|---|
-| Problema | `[preencher]` |
-| Objetivo geral | `[preencher]` |
+| Problema | `[Desenvolvimento de um compilador para uma linguagem específica de domínio (DSL) voltada à representação da lógica de combates de RPG.]` |
+| Objetivo geral | `[O objetivo do projeto é desenvolver a GameLang, uma DSL capaz de representar elementos da lógica de combates de RPG, como personagens, atributos, ataques, defesa, habilidades, condições e turnos.]` |
 | Resultado esperado | `[O que o artigo deverá apresentar ao final?]` |
 
 ## Produto da etapa
@@ -33,7 +34,7 @@ Um objetivo geral e de três a quatro objetivos específicos.
 
 ## Checklist
 
-- [ ] Os objetivos começam com verbos no infinitivo.
-- [ ] O objetivo geral responde ao problema.
-- [ ] Os objetivos específicos detalham o objetivo geral.
+- [X] Os objetivos começam com verbos no infinitivo.
+- [X] O objetivo geral responde ao problema.
+- [X] Os objetivos específicos detalham o objetivo geral.
 - [ ] Os objetivos são compatíveis com uma revisão bibliográfica.

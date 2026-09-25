@@ -117,10 +117,12 @@ Definam a estrutura do artigo, incluindo introdução e considerações finais.
 
 **Estrutura do grupo:**
 - Introdução
-- Resposta:
-- Resposta:
-- Resposta:
-- Resposta:
+- Linguagens formais 
+- Gramáticas livres de contexto (GLC)
+- Compiladores
+- Linguagens Especificas de Domínio (DSL)
+- Aplicação de DSLs no desenvolvimento de jogos e programação
+- Relação entre GLC, compiladores e DSLs no desenvolvimento de linguagens para jogos
 - Considerações finais
 
 ### 2.4 Objetivos específicos classificados

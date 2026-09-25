@@ -15,11 +15,11 @@ Preencha os arquivos na ordem indicada. Não apague os títulos nem as perguntas
 
 ## Identificação geral
 
-- Curso e disciplina: `[preencher]`
-- Professor ou orientador: `[preencher]`
-- Grupo: `[preencher]`
-- Integrantes: `[preencher]`
-- Data de início: `[dd/mm/aaaa]`
+- Curso e disciplina: `[Ciências da Computação]`
+- Professor ou orientador: `[Andrea Ono Sakai]`
+- Grupo: `[Grupo 3]`
+- Integrantes: `[Igor Nonaka Oliveira, José Gonçalves Braz Júnior, Luís Carlos de Oliveira Dias Maia, Marcus Gabriel Oliveira da Silva]`
+- Data de início: `[25/09/2026]`
 
 
 

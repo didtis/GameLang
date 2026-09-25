@@ -36,4 +36,7 @@ Pergunta de pesquisa aprovada.
 
 | Integrante | Atividade realizada |
 |---|---|
-| `[nome]` | `[preencher]` |
+| `[José Gonçalves Braz Junior]` | `[40%]` |
+| `[Igor Nonaka Oliveira]` | `[20%]` |
+| `[Luis Carlos de Oliveira Dias Maia]` | `[10%]` |
+| `[Marcus Gabriel Oliveira da Silva]` | `[30%]` |

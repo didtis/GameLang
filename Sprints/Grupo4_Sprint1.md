@@ -30,7 +30,7 @@
 | Quais elementos do domínio a v1 cobre (personagens, atributos, ataques, defesa, habilidades, condições, turnos)? | Personagens, aliados, atributos, ataques, defesa, habilidades, condições, turnos, inimigos, movimentação |
 | Qual é a unidade de compilação (um script = um combate? um personagem? uma habilidade)? | Um combate |
 | Qual é a saída do compilador nesta fase (AST validada; execução é bônus)? | Execução do combate |
-| Justificativa do recorte escolhido para a v1 (o que fica de fora e por quê) | Imagem dos personagens, estagios e itens: no momento usaremos apenas um simbolo ou uma imagem temporariamente, não temos estagios definidos no momento, itens não estão sendo considerados |
+| Justificativa do recorte escolhido para a v1 (o que fica de fora e por quê) | Imagens dos personagens, estágios e itens ficam fora do escopo da v1, pois o foco da GameLang nesta etapa é representar a lógica do combate. Esses elementos poderão ser representados posteriormente por símbolos ou referências.|
 
 - [X] Elementos do domínio da v1 listados e fechados
 - [X] Unidade de compilação definida sem ambiguidade
@@ -75,11 +75,15 @@
 |SE|SE|SE|
 |SENAO|SENAO|SENAO|
 |FIM|FIM|FIM|
-|REPITIR|REPITIR|REPITIR|
+|REPETIR|REPETIR|REPETIR|
 |MOVER|MOVER|MOVER|
-|INDETIFICADOR|[A-Za-z_][A-Za-z0-9_]*|Arthur|
+| CIMA | CIMA | CIMA |
+| BAIXO | BAIXO | BAIXO |
+| ESQUERDA | ESQUERDA | ESQUERDA |
+| DIREITA | DIREITA | DIREITA |
+|IDENTIFICADOR|[A-Za-z_][A-Za-z0-9_]*|Arthur|
 |NUMERO|[0-9]+|100|
-|OPERADOR_RELACIONAL | <= / >= / == / < / > | <= |
+|OPERADOR_RELACIONAL |<=|>=|==|<|>| <= |
 
 ## 4. Rascunho da gramática e exemplos-alvo
 
@@ -88,7 +92,60 @@
 - [X] Derivação manual de pelo menos 1 exemplo, para checar se a gramática gera o script esperado
 
 **Gramática (BNF/EBNF):**
+<programa> ::= { <comando> }
 
+<comando> ::= <criacao>
+            | <ataque>
+            | <defesa>
+            | <habilidade>
+            | <turno>
+            | <movimentacao>
+            | <condicional>
+            | <repeticao>
+
+<criacao> ::= CRIAR <tipo_personagem> <identificador>
+              VIDA <numero>
+              ATAQUE <numero>
+              DEFESA <numero>
+
+<tipo_personagem> ::= HEROI
+                    | INIMIGO
+
+<ataque> ::= ATACAR <identificador> <identificador>
+
+<defesa> ::= DEFENDER <identificador>
+
+<habilidade> ::= HABILIDADE <identificador> <identificador>
+
+<turno> ::= TURNO <identificador>
+
+<movimentacao> ::= MOVER <identificador> <direcao>
+
+<direcao> ::= CIMA
+            | BAIXO
+            | ESQUERDA
+            | DIREITA
+
+<condicional> ::= SE <condicao>
+                    { <comando> }
+                  [ SENAO 
+                    { <comando> } ]
+                  FIM
+
+<repeticao> ::= REPETIR <numero>
+                  { <comando> }
+                FIM
+
+<condicao> ::= VIDA <identificador> <operador> <numero>
+
+<operador> ::= <=
+             | >=
+             | <
+             | >
+             | ==
+
+<identificador> ::= ...
+<numero> ::= ...
 **Scripts de exemplo:**
 ### 1. Criação de personagens
 
@@ -121,30 +178,45 @@ SENAO
     ATACAR Arthur Goblin
 FIM
 
+Derivação manual
+<comando>
+↓
+<ataque>
+↓
+ATACAR <identificador> <identificador>
+↓
+ATACAR Arthur Goblin
+
 ## 5. Scrum
 
 - [X] Papéis definidos (Product Owner = docente; Scrum Master do sprint; Development Team)
-- [ ] Board criado (GitHub Projects ou Trello) com To do / Doing / Done
-- [ ] Backlog inicial com pelo menos 3 user stories
+- [x] Board criado (GitHub Projects ou Trello) com To do / Doing / Done
+- [x] Backlog inicial com pelo menos 3 user stories
 
 **User stories do backlog inicial:**
-1.
-2.
-3.
+1.Como integrante do grupo, quero definir os elementos do domínio da GameLang para estabelecer quais conceitos farão parte da linguagem.
+2.Como desenvolvedor da GameLang, quero definir os tokens e suas expressões regulares para estabelecer a especificação léxica da linguagem.
+3.Como desenvolvedor da GameLang, quero definir a gramática da linguagem para estabelecer quais estruturas são válidas nos scripts.
 
 **Link do board:**
 
 ## 6. Diário de bordo (retrospectiva individual)
 
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
-|---|---|---|---|
+|José Gonçalves Braz Junior|Participei da definição dos elementos do domínio, do glossário, da especificação léxica e da gramática da GameLang. Também organizei o quadro Scrum e dei continuidade à documentação do Sprint 1.|Tive dificuldade em transformar os conceitos da GameLang em regras formais e em organizar a gramática de forma que representasse corretamente os comandos definidos|Pretendo manter a organização das etapas e a revisão da gramática antes da implementação. Também pretendo melhorar a divisão das tarefas e o acompanhamento do Sprint.|
+| | | | |
+| Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
+|Igor Nonaka Oliveira|Participei da definição dos elementos do domínio, do glossário, da especificação léxica e da gramática da GameLang junto ao grupo durante a aula|Tive dificuldade em transformar as ideias do domínio do RPG em uma estrutura de linguagem e em definir algumas regras da gramática.|Pretendo manter a organização das etapas e continuar participando da definição e revisão da linguagem nas próximas etapas.|
+| | | | |
+| Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
+|Marcus Gabriel Oliveira da Silva|Participei junto ao grupo da definição dos elementos do domínio, do glossário, dos tokens, das expressões regulares e da gramática da GameLang até o final da aula.|Tive dificuldade em organizar os conceitos do combate de RPG de forma que pudessem ser representados pela linguagem.|Pretendo continuar colaborando com o grupo e revisar as definições antes de iniciar a implementação.|
 | | | | |
 
 ## 7. Evidências gerais
 
-- Link do canvas:
-- Link do glossário:
-- Link do rascunho da gramática:
+- Link do canvas:https://docs.google.com/document/d/1RNtUeo0gL_-ifj41nFv4RKTm4IcYX2WxFDOIIQL_Fx8/edit?usp=sharing
+- Link do glossário:https://docs.google.com/document/d/1_vEDmbeeLQKD4-9uirkbxWLAbXCzmaLF_YB7WdtpfBs/edit?usp=sharing
+- Link do rascunho da gramática: https://docs.google.com/document/d/1UQ62_zqI0mNml6Ioge9Mqil4ke3zuhQ4sxF-twgoFsE/edit?usp=sharing
 - Link do board:
 
 ---

@@ -217,7 +217,7 @@ ATACAR Arthur Goblin
 - Link do canvas:https://docs.google.com/document/d/1RNtUeo0gL_-ifj41nFv4RKTm4IcYX2WxFDOIIQL_Fx8/edit?usp=sharing
 - Link do glossário:https://docs.google.com/document/d/1_vEDmbeeLQKD4-9uirkbxWLAbXCzmaLF_YB7WdtpfBs/edit?usp=sharing
 - Link do rascunho da gramática: https://docs.google.com/document/d/1UQ62_zqI0mNml6Ioge9Mqil4ke3zuhQ4sxF-twgoFsE/edit?usp=sharing
-- Link do board:
+- Link do board:https://trello.com/invite/b/6ac531640c4d97e5ea54928c/ATTI728956cf7fbb759882e066c08f68a85e4F791E7E/gamelang-sprint-1
 
 ---
 

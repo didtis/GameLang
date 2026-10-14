@@ -21,3 +21,11 @@ PALAVRAS_CHAVE = {
     "ESQUERDA": "ESQUERDA",
     "DIREITA": "DIREITA"
 }
+
+import re
+
+PADROES = {
+    "NUMERO": r"[0-9]+",
+    "IDENTIFICADOR": r"[A-Za-z_][A-Za-z0-9_]*",
+    "OPERADOR_RELACIONAL": r"<=|>=|==|<|>"
+}

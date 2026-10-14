@@ -1,13 +1,6 @@
 from lexer import tokenizar
 
-codigo = """CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
-CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
-
-TURNO Arthur
-REPETIR 2
-    MOVER Arthur DIREITA
-    ATACAR Arthur Goblin
-FIM"""
+codigo = """CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESAA 10"""
 
 tokens = tokenizar(codigo)
 

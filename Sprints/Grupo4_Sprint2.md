@@ -4,7 +4,7 @@
 
 **Equipe:** Igor Nonaka Oliveira; José Gonçalves Braz Junior; Marcus Gabriel Oliveira da Silva
 **Scrum Master do Sprint:** José Gonçalves Braz Junior
-**Repositório GitHub:** ([link](https://github.com/didtis/GameLang/tree/main))
+**Repositório GitHub:** https://github.com/didtis/GameLang/tree/main
 
 > A entrega é sobre a especificação léxica e o rascunho de gramática da Sprint 1. Esta sprint **implementa o lexer** e **revisa a gramática até eliminar ambiguidades** — não avança para parser/AST, isso é Sprint 3.
 
@@ -233,9 +233,9 @@ https://trello.com/invite/b/6ac531640c4d97e5ea54928c/ATTI728956cf7fbb759882e066c
 
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
 |---|---|---|---|
-| | | | |
-
----
+| Igor Nonaka Oliveira | Participei da definição e revisão da gramática, dos tokens, das expressões regulares e dos scripts de exemplo da GameLang. | Tive dificuldade em organizar as regras da linguagem e verificar se os exemplos estavam de acordo com a gramática. | Pretendo manter a organização das etapas e continuar colaborando na revisão da linguagem e dos testes. |
+| José Gonçalves Braz Junior | Implementei o lexer da GameLang em Python, realizei os testes com entradas válidas e inválidas, registrei os resultados e finalizei a versão da gramática. Também organizei as atividades da Sprint. | Tive dificuldade principalmente na implementação e correção do reconhecimento de identificadores e operadores, além de organizar os testes do lexer. | Pretendo manter a organização dos testes e dos registros no GitHub e continuar seguindo as etapas definidas para a implementação do compilador. |
+| Marcus Gabriel Oliveira da Silva | Participei da revisão da gramática, dos tokens, das expressões regulares e da elaboração dos scripts válidos e inválidos da GameLang. | Tive dificuldade em verificar se as regras da gramática representavam corretamente os comandos definidos para a linguagem. | Pretendo continuar colaborando com a revisão da gramática e dos exemplos antes das próximas etapas de implementação. |
 
 ## Rubrica de avaliação — Sprint 2 (nota de 0 a 4,0)
 

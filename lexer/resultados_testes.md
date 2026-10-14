@@ -87,3 +87,20 @@ passou
 
 ob
 O lexer inicialmente separava 123Arthur em dois tokens. Após a correção, a sequência passou a ser identificada como um único erro léxico.
+
+Teste 6 — Repetição, SENAO e direções
+
+SENAO
+REPETIR 3
+MOVER Arthur CIMA
+MOVER Arthur BAIXO
+MOVER Arthur ESQUERDA
+MOVER Arthur DIREITA
+FIM
+
+Resultado esperado:
+Reconhecimento das palavras-chave SENAO, REPETIR, FIM, das direções e dos demais tokens.
+Resultado obtido:
+Todos os tokens foram reconhecidos corretamente.
+
+passou 

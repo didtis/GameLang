@@ -1,14 +1,6 @@
 from lexer import tokenizar
 
-codigo = """
-SENAO
-REPETIR 3
-MOVER Arthur CIMA
-MOVER Arthur BAIXO
-MOVER Arthur ESQUERDA
-MOVER Arthur DIREITA
-FIM
-"""
+codigo = "ATACAR Arthur # Goblin"
 
 tokens = tokenizar(codigo)
 

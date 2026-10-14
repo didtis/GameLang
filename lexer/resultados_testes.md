@@ -77,7 +77,13 @@ Resultado esperado:
 123Arthur não segue a regra de identificadores da GameLang e deveria ser rejeitado.
 Resultado obtido:
 
-('NUMERO', '123')
-('IDENTIFICADOR', 'Arthur')
+('CRIAR', 'CRIAR')
+('HEROI', 'HEROI')
+('ERRO_LEXICO', '123Arthur')
+('VIDA', 'VIDA')
+('NUMERO', '100')
 
-Precisa de correção
+passou
+
+ob
+O lexer inicialmente separava 123Arthur em dois tokens. Após a correção, a sequência passou a ser identificada como um único erro léxico.

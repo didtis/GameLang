@@ -20,37 +20,45 @@
 
 **Não sai daqui:** parser, AST, análise semântica.
 
-- [ ] Confirmei que os tokens implementados são os da especificação da Sprint 1 (ou revisados com justificativa registrada)
+- [x] Confirmei que os tokens implementados são os da especificação da Sprint 1 (ou revisados com justificativa registrada)
 
 ---
 
 ## 1. Implementação do lexer
 
-- [ ] Tokenizador implementado a partir da tabela de tokens da Sprint 1
-- [ ] Tratamento de espaços em branco, comentários (se houver) e quebras de linha
-- [ ] Erros léxicos (caractere/símbolo não reconhecido) tratados com mensagem clara
+- [x] Tokenizador implementado a partir da tabela de tokens da Sprint 1
+- [x] Tratamento de espaços em branco, comentários (se houver) e quebras de linha
+- [x] Erros léxicos (caractere/símbolo não reconhecido) tratados com mensagem clara
 
 **Descrição da implementação e estrutura do código:**
+O lexer foi implementado em Python no arquivo `lexer/lexer.py`. Ele recebe o código da GameLang e identifica palavras-chave, números, identificadores e operadores relacionais, gerando uma lista de tokens. Também identifica caracteres ou sequências que não pertencem à linguagem como `ERRO_LEXICO`.
 **Evidências (link do repositório/commit):**
-
+repositório https://github.com/didtis/GameLang/tree/main
 ## 2. Testes do lexer
 
-- [ ] Casos de teste com tokens válidos de cada categoria (palavra-chave, identificador, literal, símbolo)
-- [ ] Casos de teste com entradas inválidas e mensagem de erro correspondente
-- [ ] Todos os testes passando
+- [x] Casos de teste com tokens válidos de cada categoria (palavra-chave, identificador, literal, símbolo)
+- [x] Casos de teste com entradas inválidas e mensagem de erro correspondente
+- [x] Todos os testes passando
 
 **Tabela de casos de teste do lexer:**
 
 | Entrada | Tokens esperados | Resultado obtido | Passou? |
 |---|---|---|---|
-
+| `CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10` | CRIAR, HEROI, IDENTIFICADOR, VIDA, NUMERO, ATAQUE, NUMERO, DEFESA, NUMERO | Tokens reconhecidos corretamente | Sim |
+| `ATACAR Arthur Goblin` / `DEFENDER Arthur` / `HABILIDADE Arthur GOLPE_FORTE` / `TURNO Arthur` / `MOVER Arthur DIREITA` | Tokens correspondentes aos comandos | Tokens reconhecidos corretamente | Sim |
+| `SE VIDA Goblin <= 20` / `FIM` | SE, VIDA, IDENTIFICADOR, OPERADOR_RELACIONAL, NUMERO, FIM | Tokens reconhecidos corretamente | Sim |
+| `CRIAR HEROI @Arthur VIDA 100` | ERRO_LEXICO em `@` | `ERRO_LEXICO` em `@` | Sim |
+| `CRIAR HEROI 123Arthur VIDA 100` | ERRO_LEXICO em `123Arthur` | `ERRO_LEXICO` em `123Arthur` | Sim |
+| `REPETIR 3` / comandos de movimentação | REPETIR, NUMERO e tokens das direções | Tokens reconhecidos corretamente | Sim |
+| `ATACAR Arthur # Goblin` | ERRO_LEXICO em `#` | `ERRO_LEXICO` em `#` | Sim |
 ## 3. Revisão da gramática
 
-- [ ] Derivações manuais de cada script de exemplo da Sprint 1, conferindo se a gramática os gera
-- [ ] Pontos de ambiguidade identificados e resolvidos (reescrita de regras, se necessário)
+- [x] Derivações manuais de cada script de exemplo da Sprint 1, conferindo se a gramática os gera
+- [x] Pontos de ambiguidade identificados e resolvidos (reescrita de regras, se necessário)
 - [ ] Gramática final documentada em BNF/EBNF, versionada
 
 **Ajustes feitos na gramática e por quê:**
+Foram realizadas derivações manuais dos três exemplos definidos no Sprint 1. Os três exemplos foram aceitos pela gramática. Não foram identificadas ambiguidades relevantes, pois os comandos possuem palavras-chave iniciais diferentes
 **Gramática final (BNF/EBNF):**
 
 ## 4. Scripts de exemplo

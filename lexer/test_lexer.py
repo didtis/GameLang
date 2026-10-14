@@ -1,6 +1,14 @@
 from lexer import tokenizar
 
-codigo = "CRIAR HEROI 123Arthur VIDA 100"
+codigo = """
+SENAO
+REPETIR 3
+MOVER Arthur CIMA
+MOVER Arthur BAIXO
+MOVER Arthur ESQUERDA
+MOVER Arthur DIREITA
+FIM
+"""
 
 tokens = tokenizar(codigo)
 

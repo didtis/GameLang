@@ -34,10 +34,10 @@ PADROES = {
 def tokenizar(codigo):
     tokens = []
 
-   partes = re.findall(
-    r"<=|>=|==|<|>|[0-9]+[A-Za-z_][A-Za-z0-9_]*|[A-Za-z_][A-Za-z0-9_]*|[0-9]+|\S",
-    codigo
-)
+    partes = re.findall(
+        r"<=|>=|==|<|>|[0-9]+[A-Za-z_][A-Za-z0-9_]*|[A-Za-z_][A-Za-z0-9_]*|[0-9]+|\S",
+        codigo
+    )
 
     for parte in partes:
         if parte in PALAVRAS_CHAVE:

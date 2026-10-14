@@ -178,7 +178,7 @@ Válido
 
 Script inválido 1 — Palavra-chave incorreta
 
-CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESAA 10
+CRIAR HEROI @Arthur VIDA 100 ATAQUE 20 DEFESA 10
 
 Inválido
 DEFESAA não é uma palavra-chave válida da GameLang. O correto seria DEFESA

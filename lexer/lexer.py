@@ -29,3 +29,20 @@ PADROES = {
     "IDENTIFICADOR": r"[A-Za-z_][A-Za-z0-9_]*",
     "OPERADOR_RELACIONAL": r"<=|>=|==|<|>"
 }
+
+def tokenizar(codigo):
+    tokens = []
+    
+    partes = codigo.split()
+
+    for parte in partes:
+        if parte in PALAVRAS_CHAVE:
+            tokens.append((PALAVRAS_CHAVE[parte], parte))
+        elif parte.isdigit():
+            tokens.append(("NUMERO", parte))
+        elif re.fullmatch(PADROES["IDENTIFICADOR"], parte):
+            tokens.append(("IDENTIFICADOR", parte))
+        else:
+            tokens.append(("ERRO_LEXICO", parte))
+
+    return tokens

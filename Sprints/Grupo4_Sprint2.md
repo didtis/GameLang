@@ -116,9 +116,9 @@ A gramática foi revisada por meio de derivações manuais dos três scripts de 
 <numero> ::= [0-9]+
 ## 4. Scripts de exemplo
 
-- [ ] Pelo menos 5 scripts válidos, cobrindo personagens, habilidades, condições e turnos da v1
-- [ ] Pelo menos 3 scripts inválidos, cada um violando uma regra diferente (léxica, sintática)
-- [ ] Cada exemplo inválido com a explicação do que deveria ser rejeitado e por quê
+- [x] Pelo menos 5 scripts válidos, cobrindo personagens, habilidades, condições e turnos da v1
+- [x] Pelo menos 3 scripts inválidos, cada um violando uma regra diferente (léxica, sintática)
+- [x] Cada exemplo inválido com a explicação do que deveria ser rejeitado e por quê
 
 **Lista de scripts de exemplo (válidos e inválidos) e link do arquivo:**
 Script válido 1 — Criação de personagens
@@ -176,36 +176,59 @@ FIM
 
 Válido
 
-Script inválido 1 — Palavra-chave incorreta
+Script inválido 1 — Símbolo não reconhecido
 
 CRIAR HEROI @Arthur VIDA 100 ATAQUE 20 DEFESA 10
 
-Inválido
-DEFESAA não é uma palavra-chave válida da GameLang. O correto seria DEFESA
+Inválido.
 
-Script inválido 2 — Número ausente
+O caractere @ não pertence aos símbolos válidos da GameLang. O lexer deve identificá-lo como ERRO_LEXICO.
 
-CRIAR HEROI Arthur VIDA cem ATAQUE 20 DEFESA 10
+Resultado obtido:
+('ERRO_LEXICO', '@')
 
-Inválido
-Depois de VIDA, a gramática exige um <numero>, mas cem é reconhecido como identificador
+Script inválido 2 — Identificador iniciado por número
 
-Script inválido 3 — Comando incompleto
+CRIAR HEROI 123Arthur VIDA 100 ATAQUE 20 DEFESA 10
+
+Inválido.
+
+O identificador não pode começar com um número. O lexer deve identificar 123Arthur como ERRO_LEXICO.
+
+Resultado obtido:
+('ERRO_LEXICO', '123Arthur')
+
+Script inválido 3 — Símbolo não reconhecido
+
+ATACAR Arthur # Goblin
+
+Inválido.
+
+O caractere # não pertence aos símbolos válidos da GameLang. O lexer deve identificá-lo como ERRO_LEXICO.
+
+Resultado obtido:
+('ERRO_LEXICO', '#')
+
+Script inválido 4 — Comando incompleto
 
 ATACAR Arthur
 
-Inválido
-A regra
-<ataque> ::= ATACAR <identificador> <identificador>
-exige dois identificadores: o atacante e o alvo. Nesse caso, Goblin, por exemplo, está faltando
+Inválido.
 
+A regra da gramática:
+
+<ataque> ::= ATACAR <identificador> <identificador>
+
+exige dois identificadores: o atacante e o alvo. Nesse caso, o alvo está ausente.
+
+A rejeição sintática será validada na implementação do parser na Sprint 3.
 ## 5. Scrum
 
-- [ ] Atualizações semanais no board
-- [ ] Board refletindo o estado real
+- [x] Atualizações semanais no board
+- [x] Board refletindo o estado real
 
 **Link do board:**
-
+https://trello.com/invite/b/6ac531640c4d97e5ea54928c/ATTI728956cf7fbb759882e066c08f68a85e4F791E7E/gamelang-sprint-1
 ## 6. Diário de bordo (retrospectiva individual)
 
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |

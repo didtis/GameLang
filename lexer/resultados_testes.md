@@ -25,6 +25,7 @@ passou
 
 Teste 2 — Comandos de combate e movimentação
 
+```text
 CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
 ATACAR Arthur Goblin
 DEFENDER Arthur
@@ -41,6 +42,7 @@ passou
 
 Teste 3 — Condição e operador relacional
 
+```text
 SE VIDA Goblin <= 20
 FIM
 
@@ -59,6 +61,7 @@ passou
 
 Teste 4 — Símbolo inválido
 
+```text
 CRIAR HEROI @Arthur VIDA 100
 
 Resultado esperado:
@@ -71,6 +74,7 @@ passou
 
 Teste 5 — Identificador inválido
 
+```text
 CRIAR HEROI 123Arthur VIDA 100
 
 Resultado esperado:
@@ -90,6 +94,7 @@ O lexer inicialmente separava 123Arthur em dois tokens. Após a correção, a se
 
 Teste 6 — Repetição, SENAO e direções
 
+```text
 SENAO
 REPETIR 3
 MOVER Arthur CIMA
@@ -103,4 +108,18 @@ Reconhecimento das palavras-chave SENAO, REPETIR, FIM, das direções e dos dema
 Resultado obtido:
 Todos os tokens foram reconhecidos corretamente.
 
-passou 
+passou
+
+Teste 7 — Caractere inválido em comando
+
+```text
+ATACAR Arthur # Goblin
+
+Resultado esperado:
+O caractere # não pertence à linguagem e deve gerar um erro léxico.
+Resultado obtido:
+
+('ATACAR', 'ATACAR')
+('IDENTIFICADOR', 'Arthur')
+('ERRO_LEXICO', '#')
+('IDENTIFICADOR', 'Goblin')

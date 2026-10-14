@@ -2,9 +2,9 @@
 **Período:** Semana 2
 **Grupo / tema:** Grupo 4 — GameLang, DSL para lógica de combate de RPG
 
-**Equipe:**
-**Scrum Master do Sprint:**
-**Repositório GitHub:** (link)
+**Equipe:** Igor Nonaka Oliveira; José Gonçalves Braz Junior; Marcus Gabriel Oliveira da Silva
+**Scrum Master do Sprint:** José Gonçalves Braz Junior
+**Repositório GitHub:** ([link](https://github.com/didtis/GameLang/tree/main))
 
 > A entrega é sobre a especificação léxica e o rascunho de gramática da Sprint 1. Esta sprint **implementa o lexer** e **revisa a gramática até eliminar ambiguidades** — não avança para parser/AST, isso é Sprint 3.
 
@@ -55,12 +55,65 @@ repositório https://github.com/didtis/GameLang/tree/main
 
 - [x] Derivações manuais de cada script de exemplo da Sprint 1, conferindo se a gramática os gera
 - [x] Pontos de ambiguidade identificados e resolvidos (reescrita de regras, se necessário)
-- [ ] Gramática final documentada em BNF/EBNF, versionada
+- [x] Gramática final documentada em BNF/EBNF, versionada
 
 **Ajustes feitos na gramática e por quê:**
-Foram realizadas derivações manuais dos três exemplos definidos no Sprint 1. Os três exemplos foram aceitos pela gramática. Não foram identificadas ambiguidades relevantes, pois os comandos possuem palavras-chave iniciais diferentes
+A gramática foi revisada por meio de derivações manuais dos três scripts de exemplo do Sprint 1. Não foram identificadas ambiguidades relevantes. As regras foram mantidas, pois os exemplos foram gerados corretamente pela gramática
 **Gramática final (BNF/EBNF):**
+<programa> ::= { <comando> }
 
+<comando> ::= <criacao>
+            | <ataque>
+            | <defesa>
+            | <habilidade>
+            | <turno>
+            | <movimentacao>
+            | <condicional>
+            | <repeticao>
+
+<criacao> ::= CRIAR <tipo_personagem> <identificador>
+              VIDA <numero>
+              ATAQUE <numero>
+              DEFESA <numero>
+
+<tipo_personagem> ::= HEROI
+                    | INIMIGO
+
+<ataque> ::= ATACAR <identificador> <identificador>
+
+<defesa> ::= DEFENDER <identificador>
+
+<habilidade> ::= HABILIDADE <identificador> <identificador>
+
+<turno> ::= TURNO <identificador>
+
+<movimentacao> ::= MOVER <identificador> <direcao>
+
+<direcao> ::= CIMA
+            | BAIXO
+            | ESQUERDA
+            | DIREITA
+
+<condicional> ::= SE <condicao>
+                    { <comando> }
+                  [ SENAO { <comando> } ]
+                  FIM
+
+<repeticao> ::= REPETIR <numero>
+                  { <comando> }
+                FIM
+
+<condicao> ::= VIDA <identificador> <operador> <numero>
+
+<operador> ::= <=
+             | >=
+             | <
+             | >
+             | ==
+
+<identificador> ::= [A-Za-z_][A-Za-z0-9_]*
+
+<numero> ::= [0-9]+
 ## 4. Scripts de exemplo
 
 - [ ] Pelo menos 5 scripts válidos, cobrindo personagens, habilidades, condições e turnos da v1
@@ -68,6 +121,83 @@ Foram realizadas derivações manuais dos três exemplos definidos no Sprint 1. 
 - [ ] Cada exemplo inválido com a explicação do que deveria ser rejeitado e por quê
 
 **Lista de scripts de exemplo (válidos e inválidos) e link do arquivo:**
+Script válido 1 — Criação de personagens
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
+
+Válido porque usa corretamente CRIAR, HEROI, INIMIGO, VIDA, ATAQUE, DEFESA, identificadores e números
+
+Script válido 2 — Turno e combate
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
+
+TURNO Arthur
+ATACAR Arthur Goblin
+DEFENDER Arthur
+
+Válido
+
+Script válido 3 — Movimentação
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+
+TURNO Arthur
+MOVER Arthur DIREITA
+MOVER Arthur CIMA
+MOVER Arthur ESQUERDA
+
+Válido e testa as direções da GameLang
+
+Script válido 4 — Habilidade e condição
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+CRIAR INIMIGO Goblin VIDA 20 ATAQUE 10 DEFESA 5
+
+SE VIDA Goblin <= 20
+    HABILIDADE Arthur GOLPE_FORTE
+SENAO
+    ATACAR Arthur Goblin
+FIM
+
+Válido
+
+Script válido 5 — Repetição
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
+
+TURNO Arthur
+REPETIR 2
+    MOVER Arthur DIREITA
+    ATACAR Arthur Goblin
+FIM
+
+Válido
+
+Script inválido 1 — Palavra-chave incorreta
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESAA 10
+
+Inválido
+DEFESAA não é uma palavra-chave válida da GameLang. O correto seria DEFESA
+
+Script inválido 2 — Número ausente
+
+CRIAR HEROI Arthur VIDA cem ATAQUE 20 DEFESA 10
+
+Inválido
+Depois de VIDA, a gramática exige um <numero>, mas cem é reconhecido como identificador
+
+Script inválido 3 — Comando incompleto
+
+ATACAR Arthur
+
+Inválido
+A regra
+<ataque> ::= ATACAR <identificador> <identificador>
+exige dois identificadores: o atacante e o alvo. Nesse caso, Goblin, por exemplo, está faltando
 
 ## 5. Scrum
 

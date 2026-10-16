@@ -1,1 +1,12 @@
+# Resultados dos Testes do Parser — Sprint 3
 
+## Teste 1 — Criação de herói válida
+
+**Entrada:**
+```text
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+
+Resultado:
+Parser: código aceito com sucesso!
+
+Status: PASSOU — código válido aceito corretamente.

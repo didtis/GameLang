@@ -189,7 +189,7 @@ Erro sintático: esperado FIM, mas o código terminou
 
 Erro sintático: direção esperada
 
-Erro sintático
+Erro semântico:
 
 Erro semântico: personagem 'Goblin' não foi criado
 

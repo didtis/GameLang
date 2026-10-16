@@ -55,7 +55,7 @@ A AST foi organizada em nós correspondentes às construções da GameLang:
 - `CondicaoVida`
 
 Exemplo 1
-text
+
 Programa
     CriarPersonagem
         tipo: HEROI
@@ -70,6 +70,7 @@ Programa
         personagem: Arthur
         
 Exemplo 2
+
 Programa
     Condicional
         Condicao:
@@ -133,11 +134,7 @@ Os testes foram executados nos arquivos test_semantic_analyzer.py e test_attribu
 
 **Exemplos de mensagens de erro:**
 
-ERRO_LEXICO
-Quando foi encontrado um caractere ou sequência inválida, o lexer retornou o token:
-
-text
-ERRO_LEXICO
+Erro léxico: quando foi encontrado um caractere ou sequência inválida, o lexer retornou o token ERRO_LEXICO
 
 CRIAR HEROI @Arthur VIDA 100
 
@@ -162,7 +159,7 @@ Erro sintático: esperado FIM, mas o código terminou
 
 Erro sintático: direção esperada
 
-Erro semântico:
+Erro sintático
 
 Erro semântico: personagem 'Goblin' não foi criado
 
@@ -171,7 +168,7 @@ Erro semântico: personagem 'Arthur' já foi criado
 ## 5. Sprint Review — checkpoint intermediário
 
 **Incremento demonstrado ao PO (docente):**
-Foi apresentada a evolução da GameLang com o lexer da Sprint 2 integrado ao parser da Sprint 3. Foram realizados testes de análise sintática, geração da AST e análise semântica. Também foram demonstrados exemplos válidos e inválidos para verificar o comportamento da linguagem
+Foi demonstrada a evolução da GameLang por meio dos testes realizados da GameLang com o lexer da Sprint 2 integrado ao parser da Sprint 3. Foram realizados testes de análise sintática, geração da AST e análise semântica. Também foram demonstrados exemplos válidos e inválidos para verificar o comportamento da linguagem
 **Feedback recebido:**
 Durante esta Sprint, foram mantidas as definições da linguagem estabelecidas anteriormente, utilizando a gramática congelada da Sprint 2 como base para a implementação do parser e da análise semântica.
 ## 6. Scrum
@@ -184,7 +181,7 @@ Durante esta Sprint, foram mantidas as definições da linguagem estabelecidas a
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
 |---|---|---|---|
 |Igor Nonaka Oliveira |Participei da revisão da gramática e dos testes do parser e da AST, acompanhando a implementação das estruturas da linguagem.|Tive dificuldade em verificar se as regras da gramática estavam sendo representadas corretamente no parser e na AST.|Pretendo continuar colaborando na revisão dos testes e das estruturas da linguagem.|
-|José Gonçalves Braz Junior|Braz Junior	Implementei o parser recursivo descendente, a AST, a tabela de símbolos e o analisador semântico. Também realizei os testes sintáticos e semânticos e organizei os resultados.|Tive dificuldade principalmente na integração entre lexer, parser, AST e análise semântica e na criação de mensagens de erro adequadas.|Pretendo manter a organização dos testes e continuar validando cada etapa antes de avançar para a próxima.|
+|José Gonçalves Braz Junior|Implementei o parser recursivo descendente, a AST, a tabela de símbolos e o analisador semântico. Também realizei os testes sintáticos e semânticos e organizei os resultados|Tive dificuldade principalmente na integração entre lexer, parser, AST e análise semântica e na criação de mensagens de erro adequadas.|Pretendo manter a organização dos testes e continuar validando cada etapa antes de avançar para a próxima.|
 |Marcus Gabriel Oliveira da Silva|Participei da revisão da gramática, da AST e dos testes de análise sintática e semântica, verificando os exemplos válidos e inválidos.|Tive dificuldade em acompanhar a relação entre as regras da gramática e as estruturas geradas na AST.|Pretendo continuar revisando os exemplos e colaborando na validação das próximas etapas.|
 
 ---

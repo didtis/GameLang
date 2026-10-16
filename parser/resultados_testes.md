@@ -42,6 +42,15 @@ Teste 5 — Habilidade válida
 Entrada:
 HABILIDADE Arthur GOLPE_FORTE
 
+Teste 6 — Turno válido
+Entrada:
+TURNO Arthur
+
+Resultado:
+Parser: código aceito com sucesso!
+
+Status: PASSOU — código válido aceito corretamente.
+
 Resultado:
 Parser: código aceito com sucesso!
 

@@ -7,7 +7,7 @@ from lexer.lexer import tokenizar
 from parser import parser as parser_module
 
 codigo = """
-SE VIDA Goblin != 20
+SE
 FIM
 """
 tokens = tokenizar(codigo)

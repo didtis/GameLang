@@ -64,3 +64,12 @@ Resultado:
 Parser: código aceito com sucesso!
 
 Status: PASSOU — código válido aceito corretamente.
+
+Teste 8 — Movimento para cima
+Entrada:
+MOVER Arthur CIMA
+
+Resultado:
+Parser: código aceito com sucesso!
+
+Status: PASSOU — código válido aceito corretamente.

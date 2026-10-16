@@ -7,7 +7,7 @@ from lexer.lexer import tokenizar
 from parser import parser as parser_module
 
 codigo = """
-MOVER Arthur ESQUERDA
+MOVER Arthur CIMA
 """
 tokens = tokenizar(codigo)
 

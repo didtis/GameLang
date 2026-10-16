@@ -19,3 +19,12 @@ Resultado:
 Parser: código aceito com sucesso!
 
 Status: PASSOU — código válido aceito corretamente.
+
+Teste 3 — Ataque válido
+Entrada:
+ATACAR Arthur Goblin
+
+Resultado:
+Parser: código aceito com sucesso!
+
+Status: PASSOU — código válido aceito corretamente.

@@ -6,9 +6,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from lexer.lexer import tokenizar
 from parser import parser as parser_module
 
-
 codigo = """
-CRIAR HEROI Arthur VIDA cem ATAQUE 20 DEFESA 10
+CRIAR HEROI Arthur VIDA 100 ATAQUE forte DEFESA 10
 """
 tokens = tokenizar(codigo)
 

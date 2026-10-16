@@ -55,3 +55,12 @@ Resultado:
 Parser: código aceito com sucesso!
 
 Status: PASSOU — código válido aceito corretamente.
+
+Teste 7 — Movimento para direita
+Entrada:
+MOVER Arthur DIREITA
+
+Resultado:
+Parser: código aceito com sucesso!
+
+Status: PASSOU — código válido aceito corretamente.

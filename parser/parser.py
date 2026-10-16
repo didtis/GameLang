@@ -74,15 +74,22 @@ class Parser:
             )
 
     def criacao(self):
-        self.esperar("CRIAR")
-        self.esperar("HEROI")  # temporariamente
-        self.esperar("IDENTIFICADOR")
-        self.esperar("VIDA")
-        self.esperar("NUMERO")
-        self.esperar("ATAQUE")
-        self.esperar("NUMERO")
-        self.esperar("DEFESA")
-        self.esperar("NUMERO")
+    self.esperar("CRIAR")
+
+    token = self.token_atual()
+
+    if token is None or token[0] not in {"HEROI", "INIMIGO"}:
+        self.erro("esperado HEROI ou INIMIGO")
+
+    self.avancar()
+
+    self.esperar("IDENTIFICADOR")
+    self.esperar("VIDA")
+    self.esperar("NUMERO")
+    self.esperar("ATAQUE")
+    self.esperar("NUMERO")
+    self.esperar("DEFESA")
+    self.esperar("NUMERO")
 
     def ataque(self):
         self.esperar("ATACAR")

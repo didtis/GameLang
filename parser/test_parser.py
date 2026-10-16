@@ -10,6 +10,8 @@ from parser import parser as parser_module
 codigo = """
 SE VIDA Goblin <= 20
 ATACAR Arthur Goblin
+SENAO
+DEFENDER Arthur
 FIM
 """
 tokens = tokenizar(codigo)

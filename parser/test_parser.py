@@ -7,7 +7,8 @@ from lexer.lexer import tokenizar
 from parser import parser as parser_module
 
 codigo = """
-CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA resistente
+SE VIDA Goblin != 20
+FIM
 """
 tokens = tokenizar(codigo)
 

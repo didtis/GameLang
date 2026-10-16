@@ -28,3 +28,12 @@ Resultado:
 Parser: código aceito com sucesso!
 
 Status: PASSOU — código válido aceito corretamente.
+
+Teste 4 — Defesa válida
+Entrada:
+DEFENDER Arthur
+
+Resultado:
+Parser: código aceito com sucesso!
+
+Status: PASSOU — código válido aceito corretamente.

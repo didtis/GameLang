@@ -81,9 +81,14 @@ def imprimir_ast(no, nivel=0):
 
 
 codigo = """
-CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+SE VIDA Goblin <= 20
 ATACAR Arthur Goblin
+SENAO
 DEFENDER Arthur
+FIM
+REPETIR 2
+MOVER Arthur CIMA
+FIM
 """
 
 

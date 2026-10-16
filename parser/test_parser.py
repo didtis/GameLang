@@ -8,8 +8,7 @@ from parser import parser as parser_module
 
 
 codigo = """
-REPETIR 3
-MOVER Arthur DIREITA
+MOVER Arthur CENTRO
 """
 tokens = tokenizar(codigo)
 

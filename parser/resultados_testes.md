@@ -10,3 +10,12 @@ Resultado:
 Parser: código aceito com sucesso!
 
 Status: PASSOU — código válido aceito corretamente.
+
+Teste 2 — Criação de inimigo válida
+Entrada:
+CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
+
+Resultado:
+Parser: código aceito com sucesso!
+
+Status: PASSOU — código válido aceito corretamente.

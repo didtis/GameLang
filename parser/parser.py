@@ -1,5 +1,6 @@
 # Parser da GameLang - Sprint 3
 
+from .ast import Programa, CriarPersonagem, Atacar, Defender
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens

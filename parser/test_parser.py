@@ -8,7 +8,8 @@ from parser import parser as parser_module
 
 
 codigo = """
-MOVER Arthur ESQUERDA
+SE VIDA Goblin <= 20
+FIM
 """
 
 tokens = tokenizar(codigo)

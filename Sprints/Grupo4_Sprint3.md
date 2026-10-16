@@ -191,10 +191,9 @@ Erro sintático: direção esperada
 
 Erro sintático
 
-Erro sintático: personagem 'Goblin' não foi criado
+Erro semântico: personagem 'Goblin' não foi criado
 
-Erro sintático: personagem 'Arthur' já foi criado
-
+Erro semântico: personagem 'Arthur' já foi criado
 ## 5. Sprint Review — checkpoint intermediário
 
 **Incremento demonstrado ao PO (docente):**
@@ -211,7 +210,7 @@ Durante esta Sprint, foram mantidas as definições da linguagem estabelecidas a
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
 |---|---|---|---|
 |Igor Nonaka Oliveira |Participei da revisão da gramática e dos testes do parser e da AST, acompanhando a implementação das estruturas da linguagem.|Tive dificuldade em verificar se as regras da gramática estavam sendo representadas corretamente no parser e na AST.|Pretendo continuar colaborando na revisão dos testes e das estruturas da linguagem.|
-|José Gonçalves Braz Junior|Implementei o parser recursivo descendente, a AST, a tabela de símbolos e o analisador semântico. Também realizei os testes sintáticos e semânticos e organizei os resultados|Tive dificuldade principalmente na integração entre lexer, parser, AST e análise semântica e na criação de mensagens de erro adequadas.|Pretendo manter a organização dos testes e continuar validando cada etapa antes de avançar para a próxima.|
+|José Gonçalves Braz Junior|Implementei o parser recursivo descendente, a AST, a tabela de símbolos e o analisador semântico. Também realizei os testes sintáticos e semânticos e organizei os resultados.|Tive dificuldade principalmente na integração entre lexer, parser, AST e análise semântica e na criação de mensagens de erro adequadas.|Pretendo manter a organização dos testes e continuar validando cada etapa antes de avançar para a próxima.|
 |Marcus Gabriel Oliveira da Silva|Participei da revisão da gramática, da AST e dos testes de análise sintática e semântica, verificando os exemplos válidos e inválidos.|Tive dificuldade em acompanhar a relação entre as regras da gramática e as estruturas geradas na AST.|Pretendo continuar revisando os exemplos e colaborando na validação das próximas etapas.|
 
 ---

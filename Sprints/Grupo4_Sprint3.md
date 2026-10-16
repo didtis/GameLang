@@ -2,9 +2,9 @@
 **Período:** Semanas 3–4
 **Grupo / tema:** Grupo 4 — GameLang, DSL para lógica de combate de RPG
 
-**Equipe:**
-**Scrum Master do Sprint:**
-**Repositório GitHub:** (link)
+**Equipe:** Igor Nonaka Oliveira; José Gonçalves Braz Junior; Marcus Gabriel Oliveira da Silva
+**Scrum Master do Sprint:** José Gonçalves Braz Junior
+**Repositório GitHub:** https://github.com/didtis/GameLang/tree/main
 
 > Lexer funcional e gramática validada na Sprint 2. Esta sprint constrói o **parser**, a **AST** e a **análise semântica** (tabela de símbolos, checagem de referências e tipos/atributos). **Não** reabre a gramática sem justificar e **não** implementa o interpretador de execução ainda (isso é opcional e só na Sprint 4, se houver tempo).
 
@@ -20,58 +20,172 @@
 
 **Não sai daqui:** bateria de testes automatizados completa, documentação final, interpretador de execução.
 
-- [ ] Confirmei que o parser usa a gramática congelada da Sprint 2
+- [x] Confirmei que o parser usa a gramática congelada da Sprint 2
 
 ---
 
 ## 1. Implementação do parser
 
-- [ ] Estratégia de parsing definida (recursivo descendente ou tabela) e justificada
-- [ ] Parser cobre todas as regras da gramática congelada
-- [ ] Erros sintáticos tratados com mensagem indicando onde e o que era esperado
+- [x] Estratégia de parsing definida (recursivo descendente ou tabela) e justificada
+- [x] Parser cobre todas as regras da gramática congelada
+- [x] Erros sintáticos tratados com mensagem indicando onde e o que era esperado
 
 **Estratégia escolhida e justificativa:**
-Foi escolhido o parser recursivo descendente porque a gramática da GameLang possui uma estrutura simples e organizada em regras hierárquicas. Essa estratégia permite implementar cada regra da gramática como uma função, facilitando a compreensão, manutenção e identificação de erros sintáticos
+Foi escolhido o parser recursivo descendente porque a gramática da GameLang possui uma estrutura simples e organizada em regras hierárquicas. Essa estratégia permite implementar cada regra da gramática como uma função, facilitando a compreensão, manutenção e identificação de erros sintáticos.
 **Evidências (link do repositório/commit):**
-
+https://github.com/didtis/GameLang/tree/main/parser
 ## 2. Construção da AST
 
-- [ ] Estrutura de nós da AST definida para cada construção do domínio (personagem, atributo, ação, habilidade, condição, turno)
-- [ ] Parser gera a AST corretamente para os scripts de exemplo válidos da Sprint 2
-- [ ] AST impressa/visualizada para pelo menos 2 exemplos, para conferência manual
+- [x] Estrutura de nós da AST definida para cada construção do domínio (personagem, atributo, ação, habilidade, condição, turno)
+- [x] Parser gera a AST corretamente para os scripts de exemplo válidos da Sprint 2
+- [x] AST impressa/visualizada para pelo menos 2 exemplos, para conferência manual
 
 **Estrutura da AST (resumo) e exemplos gerados:**
+A AST foi organizada em nós correspondentes às construções da GameLang:
 
+- `Programa`
+- `CriarPersonagem`
+- `Atacar`
+- `Defender`
+- `Habilidade`
+- `Turno`
+- `Mover`
+- `Condicional`
+- `Repeticao`
+- `CondicaoVida`
+
+Exemplo 1
+text
+Programa
+    CriarPersonagem
+        tipo: HEROI
+        nome: Arthur
+        vida: 100
+        ataque: 20
+        defesa: 10
+    Atacar
+        atacante: Arthur
+        alvo: Goblin
+    Defender
+        personagem: Arthur
+        
+Exemplo 2
+Programa
+    Condicional
+        Condicao:
+            CondicaoVida
+                personagem: Goblin
+                operador: <=
+                valor: 20
+        Comandos:
+            Atacar
+                atacante: Arthur
+                alvo: Goblin
+        SENAO:
+            Defender
+                personagem: Arthur
+    Repeticao
+        quantidade: 2
+        Comandos:
+            Mover
+                personagem: Arthur
+                direcao: CIMA
+                
 ## 3. Análise semântica
 
-- [ ] Tabela de símbolos implementada (personagens, atributos, habilidades declarados)
-- [ ] Checagem de referências válidas (ex.: uma habilidade não pode referenciar um atributo inexistente)
-- [ ] Checagem de tipos/atributos conforme o glossário da Sprint 1
-- [ ] Cada regra semântica testada com pelo menos 1 caso que a viola
+- [x] Tabela de símbolos implementada (personagens, atributos, habilidades declarados)
+- [x] Checagem de referências válidas (ex.: uma habilidade não pode referenciar um atributo inexistente)
+- [x] Checagem de tipos/atributos conforme o glossário da Sprint 1
+- [x] Cada regra semântica testada com pelo menos 1 caso que a viola
 
 **Regras semânticas implementadas e como foram testadas:**
+1 Personagem deve ser criado antes de ser utilizado
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+ATACAR Arthur Goblin
+
+Resultado: rejeitado porque Goblin não foi criado
+
+2 Não é permitido criar dois personagens com o mesmo nome
+
+Foram criados dois personagens chamados Arthur
+Resultado:
+
+Erro semântico: personagem 'Arthur' já foi criado
+
+3 Personagens utilizados em ações devem existir na tabela de símbolos.
+    Foram testadas ações de ataque, defesa, habilidade, turno e movimentação.
+    Os personagens existentes foram aceitos.
+    
+4 Atributos do personagem devem seguir as regras da linguagem.
+    Foram testados valores inválidos para VIDA, ATAQUE e DEFESA.
+    O parser rejeitou valores textuais quando era esperado um número.
+     
+5 Tipo de personagem deve ser HEROI ou INIMIGO.
+    Foi testada a criação com um tipo inválido.
+    O código foi rejeitado pelo parser.
+    
+Os testes foram executados nos arquivos test_semantic_analyzer.py e test_attributes.py.
 
 ## 4. Mensagens de erro específicas
 
-- [ ] Mensagens de erro léxico, sintático e semântico revisadas para indicar claramente o problema (ex.: "habilidade X referencia atributo Y, que não existe")
+- [x] Mensagens de erro léxico, sintático e semântico revisadas para indicar claramente o problema (ex.: "habilidade X referencia atributo Y, que não existe")
 
 **Exemplos de mensagens de erro:**
+
+ERRO_LEXICO
+Quando foi encontrado um caractere ou sequência inválida, o lexer retornou o token:
+
+text
+ERRO_LEXICO
+
+CRIAR HEROI @Arthur VIDA 100
+
+Resultado:
+('ERRO_LEXICO', '@')
+
+CRIAR HEROI 123Arthur VIDA 100
+
+Resultado:
+('ERRO_LEXICO', '123Arthur')
+
+ATACAR Arthur # Goblin
+
+Resultado:
+('ERRO_LEXICO', '#')
+
+Erro sintático:
+
+Erro sintático: esperado IDENTIFICADOR, mas o código terminou
+
+Erro sintático: esperado FIM, mas o código terminou
+
+Erro sintático: direção esperada
+
+Erro semântico:
+
+Erro semântico: personagem 'Goblin' não foi criado
+
+Erro semântico: personagem 'Arthur' já foi criado
 
 ## 5. Sprint Review — checkpoint intermediário
 
 **Incremento demonstrado ao PO (docente):**
+Foi apresentada a evolução da GameLang com o lexer da Sprint 2 integrado ao parser da Sprint 3. Foram realizados testes de análise sintática, geração da AST e análise semântica. Também foram demonstrados exemplos válidos e inválidos para verificar o comportamento da linguagem
 **Feedback recebido:**
-
+Durante esta Sprint, foram mantidas as definições da linguagem estabelecidas anteriormente, utilizando a gramática congelada da Sprint 2 como base para a implementação do parser e da análise semântica.
 ## 6. Scrum
 
-- [ ] Atualizações assíncronas semanais registradas
-- [ ] Board refletindo o estado real da Sprint
+- [x] Atualizações assíncronas semanais registradas
+- [x] Board refletindo o estado real da Sprint
 
 ## 7. Diário de bordo (retrospectiva individual)
 
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
 |---|---|---|---|
-| | | | |
+|Igor Nonaka Oliveira |Participei da revisão da gramática e dos testes do parser e da AST, acompanhando a implementação das estruturas da linguagem.|Tive dificuldade em verificar se as regras da gramática estavam sendo representadas corretamente no parser e na AST.|Pretendo continuar colaborando na revisão dos testes e das estruturas da linguagem.|
+|José Gonçalves Braz Junior|Braz Junior	Implementei o parser recursivo descendente, a AST, a tabela de símbolos e o analisador semântico. Também realizei os testes sintáticos e semânticos e organizei os resultados.|Tive dificuldade principalmente na integração entre lexer, parser, AST e análise semântica e na criação de mensagens de erro adequadas.|Pretendo manter a organização dos testes e continuar validando cada etapa antes de avançar para a próxima.|
+|Marcus Gabriel Oliveira da Silva|Participei da revisão da gramática, da AST e dos testes de análise sintática e semântica, verificando os exemplos válidos e inválidos.|Tive dificuldade em acompanhar a relação entre as regras da gramática e as estruturas geradas na AST.|Pretendo continuar revisando os exemplos e colaborando na validação das próximas etapas.|
 
 ---
 

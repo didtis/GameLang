@@ -31,6 +31,7 @@
 - [ ] Erros sintáticos tratados com mensagem indicando onde e o que era esperado
 
 **Estratégia escolhida e justificativa:**
+Foi escolhido o parser recursivo descendente porque a gramática da GameLang possui uma estrutura simples e organizada em regras hierárquicas. Essa estratégia permite implementar cada regra da gramática como uma função, facilitando a compreensão, manutenção e identificação de erros sintáticos
 **Evidências (link do repositório/commit):**
 
 ## 2. Construção da AST

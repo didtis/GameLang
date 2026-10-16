@@ -161,14 +161,14 @@ Erro sintático: direção esperada
 
 Erro sintático
 
-Erro semântico: personagem 'Goblin' não foi criado
+Erro sintático: personagem 'Goblin' não foi criado
 
-Erro semântico: personagem 'Arthur' já foi criado
+Erro sintático: personagem 'Arthur' já foi criado
 
 ## 5. Sprint Review — checkpoint intermediário
 
 **Incremento demonstrado ao PO (docente):**
-Foi demonstrada a evolução da GameLang por meio dos testes realizados da GameLang com o lexer da Sprint 2 integrado ao parser da Sprint 3. Foram realizados testes de análise sintática, geração da AST e análise semântica. Também foram demonstrados exemplos válidos e inválidos para verificar o comportamento da linguagem
+Foi demonstrada a evolução da GameLang por meio dos testes realizados com o lexer da Sprint 2 integrado ao parser da Sprint 3. Foram realizados testes de análise sintática, geração da AST e análise semântica. Também foram demonstrados exemplos válidos e inválidos para verificar o comportamento da linguagem.
 **Feedback recebido:**
 Durante esta Sprint, foram mantidas as definições da linguagem estabelecidas anteriormente, utilizando a gramática congelada da Sprint 2 como base para a implementação do parser e da análise semântica.
 ## 6. Scrum

@@ -57,40 +57,40 @@ A AST foi organizada em nós correspondentes às construções da GameLang:
 Exemplo 1
 
 Programa
-    CriarPersonagem
-        tipo: HEROI
-        nome: Arthur
-        vida: 100
-        ataque: 20
-        defesa: 10
-    Atacar
-        atacante: Arthur
-        alvo: Goblin
-    Defender
-        personagem: Arthur
+CriarPersonagem
+tipo: HEROI
+nome: Arthur
+vida: 100
+ataque: 20
+defesa: 10
+Atacar
+atacante: Arthur
+alvo: Goblin
+Defender
+personagem: Arthur
         
 Exemplo 2
 
 Programa
-    Condicional
-        Condicao:
-            CondicaoVida
-                personagem: Goblin
-                operador: <=
-                valor: 20
-        Comandos:
-            Atacar
-                atacante: Arthur
-                alvo: Goblin
-        SENAO:
-            Defender
-                personagem: Arthur
-    Repeticao
-        quantidade: 2
-        Comandos:
-            Mover
-                personagem: Arthur
-                direcao: CIMA
+Condicional
+Condicao:
+CondicaoVida
+personagem: Goblin
+operador: <=
+valor: 20
+Comandos:
+Atacar
+atacante: Arthur
+alvo: Goblin
+SENAO:
+Defender
+personagem: Arthur
+Repeticao
+quantidade: 2
+Comandos:
+Mover
+personagem: Arthur
+direcao: CIMA
                 
 ## 3. Análise semântica
 

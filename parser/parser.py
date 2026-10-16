@@ -1,6 +1,19 @@
 # Parser da GameLang - Sprint 3
 
-from .ast import Programa, CriarPersonagem, Atacar, Defender
+from .ast import (
+    Programa,
+    CriarPersonagem,
+    Atacar,
+    Defender,
+    Habilidade,
+    Turno,
+    Mover,
+    Condicional,
+    Repeticao,
+    CondicaoVida
+)
+
+
 class Parser:
     def __init__(self, tokens):
         self.tokens = tokens
@@ -32,42 +45,44 @@ class Parser:
         return token
 
     def programa(self):
-        while self.token_atual() is not None:
-            self.comando()
+        comandos = []
 
-        return True
+        while self.token_atual() is not None:
+            comandos.append(self.comando())
+
+        return Programa(comandos)
 
     def comando(self):
         token = self.token_atual()
 
         if token is None:
-            return
+            return None
 
         tipo = token[0]
 
         if tipo == "CRIAR":
-            self.criacao()
+            return self.criacao()
 
         elif tipo == "ATACAR":
-            self.ataque()
+            return self.ataque()
 
         elif tipo == "DEFENDER":
-            self.defesa()
+            return self.defesa()
 
         elif tipo == "HABILIDADE":
-            self.habilidade()
+            return self.habilidade()
 
         elif tipo == "TURNO":
-            self.turno()
+            return self.turno()
 
         elif tipo == "MOVER":
-            self.movimentacao()
+            return self.movimentacao()
 
         elif tipo == "SE":
-            self.condicional()
+            return self.condicional()
 
         elif tipo == "REPETIR":
-            self.repeticao()
+            return self.repeticao()
 
         else:
             self.erro(
@@ -82,37 +97,59 @@ class Parser:
         if token is None or token[0] not in {"HEROI", "INIMIGO"}:
             self.erro("esperado HEROI ou INIMIGO")
 
+        tipo = token[1]
         self.avancar()
 
-        self.esperar("IDENTIFICADOR")
+        nome = self.esperar("IDENTIFICADOR")[1]
         self.esperar("VIDA")
-        self.esperar("NUMERO")
+        vida = self.esperar("NUMERO")[1]
         self.esperar("ATAQUE")
-        self.esperar("NUMERO")
+        ataque = self.esperar("NUMERO")[1]
         self.esperar("DEFESA")
-        self.esperar("NUMERO")
+        defesa = self.esperar("NUMERO")[1]
+
+        return CriarPersonagem(
+            tipo,
+            nome,
+            vida,
+            ataque,
+            defesa
+        )
 
     def ataque(self):
         self.esperar("ATACAR")
-        self.esperar("IDENTIFICADOR")
-        self.esperar("IDENTIFICADOR")
+
+        atacante = self.esperar("IDENTIFICADOR")[1]
+        alvo = self.esperar("IDENTIFICADOR")[1]
+
+        return Atacar(atacante, alvo)
 
     def defesa(self):
         self.esperar("DEFENDER")
-        self.esperar("IDENTIFICADOR")
+
+        personagem = self.esperar("IDENTIFICADOR")[1]
+
+        return Defender(personagem)
 
     def habilidade(self):
         self.esperar("HABILIDADE")
-        self.esperar("IDENTIFICADOR")
-        self.esperar("IDENTIFICADOR")
+
+        personagem = self.esperar("IDENTIFICADOR")[1]
+        nome = self.esperar("IDENTIFICADOR")[1]
+
+        return Habilidade(personagem, nome)
 
     def turno(self):
         self.esperar("TURNO")
-        self.esperar("IDENTIFICADOR")
+
+        personagem = self.esperar("IDENTIFICADOR")[1]
+
+        return Turno(personagem)
 
     def movimentacao(self):
         self.esperar("MOVER")
-        self.esperar("IDENTIFICADOR")
+
+        personagem = self.esperar("IDENTIFICADOR")[1]
 
         direcoes = {
             "CIMA",
@@ -126,43 +163,72 @@ class Parser:
         if token is None or token[0] not in direcoes:
             self.erro("direção esperada")
 
+        direcao = token[1]
         self.avancar()
+
+        return Mover(personagem, direcao)
 
     def condicional(self):
         self.esperar("SE")
 
         self.esperar("VIDA")
-        self.esperar("IDENTIFICADOR")
-        self.esperar("OPERADOR_RELACIONAL")
-        self.esperar("NUMERO")
+        personagem = self.esperar("IDENTIFICADOR")[1]
+        operador = self.esperar("OPERADOR_RELACIONAL")[1]
+        valor = self.esperar("NUMERO")[1]
+
+        condicao = CondicaoVida(
+            personagem,
+            operador,
+            valor
+        )
+
+        comandos = []
+        comandos_senao = None
 
         while self.token_atual() is not None:
+
             if self.token_atual()[0] == "SENAO":
                 self.avancar()
+
+                comandos_senao = []
 
                 while (
                     self.token_atual() is not None
                     and self.token_atual()[0] != "FIM"
                 ):
-                    self.comando()
+                    comandos_senao.append(self.comando())
 
                 break
 
             if self.token_atual()[0] == "FIM":
                 break
 
-            self.comando()
+            comandos.append(self.comando())
 
         self.esperar("FIM")
 
+        return Condicional(
+            condicao,
+            comandos,
+            comandos_senao
+        )
+
     def repeticao(self):
         self.esperar("REPETIR")
-        self.esperar("NUMERO")
+
+        quantidade = self.esperar("NUMERO")[1]
+
+        comandos = []
 
         while (
             self.token_atual() is not None
             and self.token_atual()[0] != "FIM"
         ):
-            self.comando()
+            comandos.append(self.comando())
 
         self.esperar("FIM")
+
+        return Repeticao(
+            quantidade,
+            comandos
+        )

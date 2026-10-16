@@ -8,7 +8,7 @@ from parser import parser as parser_module
 
 
 codigo = """
-MOVER Arthur CIMA
+MOVER Arthur BAIXO
 """
 
 tokens = tokenizar(codigo)

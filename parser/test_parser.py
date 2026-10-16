@@ -8,7 +8,7 @@ from parser import parser as parser_module
 
 
 codigo = """
-DEFENDER
+HABILIDADE Arthur
 """
 tokens = tokenizar(codigo)
 

@@ -10,7 +10,7 @@ Escreva a primeira versão completa do artigo seguindo a estrutura abaixo.
 
 ## Palavras-chave
 
-`[DSL; Gramática Livre de Contexto; ]; [Parsing]; [Compiladores; Linguagens Específicas de Domínio.]`
+`[DSL; Gramática Livre de Contexto; Parsing; Compiladores; Linguagens Específicas de Domínio.]`
 
 ## Introdução
 
@@ -42,7 +42,7 @@ Foram utilizadas três estratégias principais de busca:
 
 ("Domain-Specific Language" OR DSL) AND (games OR "role-playing game" OR RPG) AND (grammar OR parsing).
 
-As buscas foram realizadas entre agosto de 2026 e tiveram como objetivo identificar trabalhos relacionados ao desenvolvimento de DSLs, gramáticas, parsing, compiladores e processamento de linguagens. Os registros obtidos nas bases resultaram em aproximadamente 24.175 resultados brutos considerando as diferentes buscas. Após a triagem inicial, foram considerados os critérios de pertinência ao tema, relação com DSLs, gramáticas, parsing, compilação ou processamento de linguagens e disponibilidade de informações suficientes para leitura e análise.
+A soma dos resultados reportados nas diferentes buscas foi de aproximadamente 24.175 registros, antes das etapas de triagem. Após a triagem inicial, foram considerados os critérios de pertinência ao tema, relação com DSLs, gramáticas, parsing, compilação ou processamento de linguagens e disponibilidade de informações suficientes para leitura e análise.
 
 Após as etapas de triagem e leitura, foram selecionados seis artigos publicados entre 2024 e 2026. Os trabalhos foram analisados considerando problema investigado, objetivo, método, contexto, resultados, limitações e contribuição para o projeto GameLang.
 
@@ -76,7 +76,7 @@ Faria, Baptista e Henriques (2024) apresentam outra abordagem relacionada ao pro
 
 Enquanto Lano, Xue e Haughton (2024) concentram-se principalmente em transformações de linguagens utilizando sintaxe concreta, Faria, Baptista e Henriques (2024) ampliam as capacidades de uma ferramenta de parsing para incorporar informações semânticas. Dessa maneira, os dois estudos apresentam abordagens diferentes, mas convergem ao demonstrar a importância de gramáticas e mecanismos de parsing no desenvolvimento de ferramentas de processamento de linguagens.
 
-A relação com a GameLang ocorre principalmente nas etapas de definição da gramática, análise sintática e construção de uma representação em árvore. A GameLang utiliza uma gramática para definir a estrutura de comandos da linguagem e posteriormente realiza o processamento desses comandos. A construção da AST constitui uma etapa importante para que a estrutura sintática identificada pelo parser possa ser utilizada nas etapas posteriores do compilador.
+A relação com a GameLang ocorre principalmente nas etapas de definição da gramática, análise sintática e construção de uma representação em árvore. A GameLang utiliza uma gramática para definir a estrutura de comandos da linguagem e posteriormente realiza o processamento desses comandos. No contexto da GameLang, a construção da AST constitui uma etapa importante para que a estrutura sintática identificada pelo parser possa ser utilizada nas etapas posteriores do compilador.
 
 Entretanto, nenhum dos trabalhos analisados apresenta especificamente o processamento de uma DSL para lógica de combates de RPG. Também não é possível utilizar diretamente os resultados desses estudos para afirmar a complexidade assintótica do parser da GameLang, uma vez que essa característica depende da implementação e da técnica de parsing utilizada.]`
 

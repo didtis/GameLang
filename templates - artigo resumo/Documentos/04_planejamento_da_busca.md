@@ -34,20 +34,22 @@ Planeje como os artigos serão localizados e selecionados antes de iniciar a bus
 
 ## Critérios de inclusão
 
-- `[Artigos publicados preferencialmente entre 2018 e 2026v]`
-- `[Trabalhos relacionados a DSLs (Domain-Specific Languages).]`
-- `[Trabalhos relacionados a compiladores, parsing ou análise sintática.]`
-- `[Trabalhos que abordem Gramáticas Livres de Contexto (GLC/CFG) ou técnicas relacionadas à definição e análise de linguagens]`
-- `[Artigos em português ou inglês.]`
-- `[Trabalhos com conteúdo suficiente para análise e utilização como referência no projeto]`
+- `[Publicações recentes, preferencialmente entre 2022 e 2026.]`
+- `[Trabalhos relacionados a DSLs]`
+- `[Trabalhos relacionados a compiladores, parsing ou análise sintática]`
+- `[Trabalhos que abordem gramáticas, GLC/CFG ou definição formal de linguagens.]`
+- `[Artigos em português ou inglês]`
+- `[Trabalhos com conteúdo suficiente para análise e utilização como referência no projeto.]`
+- `[Trabalhos com relação direta ou relevante com o desenvolvimento de linguagens.]`
   
 ## Critérios de exclusão
 
+- `[Artigos fora do período definido, salvo quando houver justificativa específica.]`
 - `[Resumos sem conteúdo suficiente para análise.]`
-- `[Artigos duplicados entre as bases.]`
-- `[Trabalhos fora do escopo de DSL, compiladores, parsing, gramáticas ou áreas relacionadas.]`
-- `[Trabalhos sem relação relevante com a proposta do GameLang.]`
-- `[Trabalhos sem informações suficientes para identificação e análise da publicação]`
+- `[Artigos duplicados.]`
+- `[Trabalhos fora do escopo de DSL, compiladores, parsing ou gramáticas.]`
+- `[Trabalhos sem relação relevante com a GameLang.]`
+- `[Trabalhos sem informações bibliográficas suficientes.]`
 
 ## Produto da etapa
 

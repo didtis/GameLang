@@ -8,15 +8,15 @@ Registre as buscas realizadas e justifique a inclusão ou exclusão de cada arti
 
 | Base | String usada | Data | Filtros | Resultados encontrados | Responsável |
 |---|---|---|---|---:|---|
-| `[IEEE Xplore]` | `[Domain-Specific Language" AND compiler]` | `[20/08/2026]` | `[2018–2026; português/inglês]` | `[1]` | `[Igor Nonaka Oliveira]` |
-| `[IEEE Xplore]` | `[Domain-Specific Language" AND (parsing OR parser) AND ("Context-Free Grammar" OR CFG)]` | `[20/08/2026]` | `[2018–2026; artigos científicos]` | `[2]` | `[Igor Nonaka Oliveira]` |
-| `[IEEE Xplore]` | `[Domain-Specific Language" OR DSL) AND ("compiler" OR "compiler generation") AND parsing]` | `[22/08/2026]` | `[2018–2026; artigos científicos]` | `[0]` | `[Igor Nonaka Oliveira]` |
-| `[Portal CAPES]` | `[Domain-Specific Language" AND compiler]` | `[22/08/2026]` | `[2018–2026; português/inglês]` | `[13]` | `[Igor Nonaka Oliveira]` |
-| `[Portal CAPES]` | `[Domain-Specific Language" AND compiler]` | `[22/08/2026]` | `[2018–2026; português/inglês]` | `[18]` | `[Igor Nonaka Oliveira]` |
-| `[Portal CAPES]` | `[Domain-Specific Language" AND compiler]` | `[23/08/2026]` | `[2018–2026; português/inglês]` | `[1]` | `[Igor Nonaka Oliveira]` |
-| `[Google Scholar]` | `[Domain-Specific Language" AND compiler]` | `[26/08/2026]` | `[2018–2026; português/inglês]` | `[aproximadamente 3.500]` | `[Igor Nonaka Oliveira]` |
-| `[Google Scholar]` | `[Domain-Specific Language" AND compiler]` | `[26/08/2026]` | `[2018–2026; português/inglês]` | `[aproximadamente 15.600]` | `[Igor Nonaka Oliveira]` |
-| `[Google Scholar]` | `[Domain-Specific Language" AND compiler]` | `[26/08/2026]` | `[2018–2026; português/inglês]` | `[aproximadamente 5.040]` | `[Igor Nonaka Oliveira]` |
+| `[IEEE Xplore]` | `[String 1]` | `[20/08/2026]` | `[2018–2026; português/inglês]` | `[1]` | `[Igor Nonaka Oliveira]` |
+| `[IEEE Xplore]` | `[String 2]` | `[20/08/2026]` | `[2018–2026; artigos científicos]` | `[2]` | `[Igor Nonaka Oliveira]` |
+| `[IEEE Xplore]` | `[String 3]` | `[22/08/2026]` | `[2018–2026; artigos científicos]` | `[0]` | `[Igor Nonaka Oliveira]` |
+| `[Portal CAPES]` | `[String 1]` | `[22/08/2026]` | `[2018–2026; português/inglês]` | `[13]` | `[Igor Nonaka Oliveira]` |
+| `[Portal CAPES]` | `[String 2]` | `[22/08/2026]` | `[2018–2026; português/inglês]` | `[18]` | `[Igor Nonaka Oliveira]` |
+| `[Portal CAPES]` | `[String 3]` | `[23/08/2026]` | `[2018–2026; português/inglês]` | `[1]` | `[Igor Nonaka Oliveira]` |
+| `[Google Scholar]` | `[String 1]` | `[26/08/2026]` | `[2018–2026; português/inglês]` | `[aproximadamente 3.500]` | `[Igor Nonaka Oliveira]` |
+| `[Google Scholar]` | `[String 2]` | `[26/08/2026]` | `[2018–2026; português/inglês]` | `[aproximadamente 15.600]` | `[Igor Nonaka Oliveira]` |
+| `[Google Scholar]` | `[String 3]` | `[26/08/2026]` | `[2018–2026; português/inglês]` | `[aproximadamente 5.040]` | `[Igor Nonaka Oliveira]` |
 
 
 ## Resumo da triagem

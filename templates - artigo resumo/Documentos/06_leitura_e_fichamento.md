@@ -24,7 +24,7 @@ Preencha uma cópia deste template para cada artigo selecionado.
 
 ### Método utilizado
 
-`[Nos analisaram linguagens existentes para identificar padrões de transformação de gramáticas. A partir dessa análise, desenvolveram regras de transformação automatizadas e avaliaram o GrammarTransformer em situações relacionadas à evolução de linguagens e à prototipação rápida.]`
+`[Os autores analisaram linguagens existentes para identificar padrões de transformação de gramáticas. A partir dessa análise, desenvolveram regras de transformação automatizadas e avaliaram o GrammarTransformer em situações relacionadas à evolução de linguagens e à prototipação rápida.]`
 
 ### Contexto, amostra ou dados
 
@@ -300,7 +300,7 @@ Página: `[Página: 1.]`
 
 ## Identificação do artigo
 
-- Referência completa: `[Ballantyne, M.; Gamburg, M.; Hemann, J. Compiled, Extensible, Multi-language DSLs (Functional Pearl). Proceedings of the ACM on Programming Languages, v. 8, ICFP, p. 64–87, 2024.]`
+- Referência completa: `[Ballantyne, M.; Gamburg, M.; Hemann, J. Compiled, Extensible, Multi-language DSLs (Functional Pearl). Proceedings of the ACM on Programming Languages, v. 8, ICFP, 64–87, 2024.]`
 - DOI ou URL: `[https://doi.org/10.1145/3674627]`
 - Base de origem: `[Google Scholar / ACM]`
 - Leitor responsável: `[Igor Nonaka Oliveira]`
@@ -509,7 +509,7 @@ Portanto, o artigo é especialmente útil para fundamentar a evolução futura d
 
 > `[The CFG is obtained in string format, representing the structural elements of the grammar.]`
 
-Página: `[Página: 7.]`
+Página: `[Página: 7:7]`
 
 ## Checklist
 

@@ -8,7 +8,10 @@ Registre as buscas realizadas e justifique a inclusão ou exclusão de cada arti
 
 | Base | String usada | Data | Filtros | Resultados encontrados | Responsável |
 |---|---|---|---|---:|---|
-| `[preencher]` | `[preencher]` | `[data]` | `[preencher]` | `[número]` | `[nome]` |
+| `[Google Scholar]` | `[Domain-Specific Language" AND compiler]` | `[2026]` | `[2018–2026; português/inglês]` | `[número]` | `[nome]` |
+| `[IEEE Xplore]` | `[Domain-Specific Language" AND (parsing OR parser) AND ("Context-Free Grammar" OR CFG)]` | `[2026]` | `[2018–2026; artigos científicos]` | `[número]` | `[nome]` |
+| `[ScienceDirect]` | `[Domain-Specific Language" OR DSL) AND ("compiler" OR "compiler generation") AND parsing]` | `[2026]` | `[2018–2026; artigos científicos]` | `[número]` | `[nome]` |
+
 
 ## Resumo da triagem
 

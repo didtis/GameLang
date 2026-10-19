@@ -8,53 +8,50 @@ Planeje como os artigos serão localizados e selecionados antes de iniciar a bus
 
 | Conceito principal | Sinônimos em português | Termos em inglês |
 |---|---|---|
-| `[Linguagem específica de domínio]` | `[Linguagem específica de domínio; DSL]` | `[Domain-Specific Language; DSL]` |
-| `[Compiladores e análise sintática]` | `[Compilador; análise sintática; analisador sintático]` | `[Compiler; parsing; parser; syntax analysis]` |
-| `[Gramáticas e linguagens formais]` | `[Gramática livre de contexto; gramática formal; linguagem formal]` | `[Context-Free Grammar; CFG; formal grammar; formal language]` |
+| `[DSL]` | `[Linguagem específica de domínio; linguagem de domínio específico]` | `[Domain-Specific Language; DSL]` |
+| `[Compilador]` | `[Compilação; processo de compilação]` | `[Compiler; compilation]` |
+| `[GLC]` | `[Gramática Livre de Contexto; gramática formal]` | `[Context-Free Grammar; CFG]` |
+| `[Análise sintática]` | `[Parsing; analisador sintático]` | `[Syntax analysis; parsing; parser]` |
+| `[AST]` | `[Árvore sintática abstrata; árvore de sintaxe]` | `[Abstract Syntax Tree; AST]` |
+| `[Complexidade]` | `[Complexidade computacional; desempenho]` | `[Computational complexity; performance]` |
+| `[Jogos/RPG]` | `[Jogos digitais; combate de RPG]` | `[Games; RPG; role-playing games; game combat]` |
 
 ## Strings de busca
 
 | Nº | String completa | Base em que será usada |
 |---|---|---|
-| 1 | `[Domain-Specific Language" AND compiler]` | `[Google Scholar]` |
-| 2 | `[Domain-Specific Language" AND (parsing OR parser) AND ("Context-Free Grammar" OR CFG)]` | `[IEEE Xplore]` |
-| 3 | `[Domain-Specific Language" OR DSL) AND ("compiler" OR "compiler generation") AND parsing]` | `[ScienceDirect]` |
+| 1 | `[("Domain-Specific Language" OR DSL) AND ("Context-Free Grammar" OR CFG) AND (parser OR parsing)]` | `[IEEE Xplore; Google Scholar; Portal CAPES]` |
+| 2 | `[("Domain-Specific Language" OR DSL) AND (compiler OR compilation) AND (parsing OR parser)]` | `[IEEE Xplore; Google Scholar; Portal CAPES]` |
+| 3 | `[("Domain-Specific Language" OR DSL) AND (games OR "role-playing game" OR RPG) AND (grammar OR parsing)` | `[IEEE Xplore; Google Scholar; Portal CAPES]` |
 
 ## Bases de dados
 
 | Base | Justificativa da escolha |
 |---|---|
-| `[Google Scholar]` | `[Permite localizar uma grande variedade de artigos científicos relacionados a DSL, compiladores, parsing e gramáticas.]` |
-| `[IEEE Xplore]` | `[Possui grande quantidade de trabalhos na área de computação, linguagens de programação, compiladores e engenharia de software.]` |
-| `[ScienceDirect]` | `[Possui artigos científicos relacionados a linguagens de programação, compiladores e métodos de análise sintática.]` |
+| `[Google Scholar]` | `[Utilizado para ampliar a busca e localizar artigos científicos, trabalhos acadêmicos e publicações relacionadas ao tema.]` |
+| `[IEEE Xplore]` | `[Base relevante para computação, compiladores, linguagens de programação e desenvolvimento de software.]` |
+| `[Portal CAPES]` | `[Permite acesso a periódicos e trabalhos científicos de diferentes áreas, incluindo computação e engenharia de software.]` |
 
 ## Critérios de inclusão
 
-- `[Período: publicações entre 2018 e 2026, priorizando trabalhos mais recentes]`
-- `[Idioma: português ou inglês]`
-- `[Tipo de publicação: artigos científicos publicados em periódicos ou conferências.]`
-- `[Aderência ao tema: trabalhos relacionados a DSL, compiladores, parsing, gramáticas ou geração/análise de linguagens.]`
-- `[Texto disponível: trabalhos com acesso ao resumo e informações suficientes para avaliar sua relação com o tema.]`
-
+- `[Artigos publicados preferencialmente entre 2018 e 2026v]`
+- `[Trabalhos relacionados a DSLs (Domain-Specific Languages).]`
+- `[Trabalhos relacionados a compiladores, parsing ou análise sintática.]`
+- `[Trabalhos que abordem Gramáticas Livres de Contexto (GLC/CFG) ou técnicas relacionadas à definição e análise de linguagens]`
+- `[Artigos em português ou inglês.]`
+- `[Trabalhos com conteúdo suficiente para análise e utilização como referência no projeto]`
+  
 ## Critérios de exclusão
 
-- `[Duplicatas: artigos encontrados mais de uma vez nas diferentes bases.]`
-- `[Fora do tema: trabalhos que não apresentem relação relevante com DSL, compiladores, parsing ou gramáticas.]`
-- `[Sem informações suficientes: trabalhos cujo conteúdo disponível não permita avaliar sua contribuição]`
-- `[Publicações não acadêmicas: blogs, tutoriais, páginas comerciais e materiais que não sejam trabalhos científicos.]`
-- `[Baixa aderência ao projeto: trabalhos que mencionem linguagens de programação apenas superficialmente, sem contribuir para os objetivos da pesquisa]`
+- `[Resumos sem conteúdo suficiente para análise.]`
+- `[Artigos duplicados entre as bases.]`
+- `[Trabalhos fora do escopo de DSL, compiladores, parsing, gramáticas ou áreas relacionadas.]`
+- `[Trabalhos sem relação relevante com a proposta do GameLang.]`
+- `[Trabalhos sem informações suficientes para identificação e análise da publicação]`
 
 ## Produto da etapa
 
-Termos: Linguagem específica de domínio (DSL), compiladores e análise sintática (parsing), gramáticas livres de contexto (GLC/CFG).
-Strings  
-1. "Domain-Specific Language" AND compiler
-2. "Domain-Specific Language" AND (parsing OR parser) AND ("Context-Free Grammar" OR CFG)
-3. ("Domain-Specific Language" OR DSL) AND ("compiler" OR "compiler generation") AND parsing
-
-Bases: Google Scholar, IEEE Xplore e ScienceDirect.
-
-Critérios: artigos de 2018 a 2026, em português ou inglês, publicados em periódicos/conferências, relacionados a DSL, compiladores, parsing ou gramáticas; excluir duplicados, trabalhos fora do tema, sem informações suficientes e publicações não acadêmicas.
+Plano de busca com termos, strings, bases e critérios.
 
 ## Checklist
 

@@ -24,7 +24,7 @@ Preencha uma cópia deste template para cada artigo selecionado.
 
 ### Método utilizado
 
-`[Os autores analisaram linguagens existentes para identificar padrões de transformação de gramáticas. A partir dessa análise, desenvolveram regras de transformação automatizadas e avaliaram o GrammarTransformer em situações relacionadas à evolução de linguagens e à prototipação rápida.]`
+`[Os autores analisaram sete linguagens para identificar padrões de transformação de gramáticas. Com base nessa análise, foram definidas regras de transformação e implementadas no GrammarTransformer. A ferramenta foi então avaliada em cenários relacionados à evolução de linguagens e à prototipação rápida, considerando o esforço necessário para realizar as alterações nas gramáticas.]`
 
 ### Contexto, amostra ou dados
 
@@ -509,7 +509,7 @@ Portanto, o artigo é especialmente útil para fundamentar a evolução futura d
 
 > `[The CFG is obtained in string format, representing the structural elements of the grammar.]`
 
-Página: `[Página: 7:7]`
+Página: `[7:7]`
 
 ## Checklist
 

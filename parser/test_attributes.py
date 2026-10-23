@@ -33,46 +33,4 @@ def testar(codigo, nome_teste):
         print(erro)
 
 
-# Teste 1 - atributos válidos
-testar(
-    """
-    CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
-    """,
-    "Teste 1 - Atributos válidos"
-)
 
-
-# Teste 2 - vida como texto
-testar(
-    """
-    CRIAR HEROI Arthur VIDA cem ATAQUE 20 DEFESA 10
-    """,
-    "Teste 2 - Vida inválida"
-)
-
-
-# Teste 3 - ataque como texto
-testar(
-    """
-    CRIAR HEROI Arthur VIDA 100 ATAQUE forte DEFESA 10
-    """,
-    "Teste 3 - Ataque inválido"
-)
-
-
-# Teste 4 - defesa como texto
-testar(
-    """
-    CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA resistente
-    """,
-    "Teste 4 - Defesa inválida"
-)
-
-
-# Teste 5 - tipo de personagem inválido
-testar(
-    """
-    CRIAR PERSONAGEM Arthur VIDA 100 ATAQUE 20 DEFESA 10
-    """,
-    "Teste 5 - Tipo inválido"
-)

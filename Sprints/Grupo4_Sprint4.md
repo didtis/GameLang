@@ -56,8 +56,8 @@
 
 ## 5. Scrum
 
-- [ ] Atualizações assíncronas semanais registradas
-- [ ] Board refletindo o backlog, em andamento e concluído
+- [X] Atualizações assíncronas semanais registradas
+- [X] Board refletindo o backlog, em andamento e concluído
 
 ## 6. Diário de bordo (retrospectiva individual)
 

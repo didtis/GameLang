@@ -19,15 +19,15 @@
 
 **Não há sprint seguinte.**
 
-- [ ] Confirmei que os testes cobrem todas as construções da lista fechada da Sprint 1
+- [X] Confirmei que os testes cobrem todas as construções da lista fechada da Sprint 1
 
 ---
 
 ## 1. Bateria de testes automatizados
 
-- [ ] Testes cobrindo cada construção da v1 (personagem, atributo, ação, habilidade, condição, turno), com pelo menos 1 caso válido e 1 inválido cada
-- [ ] Testes de erro léxico, sintático e semântico, verificando a mensagem retornada
-- [ ] Todos os testes passando; falhas corrigidas ou documentadas como limitação conhecida
+- [X] Testes cobrindo cada construção da v1 (personagem, atributo, ação, habilidade, condição, turno), com pelo menos 1 caso válido e 1 inválido cada
+- [X] Testes de erro léxico, sintático e semântico, verificando a mensagem retornada
+- [X] Todos os testes passando; falhas corrigidas ou documentadas como limitação conhecida
 
 **Cobertura de testes (resumo) e link do repositório:**
 
@@ -35,19 +35,19 @@
 
 > Só se houver tempo depois da seção 1. Não é obrigatório para o sucesso do projeto.
 
-- [ ] Decisão registrada: o grupo vai ou não implementar o interpretador nesta sprint, e por quê
-- [ ] Se sim: interpretador percorre a AST e simula ao menos um combate simples (ex.: ataque reduzindo HP, condição sendo aplicada)
-- [ ] Se sim: pelo menos 1 exemplo de execução documentado (entrada → estado final do combate)
+- [X] Decisão registrada: o grupo vai ou não implementar o interpretador nesta sprint, e por quê
+- [X] Se sim: interpretador percorre a AST e simula ao menos um combate simples (ex.: ataque reduzindo HP, condição sendo aplicada)
+- [X] Se sim: pelo menos 1 exemplo de execução documentado (entrada → estado final do combate)
 
 **Decisão e, se aplicável, descrição do interpretador:**
 
 ## 3. Documentação final da linguagem
 
-- [ ] Gramática comentada (BNF/EBNF com explicação de cada regra)
-- [ ] Exemplos de scripts comentados, cobrindo os principais casos de uso
-- [ ] Escopo da v1 (o que a linguagem cobre e não cobre) explícito
+- [X] Gramática comentada (BNF/EBNF com explicação de cada regra)
+- [X] Exemplos de scripts comentados, cobrindo os principais casos de uso
+- [X] Escopo da v1 (o que a linguagem cobre e não cobre) explícito
 
-**Link da documentação:**
+**Link da documentação: https://github.com/didtis/GameLang/tree/main**
 
 ## 4. Apresentação/demo final
 

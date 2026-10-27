@@ -62,7 +62,8 @@
 ## 6. Diário de bordo (retrospectiva individual)
 
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
-|---|---|---|---|
+|Igor Nonaka Oliveira|---|---|---|
+|José  | | | |
 | | | | |
 
 ---

@@ -56,11 +56,29 @@ class Interpretador:
         )
 
     def atacar(self, comando):
-        print(
-            f"{comando.atacante} atacou "
-            f"{comando.alvo}!"
-        )
+    atacante = self.personagens[comando.atacante]
+    alvo = self.personagens[comando.alvo]
 
+    dano = atacante["ataque"] - alvo["defesa"]
+
+    if dano < 0:
+        dano = 0
+
+    alvo["vida"] -= dano
+
+    print(
+        f"{comando.atacante} atacou "
+        f"{comando.alvo}!"
+    )
+
+    print(
+        f"{comando.alvo} perdeu {dano} de vida."
+    )
+
+    print(
+        f"Vida do {comando.alvo}: "
+        f"{alvo['vida']}"
+    )
     def defender(self, comando):
         print(
             f"{comando.personagem} está se defendendo!"

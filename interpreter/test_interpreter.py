@@ -42,14 +42,18 @@ ast = Programa([
         "DIREITA"
     ),
 
-    Atacar(
+      Atacar(
         "Arthur",
         "Goblin"
     ),
 
-    Defender("Arthur")
-])
+    Defender("Arthur"),
 
+    Atacar(
+        "Goblin",
+        "Arthur"
+    )
+])
 
 interpretador = Interpretador()
 interpretador.executar(ast)

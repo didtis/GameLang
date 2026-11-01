@@ -14,6 +14,7 @@ class Interpretador:
 
     def __init__(self):
         self.personagens = {}
+        self.defendendo = {}
 
     def executar(self, ast):
         print("=== EXECUÇÃO DO COMBATE ===")
@@ -52,6 +53,8 @@ class Interpretador:
             "defesa": comando.defesa
         }
 
+        self.defendendo[comando.nome] = False
+
         print(
             f"{comando.nome} entrou no combate "
             f"(Vida: {comando.vida})"
@@ -66,6 +69,15 @@ class Interpretador:
 
         if dano < 0:
             dano = 0
+
+        if self.defendendo[comando.alvo]:
+            dano = dano // 2
+
+            print(
+                f"{comando.alvo} estava se defendendo!"
+            )
+
+            self.defendendo[comando.alvo] = False
 
         alvo["vida"] -= dano
 
@@ -84,6 +96,8 @@ class Interpretador:
         )
 
     def defender(self, comando):
+
+        self.defendendo[comando.personagem] = True
 
         print(
             f"{comando.personagem} está se defendendo!"

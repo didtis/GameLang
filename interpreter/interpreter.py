@@ -11,6 +11,7 @@ from parser.ast import (
 
 
 class Interpretador:
+
     def __init__(self):
         self.personagens = {}
 
@@ -43,6 +44,7 @@ class Interpretador:
             self.mover(comando)
 
     def criar_personagem(self, comando):
+
         self.personagens[comando.nome] = {
             "tipo": comando.tipo,
             "vida": comando.vida,
@@ -55,7 +57,8 @@ class Interpretador:
             f"(Vida: {comando.vida})"
         )
 
-        def atacar(self, comando):
+    def atacar(self, comando):
+
         atacante = self.personagens[comando.atacante]
         alvo = self.personagens[comando.alvo]
 
@@ -79,23 +82,28 @@ class Interpretador:
             f"Vida do {comando.alvo}: "
             f"{alvo['vida']}"
         )
+
     def defender(self, comando):
+
         print(
             f"{comando.personagem} está se defendendo!"
         )
 
     def habilidade(self, comando):
+
         print(
             f"{comando.personagem} usou "
             f"{comando.nome}!"
         )
 
     def turno(self, comando):
+
         print(
             f"Turno de {comando.personagem}"
         )
 
     def mover(self, comando):
+
         print(
             f"{comando.personagem} moveu-se para "
             f"{comando.direcao}"

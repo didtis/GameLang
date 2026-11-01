@@ -69,7 +69,7 @@ class Interpretador:
     def habilidade(self, comando):
         print(
             f"{comando.personagem} usou "
-            f"{comando.habilidade}!"
+            f"{comando.nome}!"
         )
 
     def turno(self, comando):

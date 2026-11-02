@@ -48,6 +48,19 @@ class Interpretador:
         elif isinstance(comando, Condicional):
             self.condicional(comando)
             
+         elif isinstance(comando, Repeticao):
+            self.repeticao(comando)
+             
+          def repeticao(self, comando):
+
+        print(
+            f"Repetindo comandos {comando.quantidade} vezes."
+        )
+
+        for i in range(comando.quantidade):
+
+            for subcomando in comando.comandos:
+                self.executar_comando(subcomando)
     def criar_personagem(self, comando):
 
         self.personagens[comando.nome] = {

@@ -18,6 +18,7 @@ class Interpretador:
     def __init__(self):
         self.personagens = {}
         self.defendendo = {}
+        self.posicoes = {}
 
     def executar(self, ast):
         print("=== EXECUÇÃO DO COMBATE ===")
@@ -69,6 +70,12 @@ class Interpretador:
         }
 
         self.defendendo[comando.nome] = False
+
+        # Posição inicial do personagem no tabuleiro
+        self.posicoes[comando.nome] = {
+            "linha": 0,
+            "coluna": 0
+        }
 
         print(
             f"{comando.nome} entrou no combate "

@@ -41,6 +41,61 @@
 
 **Decisão e, se aplicável, descrição do interpretador:**
 
+O interpretador foi implementado em Python utilizando a AST produzida pelo parser. Sua função é percorrer os comandos da árvore sintática e simular a execução da lógica de combate.
+
+A implementação contempla:
+
+- criação de heróis e inimigos;
+- ataques com cálculo de dano baseado em ataque e defesa;
+- estado de defesa;
+- habilidades;
+- turnos;
+- movimentação;
+- condições `SE` e `SENAO`;
+- repetição com `REPETIR`;
+- identificação de personagens inexistentes;
+- identificação de personagens duplicados.
+
+O interpretador foi testado com diferentes situações válidas e inválidas. Foram realizados **8 testes**, todos aprovados.
+
+#### Exemplo de execução
+
+Foi utilizado um script simples para demonstrar a execução da lógica de combate:
+
+```text
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 5
+CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
+
+HABILIDADE Arthur GOLPE_FORTE
+TURNO Arthur
+MOVER Arthur DIREITA
+ATACAR Arthur Goblin
+DEFENDER Arthur
+```
+
+O interpretador processou a AST e produziu a seguinte saída:
+
+```text
+=== EXECUÇÃO DO COMBATE ===
+Arthur entrou no combate (Vida: 100)
+Goblin entrou no combate (Vida: 50)
+Arthur usou GOLPE_FORTE!
+Turno de Arthur
+Arthur moveu-se para DIREITA
+Arthur atacou Goblin!
+Goblin perdeu 15 de vida.
+Vida do Goblin: 35
+Arthur está se defendendo!
+
+=== FIM DO COMBATE ===
+```
+
+Nesse exemplo, o ataque de Arthur causa 15 pontos de dano ao Goblin, calculados pela diferença entre o ataque de Arthur e a defesa do Goblin:
+
+**20 − 5 = 15**
+
+O resultado demonstra que a AST foi percorrida pelo interpretador e que os comandos da GameLang foram transformados em ações de combate.
+
 ## 3. Documentação final da linguagem
 
 - [X] Gramática comentada (BNF/EBNF com explicação de cada regra)
@@ -51,8 +106,8 @@
 
 ## 4. Apresentação/demo final
 
-- [ ] Roteiro definido (motivação → domínio/glossário → gramática → compilador → demo ao vivo → limitações)
-- [ ] Demo preparada com pelo menos 1 script válido e 1 inválido, mostrando o erro semântico reportado
+- [x] Roteiro definido (motivação → domínio/glossário → gramática → compilador → demo ao vivo → limitações)
+- [x] Demo preparada com pelo menos 1 script válido e 1 inválido, mostrando o erro semântico reportado
 
 ## 5. Scrum
 

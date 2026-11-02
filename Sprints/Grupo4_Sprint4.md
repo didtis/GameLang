@@ -29,7 +29,22 @@
 - [X] Testes de erro léxico, sintático e semântico, verificando a mensagem retornada
 - [X] Todos os testes passando; falhas corrigidas ou documentadas como limitação conhecida
 
-**Cobertura de testes (resumo) e link do repositório:**
+**Cobertura de testes (resumo) e link do repositório:https://github.com/didtis/GameLang/tree/main**
+
+#### Testes realizados
+
+Na etapa de validação final, foram considerados os testes realizados nas etapas anteriores do projeto e os novos testes do interpretador.
+
+Foram validados:
+
+- **Lexer:** reconhecimento das palavras-chave, identificadores, números e operadores relacionais;
+- **Lexer:** identificação de erros léxicos, como caracteres inválidos e identificadores iniciados por números;
+- **Parser:** reconhecimento das construções válidas da gramática;
+- **Parser:** identificação de estruturas que não seguem a gramática definida;
+- **Análise semântica:** verificação de referências a personagens existentes e identificação de personagens duplicados;
+- **Interpretador:** 8 testes realizados, sendo situações válidas e inválidas, todos aprovados.
+
+Os erros encontrados durante o desenvolvimento foram corrigidos e os testes foram executados novamente após as correções.
 
 ## 2. Interpretador simples (opcional)
 
@@ -62,7 +77,7 @@ O interpretador foi testado com diferentes situações válidas e inválidas. Fo
 
 Foi utilizado um script simples para demonstrar a execução da lógica de combate:
 
-```text
+
 CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 5
 CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
 
@@ -71,11 +86,11 @@ TURNO Arthur
 MOVER Arthur DIREITA
 ATACAR Arthur Goblin
 DEFENDER Arthur
-```
+
 
 O interpretador processou a AST e produziu a seguinte saída:
 
-```text
+
 === EXECUÇÃO DO COMBATE ===
 Arthur entrou no combate (Vida: 100)
 Goblin entrou no combate (Vida: 50)
@@ -88,7 +103,7 @@ Vida do Goblin: 35
 Arthur está se defendendo!
 
 === FIM DO COMBATE ===
-```
+
 
 Nesse exemplo, o ataque de Arthur causa 15 pontos de dano ao Goblin, calculados pela diferença entre o ataque de Arthur e a defesa do Goblin:
 

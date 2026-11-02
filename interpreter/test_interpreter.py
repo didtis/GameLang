@@ -3,8 +3,7 @@
 from interpreter.interpreter import Interpretador
 from parser.ast import (
     Programa,
-    CriarPersonagem,
-    Habilidade
+    CriarPersonagem
 )
 
 
@@ -17,9 +16,12 @@ ast = Programa([
         5
     ),
 
-    Habilidade(
-        "Goblin",
-        "GOLPE_FORTE"
+    CriarPersonagem(
+        "HEROI",
+        "Arthur",
+        80,
+        15,
+        3
     )
 ])
 

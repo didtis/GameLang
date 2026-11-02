@@ -55,6 +55,12 @@ class Interpretador:
 
     def criar_personagem(self, comando):
 
+        if comando.nome in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.nome}' já foi criado"
+            )
+
         self.personagens[comando.nome] = {
             "tipo": comando.tipo,
             "vida": comando.vida,

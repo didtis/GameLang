@@ -13,14 +13,13 @@ from parser.ast import (
 )
 
 
-ast = Programa([
-    CriarPersonagem(
-        "HEROI",
-        "Arthur",
-        100,
-        20,
-        10
-    ),
+CriarPersonagem(
+    "HEROI",
+    "Arthur",
+    100,
+    20,
+    5
+),
 
     CriarPersonagem(
         "INIMIGO",

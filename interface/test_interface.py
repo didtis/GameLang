@@ -34,5 +34,15 @@ interpretador.executar(ast)
 print("\nPosições finais:")
 print(interpretador.posicoes)
 
-jogo = Game(interpretador.personagens)
+
+personagens_interface = {}
+
+for nome, dados in interpretador.personagens.items():
+
+    personagens_interface[nome] = {
+        **dados,
+        **interpretador.posicoes[nome]
+    }
+
+jogo = Game(personagens_interface)
 jogo.executar()

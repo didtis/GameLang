@@ -4,7 +4,8 @@ from interpreter.interpreter import Interpretador
 from parser.ast import (
     Programa,
     CriarPersonagem,
-    Defender
+    Condicional,
+    CondicaoVida
 )
 
 
@@ -17,7 +18,16 @@ ast = Programa([
         5
     ),
 
-    Defender("Goblin")
+    Condicional(
+        CondicaoVida(
+            "Goblin",
+            "<=",
+            20
+        ),
+        [
+        ],
+        None
+    )
 ])
 
 

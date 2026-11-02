@@ -1,3 +1,5 @@
+# Interpretador da GameLang - Sprint 4
+
 from parser.ast import (
     CriarPersonagem,
     Atacar,
@@ -44,23 +46,13 @@ class Interpretador:
 
         elif isinstance(comando, Mover):
             self.mover(comando)
-            
+
         elif isinstance(comando, Condicional):
             self.condicional(comando)
-            
-         elif isinstance(comando, Repeticao):
+
+        elif isinstance(comando, Repeticao):
             self.repeticao(comando)
-             
-          def repeticao(self, comando):
 
-        print(
-            f"Repetindo comandos {comando.quantidade} vezes."
-        )
-
-        for i in range(comando.quantidade):
-
-            for subcomando in comando.comandos:
-                self.executar_comando(subcomando)
     def criar_personagem(self, comando):
 
         self.personagens[comando.nome] = {
@@ -88,6 +80,7 @@ class Interpretador:
             dano = 0
 
         if self.defendendo[comando.alvo]:
+
             dano = dano // 2
 
             print(
@@ -139,17 +132,20 @@ class Interpretador:
             f"{comando.personagem} moveu-se para "
             f"{comando.direcao}"
         )
+
     def condicional(self, comando):
 
         resultado = self.verificar_condicao(comando.condicao)
 
         if resultado:
+
             print("Condição verdadeira.")
 
             for subcomando in comando.comandos:
                 self.executar_comando(subcomando)
 
         elif comando.senao is not None:
+
             print("Condição falsa.")
 
             for subcomando in comando.senao:
@@ -158,6 +154,7 @@ class Interpretador:
     def verificar_condicao(self, condicao):
 
         personagem = self.personagens[condicao.personagem]
+
         vida = personagem["vida"]
         valor = condicao.valor
 
@@ -177,3 +174,15 @@ class Interpretador:
             return vida == valor
 
         return False
+
+    def repeticao(self, comando):
+
+        print(
+            f"Repetindo comandos "
+            f"{comando.quantidade} vezes."
+        )
+
+        for i in range(comando.quantidade):
+
+            for subcomando in comando.comandos:
+                self.executar_comando(subcomando)

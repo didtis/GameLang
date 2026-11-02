@@ -1,1 +1,73 @@
+Script de exemplo
 
+O exemplo abaixo demonstra as principais construções disponíveis na versão 1 da GameLang:
+
+CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
+CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
+
+HABILIDADE Arthur GOLPE_FORTE
+TURNO Arthur
+
+MOVER Arthur DIREITA
+
+SE VIDA Goblin <= 20
+    ATACAR Arthur Goblin
+SENAO
+    DEFENDER Arthur
+FIM
+
+REPETIR 2
+    MOVER Arthur CIMA
+FIM
+
+Descrição do exemplo
+
+CRIAR HEROI e CRIAR INIMIGO criam os personagens do combate.
+
+HABILIDADE representa o uso de uma habilidade.
+
+TURNO identifica o personagem que realiza a ação.
+
+MOVER representa a movimentação do personagem.
+
+SE e SENAO permitem executar comandos de acordo com uma condição.
+
+ATACAR realiza um ataque contra outro personagem.
+
+DEFENDER coloca o personagem em estado de defesa.
+
+REPETIR executa comandos uma quantidade determinada de vezes.
+
+FIM encerra as estruturas condicionais e de repetição.
+
+Escopo da versão 1
+
+A versão 1 da GameLang é voltada para a representação e execução de uma lógica básica de combate de RPG. A linguagem contempla:
+
+criação de heróis e inimigos;
+
+atributos de vida, ataque e defesa;
+
+ataques e defesa;
+
+habilidades;
+
+turnos;
+
+movimentação;
+
+condições utilizando a vida dos personagens;
+
+estruturas SE, SENAO e REPETIR;
+
+análise léxica;
+
+análise sintática baseada na GLC;
+
+construção da AST;
+
+análise semântica;
+
+interpretação da AST para simulação do combate.
+
+A versão 1 não tem como objetivo implementar um jogo de RPG completo, mas demonstrar o funcionamento de uma DSL voltada à lógica de combates.

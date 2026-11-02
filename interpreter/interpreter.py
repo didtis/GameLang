@@ -69,7 +69,19 @@ class Interpretador:
             f"(Vida: {comando.vida})"
         )
 
-    def atacar(self, comando):
+      def atacar(self, comando):
+
+        if comando.atacante not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.atacante}' não foi criado"
+            )
+
+        if comando.alvo not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.alvo}' não foi criado"
+            )
 
         atacante = self.personagens[comando.atacante]
         alvo = self.personagens[comando.alvo]

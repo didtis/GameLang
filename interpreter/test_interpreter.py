@@ -10,7 +10,8 @@ from parser.ast import (
     Turno,
     Mover,
     Condicional,
-    CondicaoVida
+    CondicaoVida,
+    Repeticao
 )
 
 
@@ -59,6 +60,16 @@ ast = Programa([
 
         [
             Defender("Arthur")
+        ]
+    ),
+
+    Repeticao(
+        2,
+        [
+            Mover(
+                "Arthur",
+                "CIMA"
+            )
         ]
     )
 ])

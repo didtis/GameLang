@@ -1,9 +1,14 @@
-# Teste de erro do Interpretador da GameLang - Sprint 4
+# Teste de execução válida do Interpretador da GameLang - Sprint 4
 
 from interpreter.interpreter import Interpretador
 from parser.ast import (
     Programa,
-    CriarPersonagem
+    CriarPersonagem,
+    Habilidade,
+    Turno,
+    Mover,
+    Atacar,
+    Defender
 )
 
 
@@ -17,11 +22,34 @@ ast = Programa([
     ),
 
     CriarPersonagem(
-        "HEROI",
+        "INIMIGO",
+        "Goblin",
+        50,
+        10,
+        5
+    ),
+
+    Habilidade(
         "Arthur",
-        80,
-        15,
-        3
+        "GOLPE_FORTE"
+    ),
+
+    Turno(
+        "Arthur"
+    ),
+
+    Mover(
+        "Arthur",
+        "DIREITA"
+    ),
+
+    Atacar(
+        "Arthur",
+        "Goblin"
+    ),
+
+    Defender(
+        "Arthur"
     )
 ])
 

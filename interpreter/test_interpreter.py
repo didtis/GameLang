@@ -1,14 +1,15 @@
-# Teste de execução válida do Interpretador da GameLang - Sprint 4
+# Teste de estruturas de controle - Sprint 4
 
 from interpreter.interpreter import Interpretador
 from parser.ast import (
     Programa,
     CriarPersonagem,
-    Habilidade,
-    Turno,
-    Mover,
     Atacar,
-    Defender
+    Defender,
+    Condicional,
+    CondicaoVida,
+    Repeticao,
+    Mover
 )
 
 
@@ -29,27 +30,33 @@ ast = Programa([
         5
     ),
 
-    Habilidade(
-        "Arthur",
-        "GOLPE_FORTE"
+    Condicional(
+        CondicaoVida(
+            "Goblin",
+            "<=",
+            50
+        ),
+        [
+            Atacar(
+                "Arthur",
+                "Goblin"
+            )
+        ],
+        [
+            Defender(
+                "Arthur"
+            )
+        ]
     ),
 
-    Turno(
-        "Arthur"
-    ),
-
-    Mover(
-        "Arthur",
-        "DIREITA"
-    ),
-
-    Atacar(
-        "Arthur",
-        "Goblin"
-    ),
-
-    Defender(
-        "Arthur"
+    Repeticao(
+        2,
+        [
+            Mover(
+                "Arthur",
+                "CIMA"
+            )
+        ]
     )
 ])
 

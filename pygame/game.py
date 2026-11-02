@@ -10,7 +10,7 @@ FPS = 60
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, personagens=None):
         pygame.init()
 
         self.tela = pygame.display.set_mode(
@@ -29,29 +29,38 @@ class Game:
             tamanho_tile=70
         )
 
-        self.personagens = [
-            Character(
-                "Arthur",
-                2,
-                2,
-                100,
-                20,
-                5
-            ),
-            Character(
-                "Goblin",
-                5,
-                7,
-                50,
-                10,
-                5
-            )
-        ]
+        self.personagens = []
+
+        if personagens is not None:
+            self.carregar_personagens(personagens)
 
         self.executando = True
 
+    def carregar_personagens(self, personagens):
+        """
+        Recebe os personagens do interpretador
+        e cria a representação visual deles.
+        """
+
+        for nome, dados in personagens.items():
+
+            linha = dados.get("linha", 0)
+            coluna = dados.get("coluna", 0)
+
+            personagem = Character(
+                nome,
+                linha,
+                coluna,
+                dados["vida"],
+                dados["ataque"],
+                dados["defesa"]
+            )
+
+            self.personagens.append(personagem)
+
     def executar(self):
         while self.executando:
+
             self.processar_eventos()
             self.atualizar()
             self.desenhar()
@@ -61,20 +70,28 @@ class Game:
         pygame.quit()
 
     def processar_eventos(self):
+
         for evento in pygame.event.get():
 
             if evento.type == pygame.QUIT:
                 self.executando = False
 
+            elif evento.type == pygame.KEYDOWN:
+
+                if evento.key == pygame.K_ESCAPE:
+                    self.executando = False
+
     def atualizar(self):
         pass
 
     def desenhar(self):
+
         self.tela.fill((30, 30, 30))
 
         self.board.desenhar(self.tela)
 
         for personagem in self.personagens:
+
             personagem.desenhar(
                 self.tela,
                 self.board.tamanho_tile

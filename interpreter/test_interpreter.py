@@ -8,7 +8,9 @@ from parser.ast import (
     Defender,
     Habilidade,
     Turno,
-    Mover
+    Mover,
+    Condicional,
+    CondicaoVida
 )
 
 
@@ -24,7 +26,7 @@ ast = Programa([
     CriarPersonagem(
         "INIMIGO",
         "Goblin",
-        50,
+        15,
         10,
         5
     ),
@@ -41,16 +43,23 @@ ast = Programa([
         "DIREITA"
     ),
 
-    Atacar(
-        "Arthur",
-        "Goblin"
-    ),
+    Condicional(
+        CondicaoVida(
+            "Goblin",
+            "<=",
+            20
+        ),
 
-    Defender("Arthur"),
+        [
+            Atacar(
+                "Arthur",
+                "Goblin"
+            )
+        ],
 
-    Atacar(
-        "Goblin",
-        "Arthur"
+        [
+            Defender("Arthur")
+        ]
     )
 ])
 

@@ -26,7 +26,7 @@ ast = Programa([
     CriarPersonagem(
         "INIMIGO",
         "Goblin",
-        15,
+        50,
         10,
         5
     ),

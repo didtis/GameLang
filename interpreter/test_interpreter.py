@@ -4,7 +4,7 @@ from interpreter.interpreter import Interpretador
 from parser.ast import (
     Programa,
     CriarPersonagem,
-    Atacar
+    Defender
 )
 
 
@@ -17,10 +17,7 @@ ast = Programa([
         5
     ),
 
-    Atacar(
-        "Arthur",
-        "Goblin"
-    )
+    Defender("Goblin")
 ])
 
 

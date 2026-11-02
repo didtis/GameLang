@@ -133,9 +133,9 @@ O resultado demonstra que a AST foi percorrida pelo interpretador e que os coman
 
 | Integrante | O que fiz nesta Sprint | Dificuldades | O que pretendo manter/ajustar |
 |---|---|---|---|
-|Igor Nonaka Oliveira| | | |
-|José Gonçalves Braz Junior| | | |
-|Marcus Gabriel Oliveira da Silva| | | |
+|Igor Nonaka Oliveira|Participação na organização e revisão dos materiais relacionados ao projeto e ao artigo.|Organização das atividades e conciliação das tarefas da sprint.|Manter a divisão das atividades e melhorar o acompanhamento das tarefas.|
+|José Gonçalves Braz Junior|Desenvolvimento e testes do interpretador, integração com a AST, execução dos testes e organização da documentação e apresentação final|Integração entre a AST e a execução dos comandos e correção de erros encontrados durante os testes.|Manter a realização de testes antes da entrega e melhorar a organização das etapas de desenvolvimento.|
+|Marcus Gabriel Oliveira da Silva|Participação na organização e revisão dos materiais relacionados ao projeto e ao artigo.|Organização das atividades e conciliação das tarefas da sprint.|Manter a divisão das atividades e melhorar o acompanhamento das tarefas|
 
 ---
 

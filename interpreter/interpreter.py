@@ -1,12 +1,13 @@
-# Interpretador da GameLang - Sprint 4
-
 from parser.ast import (
     CriarPersonagem,
     Atacar,
     Defender,
     Habilidade,
     Turno,
-    Mover
+    Mover,
+    Condicional,
+    Repeticao,
+    CondicaoVida
 )
 
 

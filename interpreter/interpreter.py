@@ -44,7 +44,10 @@ class Interpretador:
 
         elif isinstance(comando, Mover):
             self.mover(comando)
-
+            
+        elif isinstance(comando, Condicional):
+            self.condicional(comando)
+            
     def criar_personagem(self, comando):
 
         self.personagens[comando.nome] = {
@@ -123,3 +126,41 @@ class Interpretador:
             f"{comando.personagem} moveu-se para "
             f"{comando.direcao}"
         )
+    def condicional(self, comando):
+
+        resultado = self.verificar_condicao(comando.condicao)
+
+        if resultado:
+            print("Condição verdadeira.")
+
+            for subcomando in comando.comandos:
+                self.executar_comando(subcomando)
+
+        elif comando.senao is not None:
+            print("Condição falsa.")
+
+            for subcomando in comando.senao:
+                self.executar_comando(subcomando)
+
+    def verificar_condicao(self, condicao):
+
+        personagem = self.personagens[condicao.personagem]
+        vida = personagem["vida"]
+        valor = condicao.valor
+
+        if condicao.operador == "<=":
+            return vida <= valor
+
+        elif condicao.operador == ">=":
+            return vida >= valor
+
+        elif condicao.operador == "<":
+            return vida < valor
+
+        elif condicao.operador == ">":
+            return vida > valor
+
+        elif condicao.operador == "==":
+            return vida == valor
+
+        return False

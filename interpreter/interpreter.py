@@ -177,14 +177,41 @@ class Interpretador:
                 f"'{comando.personagem}' não foi criado"
             )
 
+        posicao = self.posicoes[comando.personagem]
+
+        linha = posicao["linha"]
+        coluna = posicao["coluna"]
+
+        if comando.direcao == "CIMA":
+            linha -= 1
+
+        elif comando.direcao == "BAIXO":
+            linha += 1
+
+        elif comando.direcao == "ESQUERDA":
+            coluna -= 1
+
+        elif comando.direcao == "DIREITA":
+            coluna += 1
+
+        posicao["linha"] = linha
+        posicao["coluna"] = coluna
+
         print(
             f"{comando.personagem} moveu-se para "
             f"{comando.direcao}"
         )
 
+        print(
+            f"Posição de {comando.personagem}: "
+            f"linha {linha}, coluna {coluna}"
+        )
+
     def condicional(self, comando):
 
-        resultado = self.verificar_condicao(comando.condicao)
+        resultado = self.verificar_condicao(
+            comando.condicao
+        )
 
         if resultado:
 
@@ -208,7 +235,9 @@ class Interpretador:
                 f"'{condicao.personagem}' não foi criado"
             )
 
-        personagem = self.personagens[condicao.personagem]
+        personagem = self.personagens[
+            condicao.personagem
+        ]
 
         vida = personagem["vida"]
         valor = condicao.valor

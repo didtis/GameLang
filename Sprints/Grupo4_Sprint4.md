@@ -47,7 +47,7 @@
 - [X] Exemplos de scripts comentados, cobrindo os principais casos de uso
 - [X] Escopo da v1 (o que a linguagem cobre e não cobre) explícito
 
-**Link da documentação: https://github.com/didtis/GameLang/tree/main**
+**Link da documentação: (https://github.com/didtis/GameLang/tree/main/Sprints)**
 
 ## 4. Apresentação/demo final
 

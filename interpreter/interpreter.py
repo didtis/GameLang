@@ -69,7 +69,7 @@ class Interpretador:
             f"(Vida: {comando.vida})"
         )
 
-      def atacar(self, comando):
+    def atacar(self, comando):
 
         if comando.atacante not in self.personagens:
             raise ValueError(
@@ -119,6 +119,12 @@ class Interpretador:
 
     def defender(self, comando):
 
+        if comando.personagem not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.personagem}' não foi criado"
+            )
+
         self.defendendo[comando.personagem] = True
 
         print(
@@ -127,6 +133,12 @@ class Interpretador:
 
     def habilidade(self, comando):
 
+        if comando.personagem not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.personagem}' não foi criado"
+            )
+
         print(
             f"{comando.personagem} usou "
             f"{comando.nome}!"
@@ -134,11 +146,23 @@ class Interpretador:
 
     def turno(self, comando):
 
+        if comando.personagem not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.personagem}' não foi criado"
+            )
+
         print(
             f"Turno de {comando.personagem}"
         )
 
     def mover(self, comando):
+
+        if comando.personagem not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.personagem}' não foi criado"
+            )
 
         print(
             f"{comando.personagem} moveu-se para "
@@ -164,6 +188,12 @@ class Interpretador:
                 self.executar_comando(subcomando)
 
     def verificar_condicao(self, condicao):
+
+        if condicao.personagem not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{condicao.personagem}' não foi criado"
+            )
 
         personagem = self.personagens[condicao.personagem]
 

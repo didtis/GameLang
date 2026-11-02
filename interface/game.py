@@ -101,5 +101,26 @@ class Game:
 
 
 if __name__ == "__main__":
-    jogo = Game()
+
+    personagens = {
+        "Arthur": {
+            "tipo": "HEROI",
+            "vida": 100,
+            "ataque": 20,
+            "defesa": 5,
+            "linha": 3,
+            "coluna": 2
+        },
+
+        "Goblin": {
+            "tipo": "INIMIGO",
+            "vida": 50,
+            "ataque": 10,
+            "defesa": 5,
+            "linha": 3,
+            "coluna": 6
+        }
+    }
+
+    jogo = Game(personagens)
     jogo.executar()

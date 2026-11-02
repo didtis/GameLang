@@ -4,7 +4,7 @@ from interpreter.interpreter import Interpretador
 from parser.ast import (
     Programa,
     CriarPersonagem,
-    Mover
+    Habilidade
 )
 
 
@@ -17,9 +17,9 @@ ast = Programa([
         5
     ),
 
-    Mover(
+    Habilidade(
         "Goblin",
-        "DIREITA"
+        "GOLPE_FORTE"
     )
 ])
 

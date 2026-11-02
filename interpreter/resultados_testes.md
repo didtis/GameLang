@@ -77,10 +77,53 @@ Erro semântico: personagem 'Arthur' já foi criado
 ```
 
 **Resultado:** ✅ Teste aprovado.
+---
+
+### Teste 7 — Execução de combate válida
+
+**Situação:** Execução de um combate simples com criação de personagens, habilidade, turno, movimentação, ataque e defesa.
+
+**Resultado observado:**
+```text
+Arthur entrou no combate (Vida: 100)
+Goblin entrou no combate (Vida: 50)
+Arthur usou GOLPE_FORTE!
+Turno de Arthur
+Arthur moveu-se para DIREITA
+Arthur atacou Goblin!
+Goblin perdeu 15 de vida.
+Vida do Goblin: 35
+Arthur está se defendendo!
+```
+
+**Resultado:** ✅ Teste aprovado.
 
 ---
 
-## Resumo
+### Teste 8 — Estruturas de controle
+
+**Situação:** Execução de uma condição `SE` seguida de uma repetição `REPETIR`.
+
+**Resultado observado:**
+```text
+Condição verdadeira.
+Arthur atacou Goblin!
+Goblin perdeu 15 de vida.
+Vida do Goblin: 35
+Repetindo comandos 2 vezes.
+Arthur moveu-se para CIMA
+Arthur moveu-se para CIMA
+```
+
+**Resultado:** ✅ Teste aprovado.
+
+---
+
+## Resumo atualizado
+
+Foram realizados **8 testes do interpretador**, incluindo testes de erros semânticos e execuções válidas.
+
+**8/8 testes aprovados.**
 
 Foram realizados **6 testes de erro semântico no interpretador**.
 

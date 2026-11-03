@@ -267,13 +267,17 @@ class Game:
         # Destaques verdes das casas disponíveis
         self.board.desenhar_destaques(self.tela)
 
-        # Personagens centralizados nas casas
+        # Desenha os personagens centralizados nas casas
         for personagem in self.personagens:
 
             centro_x, centro_y = self.board.obter_centro(
                 personagem.linha,
                 personagem.coluna
             )
+
+            # Ajuste visual do Goblin
+            if personagem.nome.lower() == "goblin":
+                centro_x -= 5
 
             personagem.desenhar(
                 self.tela,

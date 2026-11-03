@@ -13,6 +13,7 @@ from interface.game import Game
 
 ast = Programa([
 
+    # Criação dos personagens
     CriarPersonagem(
         "HEROI",
         "Arthur",
@@ -29,11 +30,34 @@ ast = Programa([
         5
     ),
 
+    # Movimentação do Arthur
     Mover(
         "Arthur",
         "DIREITA"
     ),
 
+    # Movimentação do Goblin
+    Mover(
+        "Goblin",
+        "ESQUERDA"
+    ),
+
+    Mover(
+        "Goblin",
+        "ESQUERDA"
+    ),
+
+    Mover(
+        "Goblin",
+        "DIREITA"
+    ),
+
+    Mover(
+        "Goblin",
+        "DIREITA"
+    ),
+
+    # Testes de combate
     Atacar(
         "Arthur",
         "Goblin"

@@ -1,4 +1,5 @@
 
+import os
 import pygame
 
 from .board import Board
@@ -43,6 +44,22 @@ class Game:
             linhas=8,
             colunas=10,
             tamanho_tile=70
+        )
+
+        # Carrega a imagem da masmorra
+        caminho_fundo = os.path.join(
+            os.path.dirname(__file__),
+            "assets",
+            "masmorra.png"
+        )
+
+        self.fundo = pygame.image.load(
+            caminho_fundo
+        ).convert()
+
+        self.fundo = pygame.transform.scale(
+            self.fundo,
+            (LARGURA, ALTURA_TABULEIRO)
         )
 
         self.interpretador = interpretador
@@ -241,10 +258,16 @@ class Game:
 
     def desenhar(self):
 
-        self.tela.fill((30, 30, 30))
+        # Desenha a masmorra como fundo
+        self.tela.blit(
+            self.fundo,
+            (0, 0)
+        )
 
-        self.board.desenhar(self.tela)
+        # Desenha somente os destaques verdes
+        self.board.desenhar_destaques(self.tela)
 
+        # Desenha os personagens
         for personagem in self.personagens:
 
             personagem.desenhar(

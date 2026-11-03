@@ -4,6 +4,8 @@ import sys
 from lexer.lexer import tokenizar
 from parser.parser import Parser
 from parser.semantic_analyzer import AnalisadorSemantico
+from interpreter.interpreter import Interpretador
+from interface.game import Game
 
 
 def executar_arquivo(caminho):
@@ -68,9 +70,15 @@ def executar_arquivo(caminho):
 
     print("Análise semântica concluída com sucesso.")
 
-    print("\n===================================")
-    print(" CÓDIGO ACEITO PELAS TRÊS ANÁLISES")
-    print("===================================")
+    # 5. Execução com o interpretador e Pygame
+    print("\n[4] EXECUÇÃO")
+    print("Abrindo a interface do combate...")
+    print("Pressione ESPAÇO para executar o próximo comando.")
+    print("Pressione ESC para sair.")
+
+    interpretador = Interpretador()
+    jogo = Game(interpretador, arvore.comandos)
+    jogo.executar()
 
 
 if __name__ == "__main__":

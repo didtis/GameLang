@@ -69,44 +69,42 @@ class Interpretador:
                 f"Comando não reconhecido: {type(comando).__name__}"
             )
 
-   
-def criar_personagem(self, comando):
+    def criar_personagem(self, comando):
 
-    if comando.nome in self.personagens:
-        raise ValueError(
-            f"Erro semântico: personagem "
-            f"'{comando.nome}' já foi criado"
+        if comando.nome in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.nome}' já foi criado"
+            )
+
+        vida = int(comando.vida)
+        ataque = int(comando.ataque)
+        defesa = int(comando.defesa)
+
+        self.personagens[comando.nome] = {
+            "tipo": comando.tipo,
+            "vida": vida,
+            "ataque": ataque,
+            "defesa": defesa
+        }
+
+        self.defendendo[comando.nome] = False
+
+        if comando.tipo == "HEROI":
+            self.posicoes[comando.nome] = {
+                "linha": 3,
+                "coluna": 2
+            }
+        else:
+            self.posicoes[comando.nome] = {
+                "linha": 3,
+                "coluna": 6
+            }
+
+        print(
+            f"{comando.nome} entrou no combate "
+            f"(Vida: {vida})"
         )
-
-    # Converter os atributos para números inteiros
-    vida = int(comando.vida)
-    ataque = int(comando.ataque)
-    defesa = int(comando.defesa)
-
-    self.personagens[comando.nome] = {
-        "tipo": comando.tipo,
-        "vida": vida,
-        "ataque": ataque,
-        "defesa": defesa
-    }
-
-    self.defendendo[comando.nome] = False
-
-    if comando.tipo == "HEROI":
-        self.posicoes[comando.nome] = {
-            "linha": 3,
-            "coluna": 2
-        }
-    else:
-        self.posicoes[comando.nome] = {
-            "linha": 3,
-            "coluna": 6
-        }
-
-    print(
-        f"{comando.nome} entrou no combate "
-        f"(Vida: {vida})"
-    )
 
     def personagem_derrotado(self, nome):
 
@@ -372,7 +370,7 @@ def criar_personagem(self, comando):
         personagem = self.personagens[condicao.personagem]
 
         vida = personagem["vida"]
-        valor = condicao.valor
+        valor = int(condicao.valor)
 
         if condicao.operador == "<=":
             return vida <= valor

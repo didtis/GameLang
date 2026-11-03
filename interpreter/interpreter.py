@@ -55,6 +55,11 @@ class Interpretador:
         elif isinstance(comando, Repeticao):
             self.repeticao(comando)
 
+        else:
+            raise ValueError(
+                f"Comando não reconhecido: {type(comando).__name__}"
+            )
+
     def criar_personagem(self, comando):
 
         if comando.nome in self.personagens:
@@ -89,68 +94,73 @@ class Interpretador:
             f"(Vida: {comando.vida})"
         )
 
-  
-def atacar(self, comando):
+    def atacar(self, comando):
 
-    if comando.atacante not in self.personagens:
-        raise ValueError(
-            f"Erro semântico: personagem "
-            f"'{comando.atacante}' não foi criado"
+        if comando.atacante not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.atacante}' não foi criado"
+            )
+
+        if comando.alvo not in self.personagens:
+            raise ValueError(
+                f"Erro semântico: personagem "
+                f"'{comando.alvo}' não foi criado"
+            )
+
+        atacante = self.personagens[comando.atacante]
+        alvo = self.personagens[comando.alvo]
+
+        pos_atacante = self.posicoes[comando.atacante]
+        pos_alvo = self.posicoes[comando.alvo]
+
+        # Distância entre os personagens no tabuleiro
+        distancia = (
+            abs(pos_atacante["linha"] - pos_alvo["linha"])
+            + abs(pos_atacante["coluna"] - pos_alvo["coluna"])
         )
 
-    if comando.alvo not in self.personagens:
-        raise ValueError(
-            f"Erro semântico: personagem "
-            f"'{comando.alvo}' não foi criado"
-        )
+        # Ataque só funciona em casas vizinhas
+        if distancia != 1:
+            print(
+                f"{comando.atacante} está longe demais "
+                f"para atacar {comando.alvo}!"
+            )
+            return
 
-    atacante = self.personagens[comando.atacante]
-    alvo = self.personagens[comando.alvo]
+        # Cálculo do dano
+        dano = atacante["ataque"] - alvo["defesa"]
 
-    pos_atacante = self.posicoes[comando.atacante]
-    pos_alvo = self.posicoes[comando.alvo]
+        if dano < 0:
+            dano = 0
 
-    distancia = (
-        abs(pos_atacante["linha"] - pos_alvo["linha"])
-        + abs(pos_atacante["coluna"] - pos_alvo["coluna"])
-    )
+        # Verifica se o alvo está defendendo
+        if self.defendendo[comando.alvo]:
 
-    if distancia != 1:
+            dano = dano // 2
+
+            print(
+                f"{comando.alvo} estava se defendendo!"
+            )
+
+            self.defendendo[comando.alvo] = False
+
+        alvo["vida"] -= dano
+
+        if alvo["vida"] < 0:
+            alvo["vida"] = 0
+
         print(
-            f"{comando.atacante} está longe demais "
-            f"para atacar {comando.alvo}!"
+            f"{comando.atacante} atacou {comando.alvo}!"
         )
-        return
-
-    dano = atacante["ataque"] - alvo["defesa"]
-
-    if dano < 0:
-        dano = 0
-
-    if self.defendendo[comando.alvo]:
-
-        dano = dano // 2
 
         print(
-            f"{comando.alvo} estava se defendendo!"
+            f"{comando.alvo} perdeu {dano} de vida."
         )
 
-        self.defendendo[comando.alvo] = False
-
-    alvo["vida"] -= dano
-
-    print(
-        f"{comando.atacante} atacou {comando.alvo}!"
-    )
-
-    print(
-        f"{comando.alvo} perdeu {dano} de vida."
-    )
-
-    print(
-        f"Vida do {comando.alvo}: {alvo['vida']}"
-    )
-
+        print(
+            f"Vida do {comando.alvo}: {alvo['vida']}"
+        )
 
     def defender(self, comando):
 
@@ -186,7 +196,9 @@ def atacar(self, comando):
                 f"'{comando.personagem}' não foi criado"
             )
 
-        print(f"Turno de {comando.personagem}")
+        print(
+            f"Turno de {comando.personagem}"
+        )
 
     def mover(self, comando):
 
@@ -212,6 +224,14 @@ def atacar(self, comando):
 
         elif comando.direcao == "DIREITA":
             coluna += 1
+
+        # Limites do tabuleiro: 8 linhas e 10 colunas
+        if linha < 0 or linha >= 8 or coluna < 0 or coluna >= 10:
+            print(
+                f"{comando.personagem} não pode sair "
+                f"dos limites do tabuleiro!"
+            )
+            return
 
         posicao["linha"] = linha
         posicao["coluna"] = coluna
@@ -282,5 +302,6 @@ def atacar(self, comando):
         )
 
         for i in range(comando.quantidade):
+
             for subcomando in comando.comandos:
                 self.executar_comando(subcomando)

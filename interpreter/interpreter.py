@@ -72,10 +72,17 @@ class Interpretador:
         self.defendendo[comando.nome] = False
 
         # Posição inicial do personagem no tabuleiro
-        self.posicoes[comando.nome] = {
-            "linha": 0,
-            "coluna": 0
-        }
+        if comando.tipo == "HEROI":
+    self.posicoes[comando.nome] = {
+        "linha": 3,
+        "coluna": 2
+    }
+
+else:
+    self.posicoes[comando.nome] = {
+        "linha": 3,
+        "coluna": 6
+    }
 
         print(
             f"{comando.nome} entrou no combate "

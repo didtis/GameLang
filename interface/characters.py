@@ -1,8 +1,11 @@
+
 import pygame
 
 
 class Character:
+
     def __init__(self, nome, linha, coluna, vida, ataque, defesa):
+
         self.nome = nome
         self.linha = linha
         self.coluna = coluna
@@ -13,17 +16,20 @@ class Character:
         self.defesa = defesa
 
     def mover(self, linha, coluna):
+
         self.linha = linha
         self.coluna = coluna
 
-    def desenhar(self, tela, tamanho_tile):
-        x = self.coluna * tamanho_tile
-        y = self.linha * tamanho_tile
+    def desenhar(
+        self,
+        tela,
+        centro_x,
+        centro_y,
+        largura_tile,
+        altura_tile
+    ):
 
-        centro_x = x + tamanho_tile // 2
-        centro_y = y + tamanho_tile // 2
-
-        raio = tamanho_tile // 3
+        raio = int(min(largura_tile, altura_tile) / 3)
 
         if self.nome.lower() == "arthur":
             cor = (50, 100, 220)
@@ -46,30 +52,35 @@ class Character:
         )
 
         texto_rect = texto.get_rect(
-            center=(centro_x, y + 15)
+            center=(centro_x, centro_y - raio - 12)
         )
 
         tela.blit(texto, texto_rect)
 
         self.desenhar_barra_vida(
             tela,
-            x,
-            y,
-            tamanho_tile
+            centro_x,
+            centro_y,
+            largura_tile,
+            altura_tile
         )
 
     def desenhar_barra_vida(
         self,
         tela,
-        x,
-        y,
-        tamanho_tile
+        centro_x,
+        centro_y,
+        largura_tile,
+        altura_tile
     ):
-        largura = tamanho_tile - 10
-        altura = 8
 
-        barra_x = x + 5
-        barra_y = y + tamanho_tile - 12
+        largura = int(largura_tile - 10)
+        altura = 7
+
+        barra_x = int(centro_x - largura / 2)
+        barra_y = int(
+            centro_y + altura_tile / 2 - altura - 5
+        )
 
         pygame.draw.rect(
             tela,
@@ -77,11 +88,12 @@ class Character:
             (barra_x, barra_y, largura, altura)
         )
 
-        porcentagem = self.vida / self.vida_maxima
-
-        largura_vida = int(
-            largura * porcentagem
+        porcentagem = max(
+            0,
+            min(1, self.vida / self.vida_maxima)
         )
+
+        largura_vida = int(largura * porcentagem)
 
         pygame.draw.rect(
             tela,

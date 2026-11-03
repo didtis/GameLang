@@ -1,9 +1,18 @@
-from parser.ast import Programa, CriarPersonagem, Mover
+
+from parser.ast import (
+    Programa,
+    CriarPersonagem,
+    Mover,
+    Atacar,
+    Defender
+)
+
 from interpreter.interpreter import Interpretador
 from interface.game import Game
 
 
 ast = Programa([
+
     CriarPersonagem(
         "HEROI",
         "Arthur",
@@ -23,26 +32,30 @@ ast = Programa([
     Mover(
         "Arthur",
         "DIREITA"
+    ),
+
+    Atacar(
+        "Arthur",
+        "Goblin"
+    ),
+
+    Defender(
+        "Arthur"
+    ),
+
+    Atacar(
+        "Goblin",
+        "Arthur"
     )
+
 ])
 
 
 interpretador = Interpretador()
 
-interpretador.executar(ast)
+jogo = Game(
+    interpretador,
+    ast.comandos
+)
 
-print("\nPosições finais:")
-print(interpretador.posicoes)
-
-
-personagens_interface = {}
-
-for nome, dados in interpretador.personagens.items():
-
-    personagens_interface[nome] = {
-        **dados,
-        **interpretador.posicoes[nome]
-    }
-
-jogo = Game(personagens_interface)
 jogo.executar()

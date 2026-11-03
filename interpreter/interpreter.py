@@ -77,7 +77,7 @@ class Interpretador:
 
         self.defendendo[comando.nome] = False
 
-        # Posições iniciais no tabuleiro
+        # Posições iniciais: 7 linhas e 12 colunas
         if comando.tipo == "HEROI":
             self.posicoes[comando.nome] = {
                 "linha": 3,
@@ -114,13 +114,11 @@ class Interpretador:
         pos_atacante = self.posicoes[comando.atacante]
         pos_alvo = self.posicoes[comando.alvo]
 
-        # Distância entre os personagens no tabuleiro
         distancia = (
             abs(pos_atacante["linha"] - pos_alvo["linha"])
             + abs(pos_atacante["coluna"] - pos_alvo["coluna"])
         )
 
-        # Ataque só funciona em casas vizinhas
         if distancia != 1:
             print(
                 f"{comando.atacante} está longe demais "
@@ -128,13 +126,11 @@ class Interpretador:
             )
             return
 
-        # Cálculo do dano
         dano = atacante["ataque"] - alvo["defesa"]
 
         if dano < 0:
             dano = 0
 
-        # Verifica se o alvo está defendendo
         if self.defendendo[comando.alvo]:
 
             dano = dano // 2
@@ -225,8 +221,8 @@ class Interpretador:
         elif comando.direcao == "DIREITA":
             coluna += 1
 
-        # Limites do tabuleiro: 8 linhas e 10 colunas
-        if linha < 0 or linha >= 8 or coluna < 0 or coluna >= 10:
+        # Limites da masmorra: 7 linhas e 12 colunas
+        if linha < 0 or linha >= 7 or coluna < 0 or coluna >= 12:
             print(
                 f"{comando.personagem} não pode sair "
                 f"dos limites do tabuleiro!"

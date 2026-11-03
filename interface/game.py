@@ -50,6 +50,7 @@ class Game:
         self.indice_comando = 0
 
         self.personagens = []
+
         self.executando = True
         self.finalizado = False
 
@@ -123,11 +124,47 @@ class Game:
 
         comando = self.comandos[self.indice_comando]
 
+        posicao_anterior = None
+
+        if isinstance(comando, Mover):
+
+            if comando.personagem in self.interpretador.posicoes:
+
+                posicao_anterior = (
+                    self.interpretador.posicoes[
+                        comando.personagem
+                    ]["linha"],
+                    self.interpretador.posicoes[
+                        comando.personagem
+                    ]["coluna"]
+                )
+
         try:
 
             self.interpretador.executar_comando(comando)
 
             self.atualizar_personagens()
+
+            # Destaca a casa quando ocorre um movimento
+            if isinstance(comando, Mover):
+
+                posicao = self.interpretador.posicoes[
+                    comando.personagem
+                ]
+
+                posicao_atual = (
+                    posicao["linha"],
+                    posicao["coluna"]
+                )
+
+                if posicao_atual != posicao_anterior:
+
+                    self.board.limpar_destaques()
+
+                    self.board.destacar_movimento(
+                        posicao["linha"],
+                        posicao["coluna"]
+                    )
 
             self.mensagem = (
                 f"Executado: {self.formatar_comando(comando)}"
@@ -136,6 +173,7 @@ class Game:
             self.indice_comando += 1
 
             if self.indice_comando >= len(self.comandos):
+
                 self.finalizado = True
                 self.mensagem = "Todos os comandos foram executados!"
 
@@ -154,10 +192,13 @@ class Game:
                 continue
 
             dados = self.interpretador.personagens[nome]
+
             posicao = self.interpretador.posicoes[nome]
 
+            # Atualiza a vida
             personagem.vida = dados["vida"]
 
+            # Atualiza a posição
             personagem.mover(
                 posicao["linha"],
                 posicao["coluna"]

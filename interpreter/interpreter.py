@@ -1,3 +1,4 @@
+
 # Interpretador da GameLang - Sprint 4
 
 from parser.ast import (
@@ -71,18 +72,17 @@ class Interpretador:
 
         self.defendendo[comando.nome] = False
 
-        # Posição inicial do personagem no tabuleiro
+        # Posições iniciais no tabuleiro
         if comando.tipo == "HEROI":
-    self.posicoes[comando.nome] = {
-        "linha": 3,
-        "coluna": 2
-    }
-
-else:
-    self.posicoes[comando.nome] = {
-        "linha": 3,
-        "coluna": 6
-    }
+            self.posicoes[comando.nome] = {
+                "linha": 3,
+                "coluna": 2
+            }
+        else:
+            self.posicoes[comando.nome] = {
+                "linha": 3,
+                "coluna": 6
+            }
 
         print(
             f"{comando.nome} entrou no combate "
@@ -112,7 +112,6 @@ else:
             dano = 0
 
         if self.defendendo[comando.alvo]:
-
             dano = dano // 2
 
             print(
@@ -124,8 +123,7 @@ else:
         alvo["vida"] -= dano
 
         print(
-            f"{comando.atacante} atacou "
-            f"{comando.alvo}!"
+            f"{comando.atacante} atacou {comando.alvo}!"
         )
 
         print(
@@ -133,8 +131,7 @@ else:
         )
 
         print(
-            f"Vida do {comando.alvo}: "
-            f"{alvo['vida']}"
+            f"Vida do {comando.alvo}: {alvo['vida']}"
         )
 
     def defender(self, comando):
@@ -160,8 +157,7 @@ else:
             )
 
         print(
-            f"{comando.personagem} usou "
-            f"{comando.nome}!"
+            f"{comando.personagem} usou {comando.nome}!"
         )
 
     def turno(self, comando):
@@ -172,9 +168,7 @@ else:
                 f"'{comando.personagem}' não foi criado"
             )
 
-        print(
-            f"Turno de {comando.personagem}"
-        )
+        print(f"Turno de {comando.personagem}")
 
     def mover(self, comando):
 
@@ -221,14 +215,12 @@ else:
         )
 
         if resultado:
-
             print("Condição verdadeira.")
 
             for subcomando in comando.comandos:
                 self.executar_comando(subcomando)
 
         elif comando.senao is not None:
-
             print("Condição falsa.")
 
             for subcomando in comando.senao:
@@ -242,9 +234,7 @@ else:
                 f"'{condicao.personagem}' não foi criado"
             )
 
-        personagem = self.personagens[
-            condicao.personagem
-        ]
+        personagem = self.personagens[condicao.personagem]
 
         vida = personagem["vida"]
         valor = condicao.valor
@@ -274,6 +264,5 @@ else:
         )
 
         for i in range(comando.quantidade):
-
             for subcomando in comando.comandos:
                 self.executar_comando(subcomando)

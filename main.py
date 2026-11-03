@@ -3,6 +3,7 @@ import sys
 
 from lexer.lexer import tokenizar
 from parser.parser import Parser
+from parser.semantic_analyzer import AnalisadorSemantico
 
 
 def executar_arquivo(caminho):
@@ -54,8 +55,21 @@ def executar_arquivo(caminho):
     print("Análise sintática concluída com sucesso.")
     print(f"Comandos encontrados: {len(arvore.comandos)}")
 
+    # 4. Análise semântica
+    print("\n[3] ANÁLISE SEMÂNTICA")
+
+    try:
+        analisador = AnalisadorSemantico()
+        analisador.analisar(arvore)
+
+    except ValueError as erro:
+        print(erro)
+        return
+
+    print("Análise semântica concluída com sucesso.")
+
     print("\n===================================")
-    print(" CÓDIGO ACEITO PELO LEXER E PARSER")
+    print(" CÓDIGO ACEITO PELAS TRÊS ANÁLISES")
     print("===================================")
 
 
@@ -66,4 +80,3 @@ if __name__ == "__main__":
 
     else:
         executar_arquivo(sys.argv[1])
-

@@ -3,8 +3,7 @@ from parser.ast import (
     Programa,
     CriarPersonagem,
     Mover,
-    Atacar,
-    Defender
+    Atacar
 )
 
 from interpreter.interpreter import Interpretador
@@ -17,32 +16,28 @@ ast = Programa([
     CriarPersonagem(
         "HEROI",
         "Arthur",
-        100,
-        20,
-        5
+        30,
+        5,
+        0
     ),
 
     CriarPersonagem(
         "INIMIGO",
         "Goblin",
         50,
-        10,
-        5
+        20,
+        0
     ),
 
-    # Aproximação: Arthur vai da coluna 2 até a 5
+    # Aproximação dos personagens
     Mover("Arthur", "DIREITA"),
     Mover("Arthur", "DIREITA"),
     Mover("Arthur", "DIREITA"),
 
-    # Combate
-    Atacar("Arthur", "Goblin"),
-    Defender("Goblin"),
+    # O Goblin ataca Arthur até derrotá-lo
     Atacar("Goblin", "Arthur"),
-    Atacar("Arthur", "Goblin"),
-    Atacar("Arthur", "Goblin"),
-    Atacar("Arthur", "Goblin"),
-    Atacar("Arthur", "Goblin"),
+    Atacar("Goblin", "Arthur"),
+    Atacar("Goblin", "Arthur"),
 ])
 
 interpretador = Interpretador()

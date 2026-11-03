@@ -1,5 +1,6 @@
 
 from .tile import Tile
+import pygame
 
 
 class Board:
@@ -34,6 +35,30 @@ class Board:
             for tile in linha:
 
                 tile.desenhar(tela)
+
+    def desenhar_destaques(self, tela):
+
+        for linha in range(self.linhas):
+
+            for coluna in range(self.colunas):
+
+                tile = self.tiles[linha][coluna]
+
+                if tile.destacado:
+
+                    retangulo = pygame.Rect(
+                        coluna * self.tamanho_tile,
+                        linha * self.tamanho_tile,
+                        self.tamanho_tile,
+                        self.tamanho_tile
+                    )
+
+                    pygame.draw.rect(
+                        tela,
+                        (100, 180, 100),
+                        retangulo,
+                        4
+                    )
 
     def destacar_movimento(self, linha, coluna):
 

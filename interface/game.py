@@ -78,29 +78,31 @@ class Game:
 
         self.carregar_personagens_iniciais()
 
-    def carregar_personagens_iniciais(self):
+   
+def carregar_personagens_iniciais(self):
 
-        for comando in self.comandos:
+    for comando in self.comandos:
 
-            if isinstance(comando, CriarPersonagem):
+        if isinstance(comando, CriarPersonagem):
 
-                if comando.tipo == "HEROI":
-                    linha = 3
-                    coluna = 2
-                else:
-                    linha = 3
-                    coluna = 6
+            if comando.tipo == "HEROI":
+                linha = 3
+                coluna = 2
+            else:
+                linha = 3
+                coluna = 6
 
-                personagem = Character(
-                    comando.nome,
-                    linha,
-                    coluna,
-                    comando.vida,
-                    comando.ataque,
-                    comando.defesa
-                )
+            personagem = Character(
+                comando.nome,
+                linha,
+                coluna,
+                int(comando.vida),
+                int(comando.ataque),
+                int(comando.defesa)
+            )
 
-                self.personagens.append(personagem)
+            self.personagens.append(personagem)
+
 
     def executar(self):
 

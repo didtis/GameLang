@@ -1,4 +1,3 @@
-
 import os
 import pygame
 
@@ -78,31 +77,29 @@ class Game:
 
         self.carregar_personagens_iniciais()
 
-   
-def carregar_personagens_iniciais(self):
+    def carregar_personagens_iniciais(self):
 
-    for comando in self.comandos:
+        for comando in self.comandos:
 
-        if isinstance(comando, CriarPersonagem):
+            if isinstance(comando, CriarPersonagem):
 
-            if comando.tipo == "HEROI":
-                linha = 3
-                coluna = 2
-            else:
-                linha = 3
-                coluna = 6
+                if comando.tipo == "HEROI":
+                    linha = 3
+                    coluna = 2
+                else:
+                    linha = 3
+                    coluna = 6
 
-            personagem = Character(
-                comando.nome,
-                linha,
-                coluna,
-                int(comando.vida),
-                int(comando.ataque),
-                int(comando.defesa)
-            )
+                personagem = Character(
+                    comando.nome,
+                    linha,
+                    coluna,
+                    int(comando.vida),
+                    int(comando.ataque),
+                    int(comando.defesa)
+                )
 
-            self.personagens.append(personagem)
-
+                self.personagens.append(personagem)
 
     def executar(self):
 
@@ -156,7 +153,6 @@ def carregar_personagens_iniciais(self):
 
             self.indice_comando += 1
 
-            # Verifica se o interpretador encerrou o combate
             if self.interpretador.combate_encerrado:
 
                 self.finalizado = True
@@ -164,10 +160,14 @@ def carregar_personagens_iniciais(self):
                 self.board.limpar_destaques()
 
                 if self.interpretador.resultado == "VITORIA":
-                    self.mensagem = "VITÓRIA! Todos os inimigos foram derrotados!"
+                    self.mensagem = (
+                        "VITÓRIA! Todos os inimigos foram derrotados!"
+                    )
 
                 elif self.interpretador.resultado == "DERROTA":
-                    self.mensagem = "DERROTA! Todos os heróis foram derrotados!"
+                    self.mensagem = (
+                        "DERROTA! Todos os heróis foram derrotados!"
+                    )
 
             elif self.indice_comando >= len(self.comandos):
 
@@ -236,7 +236,7 @@ def carregar_personagens_iniciais(self):
             dados = self.interpretador.personagens[nome]
             posicao = self.interpretador.posicoes[nome]
 
-            personagem.vida = dados["vida"]
+            personagem.vida = int(dados["vida"])
 
             personagem.mover(
                 posicao["linha"],
@@ -298,7 +298,6 @@ def carregar_personagens_iniciais(self):
                 self.board.altura_tile
             )
 
-        # Mostra o resultado no centro da masmorra
         if self.resultado_exibido:
             self.desenhar_resultado()
 

@@ -119,52 +119,17 @@ class Game:
         if self.indice_comando >= len(self.comandos):
 
             self.finalizado = True
+            self.board.limpar_destaques()
             self.mensagem = "Combate finalizado!"
             return
 
         comando = self.comandos[self.indice_comando]
-
-        posicao_anterior = None
-
-        if isinstance(comando, Mover):
-
-            if comando.personagem in self.interpretador.posicoes:
-
-                posicao_anterior = (
-                    self.interpretador.posicoes[
-                        comando.personagem
-                    ]["linha"],
-                    self.interpretador.posicoes[
-                        comando.personagem
-                    ]["coluna"]
-                )
 
         try:
 
             self.interpretador.executar_comando(comando)
 
             self.atualizar_personagens()
-
-            # Destaca a casa quando ocorre um movimento
-            if isinstance(comando, Mover):
-
-                posicao = self.interpretador.posicoes[
-                    comando.personagem
-                ]
-
-                posicao_atual = (
-                    posicao["linha"],
-                    posicao["coluna"]
-                )
-
-                if posicao_atual != posicao_anterior:
-
-                    self.board.limpar_destaques()
-
-                    self.board.destacar_movimento(
-                        posicao["linha"],
-                        posicao["coluna"]
-                    )
 
             self.mensagem = (
                 f"Executado: {self.formatar_comando(comando)}"
@@ -175,12 +140,54 @@ class Game:
             if self.indice_comando >= len(self.comandos):
 
                 self.finalizado = True
+                self.board.limpar_destaques()
                 self.mensagem = "Todos os comandos foram executados!"
+
+            else:
+
+                self.atualizar_destaques_proximo_comando()
 
         except ValueError as erro:
 
             self.mensagem = str(erro)
             self.finalizado = True
+            self.board.limpar_destaques()
+
+    def atualizar_destaques_proximo_comando(self):
+
+        self.board.limpar_destaques()
+
+        proximo_comando = self.comandos[self.indice_comando]
+
+        if not isinstance(proximo_comando, Mover):
+            return
+
+        nome = proximo_comando.personagem
+
+        if nome not in self.interpretador.posicoes:
+            return
+
+        posicao = self.interpretador.posicoes[nome]
+
+        linha = posicao["linha"]
+        coluna = posicao["coluna"]
+
+        ocupadas = []
+
+        for outro_nome, outra_posicao in self.interpretador.posicoes.items():
+
+            if outro_nome != nome:
+
+                ocupadas.append((
+                    outra_posicao["linha"],
+                    outra_posicao["coluna"]
+                ))
+
+        self.board.destacar_movimentos_possiveis(
+            linha,
+            coluna,
+            ocupadas
+        )
 
     def atualizar_personagens(self):
 
@@ -191,14 +198,14 @@ class Game:
             if nome not in self.interpretador.personagens:
                 continue
 
-            dados = self.interpretador.personagens[nome]
+            if nome not in self.interpretador.posicoes:
+                continue
 
+            dados = self.interpretador.personagens[nome]
             posicao = self.interpretador.posicoes[nome]
 
-            # Atualiza a vida
             personagem.vida = dados["vida"]
 
-            # Atualiza a posição
             personagem.mover(
                 posicao["linha"],
                 posicao["coluna"]

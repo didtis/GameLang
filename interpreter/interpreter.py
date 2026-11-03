@@ -20,16 +20,25 @@ class Interpretador:
         self.personagens = {}
         self.defendendo = {}
         self.posicoes = {}
+        self.resultado = None
+        self.combate_encerrado = False
 
     def executar(self, ast):
         print("=== EXECUÇÃO DO COMBATE ===")
 
         for comando in ast.comandos:
+
+            if self.combate_encerrado:
+                break
+
             self.executar_comando(comando)
 
         print("\n=== FIM DO COMBATE ===")
 
     def executar_comando(self, comando):
+
+        if self.combate_encerrado:
+            return
 
         if isinstance(comando, CriarPersonagem):
             self.criar_personagem(comando)
@@ -77,7 +86,6 @@ class Interpretador:
 
         self.defendendo[comando.nome] = False
 
-        # Posições iniciais: 7 linhas e 12 colunas
         if comando.tipo == "HEROI":
             self.posicoes[comando.nome] = {
                 "linha": 3,
@@ -94,6 +102,45 @@ class Interpretador:
             f"(Vida: {comando.vida})"
         )
 
+    def personagem_derrotado(self, nome):
+
+        return self.personagens[nome]["vida"] <= 0
+
+    def verificar_fim_combate(self):
+
+        herois = [
+            nome for nome, dados in self.personagens.items()
+            if dados["tipo"] == "HEROI"
+        ]
+
+        inimigos = [
+            nome for nome, dados in self.personagens.items()
+            if dados["tipo"] == "INIMIGO"
+        ]
+
+        if not herois or not inimigos:
+            return
+
+        todos_herois_derrotados = all(
+            self.personagem_derrotado(nome)
+            for nome in herois
+        )
+
+        todos_inimigos_derrotados = all(
+            self.personagem_derrotado(nome)
+            for nome in inimigos
+        )
+
+        if todos_herois_derrotados:
+            self.resultado = "DERROTA"
+            self.combate_encerrado = True
+            print("\n=== DERROTA! TODOS OS HERÓIS FORAM DERROTADOS! ===")
+
+        elif todos_inimigos_derrotados:
+            self.resultado = "VITORIA"
+            self.combate_encerrado = True
+            print("\n=== VITÓRIA! TODOS OS INIMIGOS FORAM DERROTADOS! ===")
+
     def atacar(self, comando):
 
         if comando.atacante not in self.personagens:
@@ -107,6 +154,19 @@ class Interpretador:
                 f"Erro semântico: personagem "
                 f"'{comando.alvo}' não foi criado"
             )
+
+        if self.personagem_derrotado(comando.atacante):
+            print(
+                f"{comando.atacante} está derrotado "
+                f"e não pode atacar!"
+            )
+            return
+
+        if self.personagem_derrotado(comando.alvo):
+            print(
+                f"{comando.alvo} já está derrotado!"
+            )
+            return
 
         atacante = self.personagens[comando.atacante]
         alvo = self.personagens[comando.alvo]
@@ -127,9 +187,7 @@ class Interpretador:
             return
 
         dano = atacante["ataque"] - alvo["defesa"]
-
-        if dano < 0:
-            dano = 0
+        dano = max(0, dano)
 
         if self.defendendo[comando.alvo]:
 
@@ -141,10 +199,7 @@ class Interpretador:
 
             self.defendendo[comando.alvo] = False
 
-        alvo["vida"] -= dano
-
-        if alvo["vida"] < 0:
-            alvo["vida"] = 0
+        alvo["vida"] = max(0, alvo["vida"] - dano)
 
         print(
             f"{comando.atacante} atacou {comando.alvo}!"
@@ -158,6 +213,11 @@ class Interpretador:
             f"Vida do {comando.alvo}: {alvo['vida']}"
         )
 
+        if self.personagem_derrotado(comando.alvo):
+            print(f"{comando.alvo} foi derrotado!")
+
+        self.verificar_fim_combate()
+
     def defender(self, comando):
 
         if comando.personagem not in self.personagens:
@@ -165,6 +225,13 @@ class Interpretador:
                 f"Erro semântico: personagem "
                 f"'{comando.personagem}' não foi criado"
             )
+
+        if self.personagem_derrotado(comando.personagem):
+            print(
+                f"{comando.personagem} está derrotado "
+                f"e não pode se defender!"
+            )
+            return
 
         self.defendendo[comando.personagem] = True
 
@@ -180,6 +247,13 @@ class Interpretador:
                 f"'{comando.personagem}' não foi criado"
             )
 
+        if self.personagem_derrotado(comando.personagem):
+            print(
+                f"{comando.personagem} está derrotado "
+                f"e não pode usar habilidades!"
+            )
+            return
+
         print(
             f"{comando.personagem} usou {comando.nome}!"
         )
@@ -192,6 +266,13 @@ class Interpretador:
                 f"'{comando.personagem}' não foi criado"
             )
 
+        if self.personagem_derrotado(comando.personagem):
+            print(
+                f"{comando.personagem} está derrotado. "
+                f"Seu turno foi ignorado."
+            )
+            return
+
         print(
             f"Turno de {comando.personagem}"
         )
@@ -203,6 +284,13 @@ class Interpretador:
                 f"Erro semântico: personagem "
                 f"'{comando.personagem}' não foi criado"
             )
+
+        if self.personagem_derrotado(comando.personagem):
+            print(
+                f"{comando.personagem} está derrotado "
+                f"e não pode se movimentar!"
+            )
+            return
 
         posicao = self.posicoes[comando.personagem]
 
@@ -221,7 +309,6 @@ class Interpretador:
         elif comando.direcao == "DIREITA":
             coluna += 1
 
-        # Limites da masmorra: 7 linhas e 12 colunas
         if linha < 0 or linha >= 7 or coluna < 0 or coluna >= 12:
             print(
                 f"{comando.personagem} não pode sair "
@@ -252,12 +339,20 @@ class Interpretador:
             print("Condição verdadeira.")
 
             for subcomando in comando.comandos:
+
+                if self.combate_encerrado:
+                    break
+
                 self.executar_comando(subcomando)
 
         elif comando.senao is not None:
             print("Condição falsa.")
 
             for subcomando in comando.senao:
+
+                if self.combate_encerrado:
+                    break
+
                 self.executar_comando(subcomando)
 
     def verificar_condicao(self, condicao):
@@ -299,5 +394,12 @@ class Interpretador:
 
         for i in range(comando.quantidade):
 
+            if self.combate_encerrado:
+                break
+
             for subcomando in comando.comandos:
+
+                if self.combate_encerrado:
+                    break
+
                 self.executar_comando(subcomando)

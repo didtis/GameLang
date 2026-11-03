@@ -30,50 +30,20 @@ ast = Programa([
         5
     ),
 
-    # Movimentação do Arthur
-    Mover(
-        "Arthur",
-        "DIREITA"
-    ),
+    # Aproximação: Arthur vai da coluna 2 até a 5
+    Mover("Arthur", "DIREITA"),
+    Mover("Arthur", "DIREITA"),
+    Mover("Arthur", "DIREITA"),
 
-    # Movimentação do Goblin
-    Mover(
-        "Goblin",
-        "ESQUERDA"
-    ),
-
-    Mover(
-        "Goblin",
-        "ESQUERDA"
-    ),
-
-    Mover(
-        "Goblin",
-        "DIREITA"
-    ),
-
-    Mover(
-        "Goblin",
-        "DIREITA"
-    ),
-
-    # Testes de combate
-    Atacar(
-        "Arthur",
-        "Goblin"
-    ),
-
-    Defender(
-        "Arthur"
-    ),
-
-    Atacar(
-        "Goblin",
-        "Arthur"
-    )
-
+    # Combate
+    Atacar("Arthur", "Goblin"),
+    Defender("Goblin"),
+    Atacar("Goblin", "Arthur"),
+    Atacar("Arthur", "Goblin"),
+    Atacar("Arthur", "Goblin"),
+    Atacar("Arthur", "Goblin"),
+    Atacar("Arthur", "Goblin"),
 ])
-
 
 interpretador = Interpretador()
 

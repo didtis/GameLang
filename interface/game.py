@@ -1,16 +1,32 @@
+
 import pygame
 
 from .board import Board
 from .characters import Character
 
+from parser.ast import (
+    CriarPersonagem,
+    Atacar,
+    Defender,
+    Habilidade,
+    Turno,
+    Mover,
+    Condicional,
+    Repeticao
+)
+
 
 LARGURA = 700
-ALTURA = 560
+ALTURA_TABULEIRO = 560
+ALTURA_PAINEL = 90
+ALTURA = ALTURA_TABULEIRO + ALTURA_PAINEL
 FPS = 60
 
 
 class Game:
-    def __init__(self, personagens=None):
+
+    def __init__(self, interpretador, comandos):
+
         pygame.init()
 
         self.tela = pygame.display.set_mode(
@@ -29,40 +45,50 @@ class Game:
             tamanho_tile=70
         )
 
+        self.interpretador = interpretador
+        self.comandos = comandos
+        self.indice_comando = 0
+
         self.personagens = []
-
-        if personagens is not None:
-            self.carregar_personagens(personagens)
-
         self.executando = True
+        self.finalizado = False
 
-    def carregar_personagens(self, personagens):
-        """
-        Recebe os personagens do interpretador
-        e cria a representação visual deles.
-        """
+        self.fonte = pygame.font.Font(None, 25)
+        self.fonte_pequena = pygame.font.Font(None, 21)
 
-        for nome, dados in personagens.items():
+        self.mensagem = "Pressione ESPACO para iniciar."
 
-            linha = dados.get("linha", 0)
-            coluna = dados.get("coluna", 0)
+        self.carregar_personagens_iniciais()
 
-            personagem = Character(
-                nome,
-                linha,
-                coluna,
-                dados["vida"],
-                dados["ataque"],
-                dados["defesa"]
-            )
+    def carregar_personagens_iniciais(self):
 
-            self.personagens.append(personagem)
+        for comando in self.comandos:
+
+            if isinstance(comando, CriarPersonagem):
+
+                if comando.tipo == "HEROI":
+                    linha = 3
+                    coluna = 2
+                else:
+                    linha = 3
+                    coluna = 6
+
+                personagem = Character(
+                    comando.nome,
+                    linha,
+                    coluna,
+                    comando.vida,
+                    comando.ataque,
+                    comando.defesa
+                )
+
+                self.personagens.append(personagem)
 
     def executar(self):
+
         while self.executando:
 
             self.processar_eventos()
-            self.atualizar()
             self.desenhar()
 
             self.relogio.tick(FPS)
@@ -81,8 +107,89 @@ class Game:
                 if evento.key == pygame.K_ESCAPE:
                     self.executando = False
 
-    def atualizar(self):
-        pass
+                elif evento.key == pygame.K_SPACE:
+                    self.proximo_comando()
+
+    def proximo_comando(self):
+
+        if self.finalizado:
+            return
+
+        if self.indice_comando >= len(self.comandos):
+
+            self.finalizado = True
+            self.mensagem = "Combate finalizado!"
+            return
+
+        comando = self.comandos[self.indice_comando]
+
+        try:
+
+            self.interpretador.executar_comando(comando)
+
+            self.atualizar_personagens()
+
+            self.mensagem = (
+                f"Executado: {self.formatar_comando(comando)}"
+            )
+
+            self.indice_comando += 1
+
+            if self.indice_comando >= len(self.comandos):
+                self.finalizado = True
+                self.mensagem = "Todos os comandos foram executados!"
+
+        except ValueError as erro:
+
+            self.mensagem = str(erro)
+            self.finalizado = True
+
+    def atualizar_personagens(self):
+
+        for personagem in self.personagens:
+
+            nome = personagem.nome
+
+            if nome not in self.interpretador.personagens:
+                continue
+
+            dados = self.interpretador.personagens[nome]
+            posicao = self.interpretador.posicoes[nome]
+
+            personagem.vida = dados["vida"]
+
+            personagem.mover(
+                posicao["linha"],
+                posicao["coluna"]
+            )
+
+    def formatar_comando(self, comando):
+
+        if isinstance(comando, CriarPersonagem):
+            return f"CRIAR {comando.tipo} {comando.nome}"
+
+        elif isinstance(comando, Atacar):
+            return f"ATACAR {comando.atacante} {comando.alvo}"
+
+        elif isinstance(comando, Defender):
+            return f"DEFENDER {comando.personagem}"
+
+        elif isinstance(comando, Habilidade):
+            return f"HABILIDADE {comando.personagem} {comando.nome}"
+
+        elif isinstance(comando, Turno):
+            return f"TURNO {comando.personagem}"
+
+        elif isinstance(comando, Mover):
+            return f"MOVER {comando.personagem} {comando.direcao}"
+
+        elif isinstance(comando, Condicional):
+            return "SE (condição)"
+
+        elif isinstance(comando, Repeticao):
+            return f"REPETIR {comando.quantidade}"
+
+        return "Comando"
 
     def desenhar(self):
 
@@ -97,30 +204,46 @@ class Game:
                 self.board.tamanho_tile
             )
 
+        self.desenhar_painel()
+
         pygame.display.flip()
 
+    def desenhar_painel(self):
 
-if __name__ == "__main__":
+        pygame.draw.rect(
+            self.tela,
+            (25, 25, 35),
+            (0, ALTURA_TABULEIRO, LARGURA, ALTURA_PAINEL)
+        )
 
-    personagens = {
-        "Arthur": {
-            "tipo": "HEROI",
-            "vida": 100,
-            "ataque": 20,
-            "defesa": 5,
-            "linha": 3,
-            "coluna": 2
-        },
+        texto_comando = self.fonte.render(
+            self.mensagem,
+            True,
+            (255, 255, 255)
+        )
 
-        "Goblin": {
-            "tipo": "INIMIGO",
-            "vida": 50,
-            "ataque": 10,
-            "defesa": 5,
-            "linha": 3,
-            "coluna": 6
-        }
-    }
+        self.tela.blit(
+            texto_comando,
+            (10, ALTURA_TABULEIRO + 10)
+        )
 
-    jogo = Game(personagens)
-    jogo.executar()
+        if not self.finalizado:
+
+            texto_ajuda = self.fonte_pequena.render(
+                "ESPACO: proximo comando    ESC: sair",
+                True,
+                (180, 180, 180)
+            )
+
+        else:
+
+            texto_ajuda = self.fonte_pequena.render(
+                "Execucao encerrada    ESC: sair",
+                True,
+                (180, 180, 180)
+            )
+
+        self.tela.blit(
+            texto_ajuda,
+            (10, ALTURA_TABULEIRO + 48)
+        )

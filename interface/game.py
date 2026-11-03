@@ -40,13 +40,11 @@ class Game:
 
         self.relogio = pygame.time.Clock()
 
-        # Grade da masmorra
         self.board = Board(
             linhas=7,
             colunas=12
         )
 
-        # Carrega a imagem de fundo
         caminho_fundo = os.path.join(
             os.path.dirname(__file__),
             "assets",
@@ -70,9 +68,11 @@ class Game:
 
         self.executando = True
         self.finalizado = False
+        self.resultado_exibido = False
 
         self.fonte = pygame.font.Font(None, 25)
         self.fonte_pequena = pygame.font.Font(None, 21)
+        self.fonte_resultado = pygame.font.Font(None, 76)
 
         self.mensagem = "Pressione ESPACO para iniciar."
 
@@ -154,7 +154,20 @@ class Game:
 
             self.indice_comando += 1
 
-            if self.indice_comando >= len(self.comandos):
+            # Verifica se o interpretador encerrou o combate
+            if self.interpretador.combate_encerrado:
+
+                self.finalizado = True
+                self.resultado_exibido = True
+                self.board.limpar_destaques()
+
+                if self.interpretador.resultado == "VITORIA":
+                    self.mensagem = "VITÓRIA! Todos os inimigos foram derrotados!"
+
+                elif self.interpretador.resultado == "DERROTA":
+                    self.mensagem = "DERROTA! Todos os heróis foram derrotados!"
+
+            elif self.indice_comando >= len(self.comandos):
 
                 self.finalizado = True
                 self.board.limpar_destaques()
@@ -258,16 +271,13 @@ class Game:
 
     def desenhar(self):
 
-        # Fundo da masmorra
         self.tela.blit(
             self.fundo,
             (0, 0)
         )
 
-        # Destaques verdes das casas disponíveis
         self.board.desenhar_destaques(self.tela)
 
-        # Desenha os personagens centralizados nas casas
         for personagem in self.personagens:
 
             centro_x, centro_y = self.board.obter_centro(
@@ -275,7 +285,6 @@ class Game:
                 personagem.coluna
             )
 
-            # Ajuste visual do Goblin
             if personagem.nome.lower() == "goblin":
                 centro_x -= 5
 
@@ -287,9 +296,56 @@ class Game:
                 self.board.altura_tile
             )
 
+        # Mostra o resultado no centro da masmorra
+        if self.resultado_exibido:
+            self.desenhar_resultado()
+
         self.desenhar_painel()
 
         pygame.display.flip()
+
+    def desenhar_resultado(self):
+
+        resultado = self.interpretador.resultado
+
+        if resultado == "VITORIA":
+            texto = "VITORIA!"
+            cor = (80, 230, 100)
+
+        else:
+            texto = "DERROTA!"
+            cor = (230, 70, 70)
+
+        superficie = self.fonte_resultado.render(
+            texto,
+            True,
+            cor
+        )
+
+        retangulo = superficie.get_rect(
+            center=(LARGURA // 2, ALTURA_TABULEIRO // 2)
+        )
+
+        fundo = pygame.Surface(
+            (retangulo.width + 40, retangulo.height + 30),
+            pygame.SRCALPHA
+        )
+
+        fundo.fill((15, 15, 25, 210))
+
+        fundo_rect = fundo.get_rect(
+            center=retangulo.center
+        )
+
+        self.tela.blit(
+            fundo,
+            fundo_rect
+        )
+
+        self.tela.blit(
+            superficie,
+            retangulo
+        )
 
     def desenhar_painel(self):
 
@@ -321,7 +377,7 @@ class Game:
         else:
 
             texto_ajuda = self.fonte_pequena.render(
-                "Execucao encerrada    ESC: sair",
+                "Combate encerrado    ESC: sair",
                 True,
                 (180, 180, 180)
             )

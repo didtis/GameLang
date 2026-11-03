@@ -40,13 +40,13 @@ class Game:
 
         self.relogio = pygame.time.Clock()
 
+        # Grade da masmorra
         self.board = Board(
-            linhas=8,
-            colunas=10,
-            tamanho_tile=70
+            linhas=7,
+            colunas=12
         )
 
-        # Carrega a imagem da masmorra
+        # Carrega a imagem de fundo
         caminho_fundo = os.path.join(
             os.path.dirname(__file__),
             "assets",
@@ -258,21 +258,29 @@ class Game:
 
     def desenhar(self):
 
-        # Desenha a masmorra como fundo
+        # Fundo da masmorra
         self.tela.blit(
             self.fundo,
             (0, 0)
         )
 
-        # Desenha somente os destaques verdes
+        # Destaques verdes das casas disponíveis
         self.board.desenhar_destaques(self.tela)
 
-        # Desenha os personagens
+        # Personagens centralizados nas casas
         for personagem in self.personagens:
+
+            centro_x, centro_y = self.board.obter_centro(
+                personagem.linha,
+                personagem.coluna
+            )
 
             personagem.desenhar(
                 self.tela,
-                self.board.tamanho_tile
+                centro_x,
+                centro_y,
+                self.board.largura_tile,
+                self.board.altura_tile
             )
 
         self.desenhar_painel()

@@ -51,7 +51,7 @@ def executar_arquivo(caminho):
         arvore = parser.programa()
 
     except SyntaxError as erro:
-        print(erro)
+        print(f"Erro sintático: {erro}")
         return
 
     print("Análise sintática concluída com sucesso.")
@@ -65,12 +65,12 @@ def executar_arquivo(caminho):
         analisador.analisar(arvore)
 
     except ValueError as erro:
-        print(erro)
+        print(f"Erro semântico: {erro}")
         return
 
     print("Análise semântica concluída com sucesso.")
 
-    # 5. Execução com o interpretador e Pygame
+    # 5. Execução do interpretador e Pygame
     print("\n[4] EXECUÇÃO")
     print("Abrindo a interface do combate...")
     print("Pressione ESPAÇO para executar o próximo comando.")
@@ -85,6 +85,5 @@ if __name__ == "__main__":
 
     if len(sys.argv) < 2:
         print("Uso: python main.py caminho/do/arquivo.gl")
-
     else:
         executar_arquivo(sys.argv[1])

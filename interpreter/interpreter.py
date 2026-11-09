@@ -313,6 +313,7 @@ class Interpretador:
         elif comando.direcao == "DIREITA":
             coluna += 1
 
+        # Verifica os limites do tabuleiro
         if linha < 0 or linha >= 7 or coluna < 0 or coluna >= 12:
             print(
                 f"{comando.personagem} não pode sair "
@@ -320,6 +321,23 @@ class Interpretador:
             )
             return
 
+        # Verifica se outra personagem ocupa a posição
+        for outro_nome, outra_posicao in self.posicoes.items():
+
+            if outro_nome == comando.personagem:
+                continue
+
+            if (
+                outra_posicao["linha"] == linha
+                and outra_posicao["coluna"] == coluna
+            ):
+                print(
+                    f"{comando.personagem} não pode se mover: "
+                    f"a posição está ocupada por {outro_nome}!"
+                )
+                return
+
+        # Atualiza a posição somente se o movimento for válido
         posicao["linha"] = linha
         posicao["coluna"] = coluna
 

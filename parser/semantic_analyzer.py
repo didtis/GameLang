@@ -1,3 +1,4 @@
+
 # Analisador semântico da GameLang - Sprint 3
 
 from .semantic import TabelaSimbolos
@@ -41,12 +42,35 @@ class AnalisadorSemantico:
             self.analisar_repeticao(comando)
 
     def analisar_criacao(self, comando):
+
+        vida = int(comando.vida)
+        ataque = int(comando.ataque)
+        defesa = int(comando.defesa)
+
+        if vida <= 0:
+            raise ValueError(
+                f"Erro semântico: a vida de '{comando.nome}' "
+                "deve ser maior que zero"
+            )
+
+        if ataque < 0:
+            raise ValueError(
+                f"Erro semântico: o ataque de '{comando.nome}' "
+                "não pode ser negativo"
+            )
+
+        if defesa < 0:
+            raise ValueError(
+                f"Erro semântico: a defesa de '{comando.nome}' "
+                "não pode ser negativa"
+            )
+
         self.tabela.adicionar(
             comando.nome,
             comando.tipo,
-            comando.vida,
-            comando.ataque,
-            comando.defesa
+            vida,
+            ataque,
+            defesa
         )
 
     def verificar_personagem(self, nome):

@@ -216,7 +216,7 @@ class Parser:
     def repeticao(self):
         self.esperar("REPETIR")
 
-        quantidade = self.esperar("NUMERO")[1]
+        quantidade = int(self.esperar("NUMERO")[1])
 
         comandos = []
 

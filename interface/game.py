@@ -1,3 +1,4 @@
+
 import os
 import pygame
 
@@ -62,6 +63,9 @@ class Game:
         self.interpretador = interpretador
         self.comandos = comandos
         self.indice_comando = 0
+
+        # Controle visual da repetição
+        self.repeticao_ativa = None
 
         self.personagens = []
 
@@ -132,6 +136,12 @@ class Game:
         if self.finalizado:
             return
 
+        # Se existe uma repetição em andamento,
+        # executa somente o próximo comando interno.
+        if self.repeticao_ativa is not None:
+            self.executar_proximo_comando_repeticao()
+            return
+
         if self.indice_comando >= len(self.comandos):
 
             self.finalizado = True
@@ -143,6 +153,40 @@ class Game:
 
         try:
 
+            # A repetição será controlada pelo Pygame,
+            # em vez de ser executada inteira de uma vez.
+            if isinstance(comando, Repeticao):
+
+                quantidade = int(comando.quantidade)
+
+                # Mantém o comportamento original para
+                # repetições vazias ou com quantidade zero.
+                if quantidade <= 0 or not comando.comandos:
+
+                    self.interpretador.executar_comando(comando)
+                    self.atualizar_personagens()
+                    self.indice_comando += 1
+
+                    self.finalizar_ou_continuar()
+
+                    return
+
+                self.repeticao_ativa = {
+                    "comando": comando,
+                    "quantidade": quantidade,
+                    "iteracao": 0,
+                    "indice_interno": 0
+                }
+
+                self.mensagem = (
+                    f"REPETIR {quantidade} iniciado. "
+                    "Pressione ESPACO para executar."
+                )
+
+                self.atualizar_destaques_proximo_comando()
+                return
+
+            # Execução normal dos demais comandos
             self.interpretador.executar_comando(comando)
 
             self.atualizar_personagens()
@@ -153,43 +197,154 @@ class Game:
 
             self.indice_comando += 1
 
-            if self.interpretador.combate_encerrado:
-
-                self.finalizado = True
-                self.resultado_exibido = True
-                self.board.limpar_destaques()
-
-                if self.interpretador.resultado == "VITORIA":
-                    self.mensagem = (
-                        "VITÓRIA! Todos os inimigos foram derrotados!"
-                    )
-
-                elif self.interpretador.resultado == "DERROTA":
-                    self.mensagem = (
-                        "DERROTA! Todos os heróis foram derrotados!"
-                    )
-
-            elif self.indice_comando >= len(self.comandos):
-
-                self.finalizado = True
-                self.board.limpar_destaques()
-                self.mensagem = "Todos os comandos foram executados!"
-
-            else:
-
-                self.atualizar_destaques_proximo_comando()
+            self.finalizar_ou_continuar()
 
         except ValueError as erro:
 
             self.mensagem = str(erro)
             self.finalizado = True
+            self.repeticao_ativa = None
             self.board.limpar_destaques()
+
+    def executar_proximo_comando_repeticao(self):
+
+        estado = self.repeticao_ativa
+
+        comando_repeticao = estado["comando"]
+        comandos_internos = comando_repeticao.comandos
+
+        iteracao = estado["iteracao"]
+        indice_interno = estado["indice_interno"]
+        quantidade = estado["quantidade"]
+
+        if indice_interno >= len(comandos_internos):
+            return
+
+        comando = comandos_internos[indice_interno]
+
+        try:
+
+            # Executa apenas um comando interno por ESPACO.
+            self.interpretador.executar_comando(comando)
+
+            self.atualizar_personagens()
+
+            estado["indice_interno"] += 1
+
+            # Verifica se o combate terminou durante a repetição.
+            if self.verificar_resultado_combate():
+                return
+
+            # Verifica se todos os comandos desta iteração
+            # foram executados.
+            if estado["indice_interno"] >= len(comandos_internos):
+
+                estado["iteracao"] += 1
+
+                # Todas as iterações foram concluídas.
+                if estado["iteracao"] >= quantidade:
+
+                    self.repeticao_ativa = None
+                    self.indice_comando += 1
+
+                    self.mensagem = (
+                        f"REPETIR {quantidade} concluído!"
+                    )
+
+                    self.finalizar_ou_continuar()
+
+                    return
+
+                # Prepara a próxima iteração.
+                estado["indice_interno"] = 0
+
+                self.mensagem = (
+                    f"REPETIR: iteração "
+                    f"{estado['iteracao']} de {quantidade} concluída."
+                )
+
+            else:
+
+                self.mensagem = (
+                    f"REPETIR: {self.formatar_comando(comando)} "
+                    f"(iteração {iteracao + 1}/{quantidade})"
+                )
+
+            self.atualizar_destaques_proximo_comando()
+
+        except ValueError as erro:
+
+            self.mensagem = str(erro)
+            self.finalizado = True
+            self.repeticao_ativa = None
+            self.board.limpar_destaques()
+
+    def finalizar_ou_continuar(self):
+
+        if self.verificar_resultado_combate():
+            return
+
+        if self.indice_comando >= len(self.comandos):
+
+            self.finalizado = True
+            self.board.limpar_destaques()
+
+            if self.repeticao_ativa is None:
+                self.mensagem = "Todos os comandos foram executados!"
+
+        else:
+
+            self.atualizar_destaques_proximo_comando()
+
+    def verificar_resultado_combate(self):
+
+        if not self.interpretador.combate_encerrado:
+            return False
+
+        self.finalizado = True
+        self.resultado_exibido = True
+        self.repeticao_ativa = None
+
+        self.board.limpar_destaques()
+
+        if self.interpretador.resultado == "VITORIA":
+
+            self.mensagem = (
+                "VITÓRIA! Todos os inimigos foram derrotados!"
+            )
+
+        elif self.interpretador.resultado == "DERROTA":
+
+            self.mensagem = (
+                "DERROTA! Todos os heróis foram derrotados!"
+            )
+
+        return True
 
     def atualizar_destaques_proximo_comando(self):
 
         self.board.limpar_destaques()
 
-        proximo_comando = self.comandos[self.indice_comando]
+        # Se estiver dentro de REPETIR, destaca
+        # a movimentação do próximo comando interno.
+        if self.repeticao_ativa is not None:
+
+            estado = self.repeticao_ativa
+
+            comandos = estado["comando"].comandos
+            indice = estado["indice_interno"]
+
+            if indice >= len(comandos):
+                return
+
+            proximo_comando = comandos[indice]
+
+        else:
+
+            if self.indice_comando >= len(self.comandos):
+                return
+
+            proximo_comando = self.comandos[self.indice_comando]
 
         if not isinstance(proximo_comando, Mover):
             return

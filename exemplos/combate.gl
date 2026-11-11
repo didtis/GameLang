@@ -1,60 +1,69 @@
 
-CRIAR HEROI Arthur VIDA 150 ATAQUE 25 DEFESA 12
-CRIAR INIMIGO Goblin VIDA 70 ATAQUE 12 DEFESA 5
+CRIAR HEROI Arthur VIDA 150 ATAQUE 25 DEFESA 10
+CRIAR INIMIGO Goblin VIDA 100 ATAQUE 18 DEFESA 5
 
 HABILIDADE Arthur GOLPE_FORTE
+
 TURNO Arthur
 
-REPETIR 3
-    MOVER Arthur DIREITA
-FIM
-
-REPETIR 2
-    MOVER Arthur CIMA
-FIM
-
+# Arthur avança pelo corredor
 REPETIR 2
     MOVER Arthur DIREITA
 FIM
 
+# Goblin começa a se movimentar
 REPETIR 2
-    MOVER Arthur BAIXO
+    MOVER Goblin BAIXO
 FIM
 
-REPETIR 3
-    MOVER Arthur DIREITA
-FIM
-
-REPETIR 2
-    MOVER Arthur CIMA
-FIM
+MOVER Arthur BAIXO
+MOVER Goblin ESQUERDA
 
 MOVER Arthur DIREITA
+MOVER Goblin BAIXO
 
-SE VIDA Goblin <= 70
-    ATACAR Arthur Goblin
-SENAO
-    DEFENDER Arthur
-FIM
+MOVER Arthur BAIXO
+MOVER Goblin ESQUERDA
 
-REPETIR 2
-    MOVER Arthur BAIXO
-FIM
-
-REPETIR 2
-    MOVER Arthur ESQUERDA
-FIM
-
-REPETIR 2
-    MOVER Arthur CIMA
-FIM
-
+# Primeiro confronto
+TURNO Arthur
 ATACAR Arthur Goblin
 
-SE VIDA Goblin <= 20
-    ATACAR Arthur Goblin
-SENAO
-    DEFENDER Arthur
-FIM
+DEFENDER Goblin
+TURNO Goblin
+ATACAR Goblin Arthur
 
+# Segundo confronto
+DEFENDER Arthur
 TURNO Arthur
+ATACAR Arthur Goblin
+
+DEFENDER Goblin
+TURNO Goblin
+ATACAR Goblin Arthur
+
+# Terceiro confronto
+DEFENDER Arthur
+TURNO Arthur
+ATACAR Arthur Goblin
+
+DEFENDER Goblin
+TURNO Goblin
+ATACAR Goblin Arthur
+
+# Quarto confronto
+DEFENDER Arthur
+TURNO Arthur
+ATACAR Arthur Goblin
+
+DEFENDER Goblin
+TURNO Goblin
+ATACAR Goblin Arthur
+
+# Quinto confronto
+DEFENDER Arthur
+TURNO Arthur
+ATACAR Arthur Goblin
+
+# Ataque final
+ATACAR Arthur Goblin

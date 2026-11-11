@@ -6,12 +6,10 @@ HABILIDADE Arthur GOLPE_FORTE
 
 TURNO Arthur
 
-# Arthur avança pelo corredor
 REPETIR 2
     MOVER Arthur DIREITA
 FIM
 
-# Goblin começa a se movimentar
 REPETIR 2
     MOVER Goblin BAIXO
 FIM
@@ -25,7 +23,6 @@ MOVER Goblin BAIXO
 MOVER Arthur BAIXO
 MOVER Goblin ESQUERDA
 
-# Primeiro confronto
 TURNO Arthur
 ATACAR Arthur Goblin
 
@@ -33,7 +30,6 @@ DEFENDER Goblin
 TURNO Goblin
 ATACAR Goblin Arthur
 
-# Segundo confronto
 DEFENDER Arthur
 TURNO Arthur
 ATACAR Arthur Goblin
@@ -42,7 +38,6 @@ DEFENDER Goblin
 TURNO Goblin
 ATACAR Goblin Arthur
 
-# Terceiro confronto
 DEFENDER Arthur
 TURNO Arthur
 ATACAR Arthur Goblin
@@ -51,7 +46,6 @@ DEFENDER Goblin
 TURNO Goblin
 ATACAR Goblin Arthur
 
-# Quarto confronto
 DEFENDER Arthur
 TURNO Arthur
 ATACAR Arthur Goblin
@@ -60,10 +54,8 @@ DEFENDER Goblin
 TURNO Goblin
 ATACAR Goblin Arthur
 
-# Quinto confronto
 DEFENDER Arthur
 TURNO Arthur
 ATACAR Arthur Goblin
 
-# Ataque final
 ATACAR Arthur Goblin

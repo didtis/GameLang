@@ -1,4 +1,14 @@
-from semantic import TabelaSimbolos
+
+import os
+import sys
+
+# Adiciona a pasta principal do projeto ao caminho de importação
+sys.path.insert(
+    0,
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
+
+from parser.semantic import TabelaSimbolos
 
 
 tabela = TabelaSimbolos()

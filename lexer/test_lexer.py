@@ -1,4 +1,5 @@
-from lexer import tokenizar
+
+from lexer.lexer import tokenizar
 
 codigo = """ATACAR Arthur # Goblin"""
 

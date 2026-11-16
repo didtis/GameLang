@@ -1,5 +1,4 @@
-
-# GameLang
+# GameLang — Uma linguagem para combates de RPG
 
 ## Projeto
 
@@ -9,26 +8,20 @@ Desenvolvimento de um compilador para uma linguagem específica de domínio (DSL
 
 O objetivo do projeto é desenvolver a GameLang, uma DSL capaz de representar elementos da lógica de combates de RPG, como personagens, atributos, ataques, defesa, habilidades, condições e turnos.
 
-A linguagem é analisada por um compilador, utilizando uma Gramática Livre de Contexto (GLC) para definir sua estrutura sintática, passando por etapas como análise léxica, análise sintática, construção da AST e análise semântica.
+A linguagem é analisada por um compilador utilizando uma Gramática Livre de Contexto (GLC), passando por etapas como análise léxica, análise sintática, construção da AST, análise semântica e execução dos comandos.
 
 ## Integrantes
 
 - Igor Nonaka Oliveira
 - José Gonçalves Braz Junior
-- Luis Carlos de Oliveira Dias Maia
 - Marcus Gabriel Oliveira da Silva
 
-## Turma
+## Informações acadêmicas
 
-Ciências da Computação — 4D1_20261
-
-## Disciplina
-
-Linguagens Formais e Autômatos
-
-## Orientadora
-
-Andrea Ono Sakai
+- **Curso:** Ciências da Computação
+- **Turma:** 4D1_20261
+- **Disciplina:** Linguagens Formais e Autômatos
+- **Orientadora:** Profa. Dra. Andrea Ono Sakai
 
 ## Tecnologias utilizadas
 
@@ -40,22 +33,24 @@ Andrea Ono Sakai
 ```text
 GameLang/
 ├── README.md
+├── main.py
 ├── requirements.txt
 ├── lexer/
 ├── parser/
 ├── interpreter/
 ├── interface/
+│   └── assets/
 ├── exemplos/
-├── assets/
 ├── etapas/
-└── artigos/
+├── artigos/
+└── Sprints/
 ```
 
 ## Instalação
 
 É necessário ter o Python instalado.
 
-Clone o repositório:
+Primeiro, clone o repositório:
 
 ```bash
 git clone https://github.com/didtis/GameLang.git
@@ -73,43 +68,87 @@ Instale as dependências:
 pip install -r requirements.txt
 ```
 
-## Execução
+## Como executar
 
-Para executar um exemplo pelo terminal:
+### 1. Modo interativo
+
+Para abrir o menu de apresentação da GameLang:
 
 ```bash
-python main.py exemplos/combate.gl --terminal
+python main.py --interativo
 ```
 
-Para executar o exemplo com a interface gráfica:
+Nesse modo, o usuário pode:
+
+1. Aprender como escrever comandos na GameLang.
+2. Consultar os comandos disponíveis.
+3. Visualizar um exemplo de código.
+4. Escrever seu próprio combate.
+5. Executar o exemplo completo do projeto.
+
+### 2. Execução visual
+
+Para executar diretamente o exemplo de combate com a interface gráfica:
 
 ```bash
 python main.py exemplos/combate.gl
 ```
 
+Na janela do Pygame:
+
+- **ESPAÇO:** avança para o próximo comando.
+- **ESC:** encerra a interface.
+
+### 3. Execução pelo terminal
+
+Para executar o exemplo sem abrir a interface gráfica:
+
+```bash
+python main.py exemplos/combate.gl --terminal
+```
+
 ## Etapas do compilador
 
-O projeto possui as seguintes etapas:
+A GameLang realiza o processamento dos comandos por meio das seguintes etapas:
 
-1. Análise léxica: identificação dos tokens da linguagem.
-2. Análise sintática: verificação da estrutura dos comandos conforme a gramática.
-3. Construção da AST: organização da estrutura sintática em uma árvore.
-4. Análise semântica: verificação de regras e referências dos personagens.
-5. Interpretação: execução dos comandos da GameLang.
-6. Interface gráfica: representação visual do combate.
+1. **Análise léxica:** identifica os elementos da linguagem, como palavras-chave, identificadores, números e operadores, transformando-os em tokens.
+2. **Análise sintática:** verifica se os comandos seguem a estrutura definida pela gramática da GameLang.
+3. **Construção da AST:** organiza os comandos reconhecidos em uma árvore sintática abstrata.
+4. **Análise semântica:** verifica regras de significado, como a existência dos personagens utilizados nos comandos.
+5. **Execução:** interpreta os comandos que passaram pelas análises anteriores.
+6. **Interface gráfica:** representa visualmente as ações do combate utilizando o Pygame.
 
 ## Exemplo de código
 
 ```text
 CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
 
-CRIAR INIMIGO Goblin VIDA 30 ATAQUE 10 DEFESA 5
+CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
 
+TURNO Arthur
+MOVER Arthur DIREITA
 ATACAR Arthur Goblin
 
-FIM
+TURNO Goblin
+DEFENDER Goblin
 ```
+
+## Comandos disponíveis
+
+| Comando | Função |
+|---|---|
+| `CRIAR HEROI` | Cria um personagem do tipo herói. |
+| `CRIAR INIMIGO` | Cria um personagem do tipo inimigo. |
+| `ATACAR` | Executa um ataque contra outro personagem. |
+| `DEFENDER` | Executa uma ação de defesa. |
+| `HABILIDADE` | Utiliza uma habilidade. |
+| `TURNO` | Define o personagem do turno. |
+| `MOVER` | Movimenta um personagem no tabuleiro. |
+| `SE` | Verifica uma condição. |
+| `SENAO` | Define uma alternativa para a condição. |
+| `REPETIR` | Repete um bloco de comandos. |
+| `FIM` | Encerra um bloco de comandos. |
 
 ## Repositório
 
-https://github.com/didtis/GameLang
+[GitHub — GameLang](https://github.com/didtis/GameLang)

@@ -260,32 +260,32 @@ def mostrar_ajuda():
     mostrar_titulo("COMO ESCREVER NA GAMELANG")
 
     print("""
-1) Criar um heroi:
+1) Criar um heroi exemplo :
    CRIAR HEROI Arthur VIDA 100 ATAQUE 20 DEFESA 10
 
-2) Criar um inimigo:
+2) Criar um inimigo exemplo:
    CRIAR INIMIGO Goblin VIDA 50 ATAQUE 10 DEFESA 5
 
-3) Escolher o turno:
+3) Escolher o turno exemplo:
    TURNO Arthur
 
-4) Atacar ou defender:
+4) Atacar ou defender exemplo:
    ATACAR Arthur Goblin
    DEFENDER Arthur
 
-5) Usar habilidade:
+5) Usar habilidade exemplo:
    HABILIDADE Arthur GOLPE_FORTE
 
-6) Mover uma casa:
+6) Mover uma casa exemplo:
    MOVER Arthur DIREITA
    Direcoes aceitas: CIMA, BAIXO, ESQUERDA, DIREITA
 
-7) Repetir comandos:
+7) Repetir comandos exemplo:
    REPETIR 2
        MOVER Arthur DIREITA
    FIM
 
-8) Criar uma condicao:
+8) Criar uma condicao exemplo:
    SE VIDA Goblin <= 20
        ATACAR Arthur Goblin
    SENAO
@@ -297,6 +297,9 @@ Observacoes:
 - Crie os personagens antes de referencia-los.
 - VIDA, ATAQUE e DEFESA recebem numeros inteiros.
 - FIM encerra blocos de REPETIR e SE/SENAO.
+- Recomenda-se escrever o codigo completo antes da execucao.
+- Voce pode utilizar o Bloco de Notas para montar o codigo,
+  copia-lo e depois colar na opcao 4 do menu.
 """)
 
 

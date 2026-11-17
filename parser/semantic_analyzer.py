@@ -5,6 +5,11 @@ from .semantic import TabelaSimbolos
 
 
 class AnalisadorSemantico:
+
+    HABILIDADES_DISPONIVEIS = {
+        "GOLPE_FORTE"
+    }
+
     def __init__(self):
         self.tabela = TabelaSimbolos()
 
@@ -28,6 +33,7 @@ class AnalisadorSemantico:
 
         elif comando.__class__.__name__ == "Habilidade":
             self.verificar_personagem(comando.personagem)
+            self.verificar_habilidade(comando.nome)
 
         elif comando.__class__.__name__ == "Turno":
             self.verificar_personagem(comando.personagem)
@@ -76,7 +82,21 @@ class AnalisadorSemantico:
     def verificar_personagem(self, nome):
         self.tabela.obter(nome)
 
+    def verificar_habilidade(self, nome):
+
+        if nome not in self.HABILIDADES_DISPONIVEIS:
+
+            disponiveis = ", ".join(
+                sorted(self.HABILIDADES_DISPONIVEIS)
+            )
+
+            raise ValueError(
+                f"Erro semântico: habilidade '{nome}' não existe. "
+                f"Habilidades disponíveis: {disponiveis}"
+            )
+
     def analisar_condicional(self, comando):
+
         self.verificar_personagem(
             comando.condicao.personagem
         )
@@ -89,5 +109,6 @@ class AnalisadorSemantico:
                 self.analisar_comando(subcomando)
 
     def analisar_repeticao(self, comando):
+
         for subcomando in comando.comandos:
             self.analisar_comando(subcomando)

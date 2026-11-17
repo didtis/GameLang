@@ -23,6 +23,9 @@ class Interpretador:
         self.resultado = None
         self.combate_encerrado = False
 
+        # Armazena habilidades que aguardam o próximo ataque.
+        self.bonus_proximo_ataque = {}
+
     def executar(self, ast):
         print("=== EXECUÇÃO DO COMBATE ===")
 
@@ -89,6 +92,8 @@ class Interpretador:
         }
 
         self.defendendo[comando.nome] = False
+
+        self.bonus_proximo_ataque[comando.nome] = None
 
         if comando.tipo == "HEROI":
             self.posicoes[comando.nome] = {
@@ -190,7 +195,28 @@ class Interpretador:
             )
             return
 
-        dano = atacante["ataque"] - alvo["defesa"]
+        # Calcula o ataque normalmente.
+        valor_ataque = atacante["ataque"]
+
+        # Verifica se existe uma habilidade ativa.
+        habilidade_ativa = self.bonus_proximo_ataque.get(
+            comando.atacante
+        )
+
+        if habilidade_ativa == "GOLPE_FORTE":
+
+            valor_ataque = int(valor_ataque * 1.5)
+
+            # Consome a habilidade após um ataque válido.
+            self.bonus_proximo_ataque[comando.atacante] = None
+
+            print(
+                f"GOLPE_FORTE ativado! "
+                f"Ataque aumentado para {valor_ataque}!"
+            )
+
+        # Calcula o dano considerando a defesa do alvo.
+        dano = valor_ataque - alvo["defesa"]
         dano = max(0, dano)
 
         if self.defendendo[comando.alvo]:
@@ -258,8 +284,26 @@ class Interpretador:
             )
             return
 
-        print(
-            f"{comando.personagem} usou {comando.nome}!"
+        if comando.nome == "GOLPE_FORTE":
+
+            self.bonus_proximo_ataque[comando.personagem] = (
+                "GOLPE_FORTE"
+            )
+
+            print(
+                f"{comando.personagem} ativou GOLPE_FORTE!"
+            )
+
+            print(
+                "O próximo ataque válido causará 50% a mais de dano "
+                "no valor de ataque, antes da defesa do alvo."
+            )
+
+            return
+
+        raise ValueError(
+            f"Habilidade desconhecida: '{comando.nome}'. "
+            "Habilidades disponíveis: GOLPE_FORTE."
         )
 
     def turno(self, comando):
@@ -313,7 +357,7 @@ class Interpretador:
         elif comando.direcao == "DIREITA":
             coluna += 1
 
-        # Verifica os limites do tabuleiro
+        # Verifica os limites do tabuleiro.
         if linha < 0 or linha >= 7 or coluna < 0 or coluna >= 12:
             print(
                 f"{comando.personagem} não pode sair "
@@ -321,7 +365,7 @@ class Interpretador:
             )
             return
 
-        # Verifica se outra personagem ocupa a posição
+        # Verifica se outra personagem ocupa a posição.
         for outro_nome, outra_posicao in self.posicoes.items():
 
             if outro_nome == comando.personagem:
@@ -337,7 +381,7 @@ class Interpretador:
                 )
                 return
 
-        # Atualiza a posição somente se o movimento for válido
+        # Atualiza a posição somente se o movimento for válido.
         posicao["linha"] = linha
         posicao["coluna"] = coluna
 
